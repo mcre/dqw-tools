@@ -36,6 +36,33 @@
         </v-card-text>
       </v-card>
     </v-col>
+    <v-col cols="4">
+      <v-card>
+        <v-card-title>ほかの条件</v-card-title>
+        <v-card-text>
+          <v-checkbox
+            v-model="state.removeRainMonsters"
+            label="雨/水辺 限定モンスターを除く"
+            hide-details
+          />
+          <v-checkbox
+            v-model="state.removeNightMonsters"
+            label="夜 限定モンスターを除く"
+            hide-details
+          />
+          <v-select
+            class="mt-2"
+            label="地域設定 (未選択の場合は地域限定を除く)"
+            v-model="state.selectedPrefecture"
+            :items="prefectures"
+            item-title="name"
+            item-value="code"
+            hide-details
+            clearable
+          />
+        </v-card-text>
+      </v-card>
+    </v-col>
   </v-row>
   <v-row class="mt-12">
     <h2>おすすめクエスト</h2>
@@ -124,6 +151,7 @@ import { useUtil } from "@/composables/util";
 
 import frames from "@/assets/data/kokorodo/frames.json";
 import monstersData from "@/assets/data/kokorodo/monsters.json";
+import prefectures from "@/assets/data/kokorodo/prefectures.json";
 
 const router = useRouter();
 const route = useRoute();
@@ -159,20 +187,51 @@ for (let monsterName in monsters) {
 
 const state: {
   selectedFrames: number[];
+  selectedPrefecture: number | null;
+  removeRainMonsters: boolean;
+  removeNightMonsters: boolean;
   requiredMonsters: { name: string; details: MonsterDetails | undefined }[];
   requiredQuests: { count: number; quests: string[] }[];
   requiredMonsterNamesFromQuest: Record<string, string[]>;
 } = reactive({
-  selectedFrames: [] as number[],
+  selectedFrames: [],
+  selectedPrefecture: null,
+  removeRainMonsters: false,
+  removeNightMonsters: false,
   requiredMonsters: computed(() => {
     const monsterNames = state.selectedFrames
       .map((code) => monsterNamesFromCode[code])
       .flat();
     const uniqueMonsterNames = [...new Set(monsterNames)];
-    return uniqueMonsterNames.map((name) => ({
+    let requiredMonsters = uniqueMonsterNames.map((name) => ({
       name,
       details: monsters[name],
     }));
+    if (state.removeNightMonsters) {
+      requiredMonsters = requiredMonsters.filter(
+        (monster) => monster.details.condition != "夜"
+      );
+    }
+    if (state.removeRainMonsters) {
+      requiredMonsters = requiredMonsters.filter(
+        (monster) => monster.details.condition != "水"
+      );
+    }
+    if (state.selectedPrefecture) {
+      const prefectureMonsters = prefectures.filter(
+        (pref) => pref.code == state.selectedPrefecture
+      )[0].monsters;
+      requiredMonsters = requiredMonsters.filter(
+        (monster) =>
+          monster.details.condition != "地域" ||
+          prefectureMonsters.includes(monster.name)
+      );
+    } else {
+      requiredMonsters = requiredMonsters.filter(
+        (monster) => monster.details.condition != "地域"
+      );
+    }
+    return requiredMonsters;
   }),
   requiredQuests: computed(() => {
     const questCounts: { [key: string]: number } = {};
@@ -222,7 +281,6 @@ const state: {
 });
 
 const getColorCode = (colorName: string): string => {
-  console.log(colorName);
   switch (colorName) {
     case "青":
       return "rgb(52, 113, 210)";
@@ -240,18 +298,39 @@ const getColorCode = (colorName: string): string => {
 };
 
 watch(
-  () => state.selectedFrames,
+  () => [
+    state.selectedFrames,
+    state.removeNightMonsters,
+    state.removeRainMonsters,
+    state.selectedPrefecture,
+  ],
   () => {
+    const query: { [key: string]: string | undefined } = {
+      f: util.numberArrayToBase64(state.selectedFrames),
+    };
+    if (state.removeNightMonsters) query["n"] = "1";
+    if (state.removeRainMonsters) query["r"] = "1";
+    if (state.selectedPrefecture)
+      query["p"] = state.selectedPrefecture.toString();
     router.push({
       name: "kokorodo",
-      query: { s: util.numberArrayToBase64(state.selectedFrames) },
+      query: query,
     });
   }
 );
 
 const load = async () => {
-  if (typeof route.query.s === "string" && route.query.s.length > 0) {
-    state.selectedFrames = util.base64ToNumberArray(route.query.s);
+  if (typeof route.query.f === "string" && route.query.f.length > 0) {
+    state.selectedFrames = util.base64ToNumberArray(route.query.f);
+  }
+  if (typeof route.query.n === "string" && route.query.n.length > 0) {
+    state.removeNightMonsters = true;
+  }
+  if (typeof route.query.r === "string" && route.query.r.length > 0) {
+    state.removeRainMonsters = true;
+  }
+  if (typeof route.query.p === "string" && route.query.p.length > 0) {
+    state.selectedPrefecture = parseInt(route.query.p);
   }
 };
 
