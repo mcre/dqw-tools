@@ -39,8 +39,26 @@ export const useUtil = () => {
     return selectedNumbers;
   };
 
+  const kokoroColorCode = (colorName: string): string => {
+    switch (colorName) {
+      case "青":
+        return "rgb(52, 113, 210)";
+      case "紫":
+        return "rgb(140, 43, 195)";
+      case "黄":
+        return "rgb(210, 193, 75)";
+      case "緑":
+        return "rgb(75, 166, 75)";
+      case "赤":
+        return "rgb(232, 63, 53)";
+      default:
+        return "rgb(0, 0, 0)";
+    }
+  };
+
   return {
     numberArrayToBase64,
     base64ToNumberArray,
+    kokoroColorCode,
   };
 };

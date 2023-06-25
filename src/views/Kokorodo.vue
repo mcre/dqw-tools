@@ -74,12 +74,28 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="3" v-for="quest in quests.quests" :key="quest">
+      <v-col cols="3" v-for="(quest, index) in quests.quests" :key="index">
         <v-card>
-          <v-card-title>{{ quest }}</v-card-title>
+          <v-card-title>
+            {{ quest.questNames[0] }}
+            <v-tooltip location="end">
+              <template v-slot:activator="{ props }">
+                <v-chip
+                  v-bind="props"
+                  v-if="quest.questNames.length > 2"
+                  class="mb-1"
+                  color="primary"
+                  density="comfortable"
+                >
+                  他
+                </v-chip>
+              </template>
+              <span v-html="quest.questNames.join('<br />')" />
+            </v-tooltip>
+          </v-card-title>
           <v-card-text>
             <v-card
-              v-for="monsterName in state.requiredMonsterNamesFromQuest[quest]"
+              v-for="monsterName in quest.monsterNames"
               :key="monsterName"
               class="mb-2"
             >
@@ -100,7 +116,7 @@
                     <stop offset="0%" style="stop-color: rgb(255, 255, 255)" />
                     <stop
                       offset="100%"
-                      :style="`stop-color: ${getColorCode(
+                      :style="`stop-color: ${util.kokoroColorCode(
                         monsters[monsterName].color
                       )}`"
                     />
@@ -191,10 +207,16 @@ const state: {
   removeRainMonsters: boolean;
   removeNightMonsters: boolean;
   requiredMonsters: { name: string; details: MonsterDetails | undefined }[];
-  requiredQuests: { count: number; quests: string[] }[];
+  requiredQuests: {
+    count: number;
+    quests: {
+      questNames: string[];
+      monsterNames: string[];
+    }[];
+  }[];
   requiredMonsterNamesFromQuest: Record<string, string[]>;
 } = reactive({
-  selectedFrames: [],
+  selectedFrames: [] as number[],
   selectedPrefecture: null,
   removeRainMonsters: false,
   removeNightMonsters: false,
@@ -234,34 +256,55 @@ const state: {
     return requiredMonsters;
   }),
   requiredQuests: computed(() => {
-    const questCounts: { [key: string]: number } = {};
-    for (let m of state.requiredMonsters) {
-      if (!m.details) continue;
-      for (let q of m.details.quests) {
-        questCounts[q] = (questCounts[q] || 0) + 1;
-      }
-    }
+    const questsToMonsters: Record<string, string[]> = state.requiredMonsters
+      .filter((m) => m.details)
+      .reduce((acc, m) => {
+        m.details!.quests.forEach((q) => {
+          acc[q] = (acc[q] || []).concat(m.name);
+        });
+        return acc;
+      }, {} as Record<string, string[]>);
 
-    const countsToQuestsMap: { [count: number]: string[] } = {};
-    for (let quest in questCounts) {
-      const count = questCounts[quest];
-      if (countsToQuestsMap[count]) {
-        countsToQuestsMap[count].push(quest);
-      } else {
-        countsToQuestsMap[count] = [quest];
-      }
-    }
+    const questGroups = Object.entries(questsToMonsters)
+      .map(([questName, monsterNames]) => {
+        const monsterNamesKey = monsterNames.sort().join("|");
+        return { questName, monsterNames, monsterNamesKey };
+      })
+      .reduce((acc, { questName, monsterNames, monsterNamesKey }) => {
+        let questGroup = acc.find(
+          (qg) => qg.monsterNamesKey === monsterNamesKey
+        );
+        if (questGroup) {
+          questGroup.questNames.push(questName);
+        } else {
+          acc.push({
+            questNames: [questName],
+            count: monsterNames.length,
+            monsterNames,
+            monsterNamesKey,
+          });
+        }
+        return acc;
+      }, [] as { questNames: string[]; count: number; monsterNames: string[]; monsterNamesKey: string }[]);
 
-    const sortedCounts = Object.keys(countsToQuestsMap)
-      .map(Number)
-      .sort((a, b) => b - a);
+    const questGroupsByCount: Record<number, typeof questGroups> =
+      questGroups.reduce((acc, questGroup) => {
+        (acc[questGroup.count] || (acc[questGroup.count] = [])).push(
+          questGroup
+        );
+        return acc;
+      }, {} as Record<number, typeof questGroups>);
 
-    return sortedCounts
-      .map((count) => ({
-        count,
-        quests: countsToQuestsMap[count],
+    return Object.entries(questGroupsByCount)
+      .map(([count, questGroups]) => ({
+        count: Number(count),
+        quests: questGroups.map(({ questNames, monsterNames }) => ({
+          questNames,
+          monsterNames,
+        })),
       }))
-      .filter((item) => item.count >= 2);
+      .filter(({ count }) => count > 1)
+      .sort((a, b) => b.count - a.count);
   }),
   requiredMonsterNamesFromQuest: computed(() => {
     const requiredMonsterNamesFromQuest: Record<string, string[]> = {};
@@ -279,23 +322,6 @@ const state: {
     return requiredMonsterNamesFromQuest;
   }),
 });
-
-const getColorCode = (colorName: string): string => {
-  switch (colorName) {
-    case "青":
-      return "rgb(52, 113, 210)";
-    case "紫":
-      return "rgb(140, 43, 195)";
-    case "黄":
-      return "rgb(210, 193, 75)";
-    case "緑":
-      return "rgb(75, 166, 75)";
-    case "赤":
-      return "rgb(232, 63, 53)";
-    default:
-      return "rgb(0, 0, 0)";
-  }
-};
 
 watch(
   () => [
