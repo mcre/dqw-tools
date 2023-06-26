@@ -116,33 +116,52 @@
                 {{ monsterName }}
               </v-card-title>
               <v-card-text>
-                <v-chip
-                  class="mx-0"
-                  density="compact"
-                  variant="text"
-                  size="small"
-                  :prepend-icon="util.monsterFrequencyDetails(
+                <v-row>
+                  <v-col cols="12">
+                    <v-chip
+                      class="mx-0"
+                      density="compact"
+                      variant="text"
+                      size="small"
+                      :prepend-icon="util.monsterFrequencyDetails(
                       monsters[monsterName].frequency!
                     ).icon"
-                >
-                  {{
-                    util.monsterFrequencyDetails(
-                      monsters[monsterName].frequency!
-                    ).text
-                  }}
-                </v-chip>
-                <v-chip
-                  class="mx-0"
-                  density="compact"
-                  variant="text"
-                  size="small"
-                  v-if="monsters[monsterName].condition"
-                  :prepend-icon="
-                    util.textToIcon(monsters[monsterName].condition)
-                  "
-                >
-                  {{ monsters[monsterName].condition }}
-                </v-chip>
+                    >
+                      {{
+                        util.monsterFrequencyDetails(
+                          monsters[monsterName].frequency!
+                        ).text
+                      }}
+                    </v-chip>
+                    <v-chip
+                      class="mx-0"
+                      density="compact"
+                      variant="text"
+                      size="small"
+                      v-if="monsters[monsterName].condition"
+                      :prepend-icon="
+                        util.textToIcon(monsters[monsterName].condition)
+                      "
+                    >
+                      {{ monsters[monsterName].condition }}
+                    </v-chip>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-chip
+                      v-for="frameCode in frameCodesFromMonsterName[
+                        monsterName
+                      ]"
+                      :key="frameCode"
+                      class="mr-1"
+                      density="compact"
+                      size="small"
+                      color="primary"
+                      label
+                    >
+                      {{ frameNameFromCode[frameCode] }}
+                    </v-chip>
+                  </v-col>
+                </v-row>
               </v-card-text>
             </v-card>
           </v-card-text>
@@ -178,12 +197,41 @@ interface MonsterDetails {
 
 const monsters: Record<string, MonsterDetails> = monstersData;
 
-const monsterNamesFromCode = Object.fromEntries(
+const monsterNamesFromFrameCode = Object.fromEntries(
   frames
     .flatMap((job) => job.routes)
     .flatMap((route) => route.levels)
     .map((level) => [level.code, level.monsters])
 );
+
+const monsterAndFrameCodePairs = frames.flatMap((frame) =>
+  frame.routes.flatMap((route) =>
+    route.levels.flatMap((level) =>
+      level.monsters.map((monster) => ({ monster, code: level.code }))
+    )
+  )
+);
+
+const frameCodesFromMonsterName = monsterAndFrameCodePairs.reduce(
+  (acc, { monster, code }) => {
+    if (!acc[monster]) {
+      acc[monster] = [];
+    }
+    acc[monster].push(code);
+    return acc;
+  },
+  {} as Record<string, number[]>
+);
+
+const frameNameFromCode = frames
+  .flatMap(({ jobName, routes }) =>
+    routes.flatMap(({ name, levels }) =>
+      levels.map(({ code, level }) => ({
+        [code]: `${jobName} ${name}${level}`,
+      }))
+    )
+  )
+  .reduce((acc, current) => ({ ...acc, ...current }), {});
 
 const monsterNamesFromQuest: Record<string, string[]> = {};
 for (let monsterName in monsters) {
@@ -216,7 +264,7 @@ const state: {
   removeNightMonsters: false,
   requiredMonsters: computed(() => {
     const monsterNames = state.selectedFrames
-      .map((code) => monsterNamesFromCode[code])
+      .map((code) => monsterNamesFromFrameCode[code])
       .flat();
     const uniqueMonsterNames = [...new Set(monsterNames)];
     let requiredMonsters = uniqueMonsterNames.map((name) => ({
