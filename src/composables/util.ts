@@ -1,4 +1,8 @@
 export const useUtil = () => {
+  const consts = {
+    host: "https://dqw-tools.mcre.info",
+  };
+
   const numberArrayToBase64 = (selectedNumbers: number[]): string => {
     const max = Math.max(...selectedNumbers);
     if (max < 0) return "";
@@ -108,11 +112,17 @@ export const useUtil = () => {
     }
   };
 
+  const copyToClipboard = async (text: string) => {
+    await navigator.clipboard.writeText(text);
+  };
+
   return {
+    consts,
     numberArrayToBase64,
     base64ToNumberArray,
     kokoroColorCode,
     monsterFrequencyDetails,
     textToIcon,
+    copyToClipboard,
   };
 };

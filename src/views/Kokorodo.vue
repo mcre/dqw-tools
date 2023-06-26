@@ -1,8 +1,53 @@
 <template>
   <v-row>
-    <h2>
-      <v-icon start class="mb-1">mdi-heart-circle</v-icon>必要なこころの選択
-    </h2>
+    <v-col cols="12">
+      <h1>こころ道 おすすめクエスト 提案ツール</h1>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col cols="12">
+      <h2><v-icon start class="mb-1">mdi-foot-print</v-icon>説明</h2>
+    </v-col>
+    <v-col cols="12">
+      <p>
+        下の
+        <v-btn class="mb-1" href="#select" variant="outlined" density="compact">
+          欲しいこころの選択
+        </v-btn>
+        から、欲しいこころ道の枠をチェックすることで、
+        <v-btn class="mb-1" href="#quests" variant="outlined" density="compact">
+          おすすめクエスト
+        </v-btn>
+        に入手可能なこころの数が多い順でクエストが表示されます。
+      </p>
+      <p>
+        チェックの状態はURLに保存されるので、そのままブックマークすることで次回も同じ画面を表示することができます。
+      </p>
+      <v-col cols="12">
+        <v-text-field
+          v-model="state.fullPath"
+          label="URL"
+          variant="solo"
+          hide-details
+          readonly
+          append-inner-icon="mdi-content-copy"
+          @click:append-inner="
+            util.copyToClipboard(state.fullPath);
+            state.snackbar = true;
+          "
+        />
+      </v-col>
+      <v-snackbar v-model="state.snackbar">
+        URLをクリップボードにコピーしました
+      </v-snackbar>
+    </v-col>
+  </v-row>
+  <v-row id="select">
+    <v-col cols="12">
+      <h2>
+        <v-icon start class="mb-1">mdi-heart-circle</v-icon>欲しいこころの選択
+      </h2>
+    </v-col>
   </v-row>
   <v-row>
     <v-col cols="4" v-for="frame in frames" :key="frame.jobName">
@@ -66,11 +111,13 @@
       </v-card>
     </v-col>
   </v-row>
-  <v-row class="mt-12">
-    <h2>
-      <v-icon start class="mb-1">mdi-book-open-page-variant</v-icon>
-      おすすめクエスト
-    </h2>
+  <v-row class="mt-12" id="quests">
+    <v-col cols="12">
+      <h2>
+        <v-icon start class="mb-1">mdi-book-open-page-variant</v-icon>
+        おすすめクエスト
+      </h2>
+    </v-col>
   </v-row>
   <div v-for="quests in state.requiredQuests" :key="quests.count">
     <v-row class="mt-6">
@@ -244,6 +291,8 @@ for (let monsterName in monsters) {
 }
 
 const state: {
+  fullPath: string;
+  snackbar: boolean;
   selectedFrames: number[];
   selectedPrefecture: number | null;
   removeRainMonsters: boolean;
@@ -258,6 +307,8 @@ const state: {
   }[];
   requiredMonsterNamesFromQuest: Record<string, string[]>;
 } = reactive({
+  fullPath: `${util.consts.host}${route.fullPath}`,
+  snackbar: false,
   selectedFrames: [] as number[],
   selectedPrefecture: null,
   removeRainMonsters: false,
@@ -345,7 +396,6 @@ const state: {
           monsterNames: sortByFrequency(monsterNames),
         })),
       }))
-      .filter(({ count }) => count > 1)
       .sort((a, b) => b.count - a.count);
   }),
   requiredMonsterNamesFromQuest: computed(() => {
@@ -385,7 +435,7 @@ watch(
     state.selectedPrefecture,
   ],
   () => {
-    const query: { [key: string]: string | undefined } = {
+    const query: { [key: string]: string } = {
       f: util.numberArrayToBase64(state.selectedFrames),
     };
     if (state.removeNightMonsters) query["n"] = "1";
@@ -393,9 +443,12 @@ watch(
     if (state.selectedPrefecture)
       query["p"] = state.selectedPrefecture.toString();
     router.push({
-      name: "kokorodo",
+      name: route.name!,
       query: query,
     });
+    state.fullPath = `${util.consts.host}${route.path}?${new URLSearchParams(
+      query
+    ).toString()}`;
   }
 );
 
