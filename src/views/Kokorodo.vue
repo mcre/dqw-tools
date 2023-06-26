@@ -85,7 +85,7 @@
       <v-col cols="3" v-for="(quest, index) in quests.quests" :key="index">
         <v-card>
           <v-card-title>
-            <v-icon class="mb-1">mdi-map-marker</v-icon>
+            <v-icon class="mb-1">mdi-compass-outline</v-icon>
             {{ quest.questNames[0] }}
             <v-tooltip location="end">
               <template v-slot:activator="{ props }">
@@ -294,7 +294,7 @@ const state: {
         count: Number(count),
         quests: questGroups.map(({ questNames, monsterNames }) => ({
           questNames,
-          monsterNames,
+          monsterNames: sortByFrequency(monsterNames),
         })),
       }))
       .filter(({ count }) => count > 1)
@@ -316,6 +316,18 @@ const state: {
     return requiredMonsterNamesFromQuest;
   }),
 });
+
+const sortByFrequency = (monsterNames: string[]): string[] => {
+  return [...monsterNames].sort((a, b) => {
+    const freqLevelA = util.monsterFrequencyDetails(
+      monsters[a].frequency!
+    ).level;
+    const freqLevelB = util.monsterFrequencyDetails(
+      monsters[b].frequency!
+    ).level;
+    return freqLevelB - freqLevelA || a.localeCompare(b);
+  });
+};
 
 watch(
   () => [
