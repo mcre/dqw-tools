@@ -1,6 +1,8 @@
 <template>
   <v-row>
-    <h2>必要なこころの選択</h2>
+    <h2>
+      <v-icon start class="mb-1">mdi-heart-circle</v-icon>必要なこころの選択
+    </h2>
   </v-row>
   <v-row>
     <v-col cols="4" v-for="frame in frames" :key="frame.jobName">
@@ -65,18 +67,25 @@
     </v-col>
   </v-row>
   <v-row class="mt-12">
-    <h2>おすすめクエスト</h2>
+    <h2>
+      <v-icon start class="mb-1">mdi-book-open-page-variant</v-icon>
+      おすすめクエスト
+    </h2>
   </v-row>
   <div v-for="quests in state.requiredQuests" :key="quests.count">
-    <v-row>
+    <v-row class="mt-6">
       <v-col>
-        <h3>入手可能こころ: {{ quests.count }}</h3>
+        <h3>
+          <v-icon class="mb-1">mdi-bullseye-arrow</v-icon>
+          入手可能こころ: {{ quests.count }}
+        </h3>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="3" v-for="(quest, index) in quests.quests" :key="index">
         <v-card>
           <v-card-title>
+            <v-icon class="mb-1">mdi-map-marker</v-icon>
             {{ quest.questNames[0] }}
             <v-tooltip location="end">
               <template v-slot:activator="{ props }">
@@ -107,10 +116,31 @@
                 {{ monsterName }}
               </v-card-title>
               <v-card-text>
-                <v-chip class="mx-1">
-                  {{ monsters[monsterName].frequency }}
+                <v-chip
+                  class="mx-0"
+                  density="compact"
+                  variant="text"
+                  size="small"
+                  :prepend-icon="util.monsterFrequencyDetails(
+                      monsters[monsterName].frequency!
+                    ).icon"
+                >
+                  {{
+                    util.monsterFrequencyDetails(
+                      monsters[monsterName].frequency!
+                    ).text
+                  }}
                 </v-chip>
-                <v-chip class="mx-1" v-if="monsters[monsterName].condition">
+                <v-chip
+                  class="mx-0"
+                  density="compact"
+                  variant="text"
+                  size="small"
+                  v-if="monsters[monsterName].condition"
+                  :prepend-icon="
+                    util.textToIcon(monsters[monsterName].condition)
+                  "
+                >
                   {{ monsters[monsterName].condition }}
                 </v-chip>
               </v-card-text>

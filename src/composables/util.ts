@@ -56,9 +56,63 @@ export const useUtil = () => {
     }
   };
 
+  const monsterFrequencyDetails = (
+    frequencyKey: string
+  ): { level: number; icon: string; text: string } => {
+    switch (frequencyKey) {
+      case "とても":
+        return {
+          level: 5,
+          icon: "mdi-hexagon-slice-5",
+          text: "とてもよく見かける",
+        };
+      case "よく":
+        return { level: 4, icon: "mdi-hexagon-slice-4", text: "よく見かける" };
+      case "ときどき":
+        return {
+          level: 3,
+          icon: "mdi-hexagon-slice-3",
+          text: "ときどき見かける",
+        };
+      case "あまり":
+        return {
+          level: 2,
+          icon: "mdi-hexagon-slice-2",
+          text: "あまり見かけない",
+        };
+      case "めったに":
+        return {
+          level: 1,
+          icon: "mdi-hexagon-slice-1",
+          text: "めったに見かけない",
+        };
+      default:
+        return {
+          level: 0,
+          icon: "mdi-hexagon-slice-0",
+          text: "その他",
+        };
+    }
+  };
+
+  const textToIcon = (text: string): string => {
+    switch (text) {
+      case "水":
+        return "mdi-water";
+      case "地域":
+        return "mdi-map";
+      case "夜":
+        return "mdi-weather-night";
+      default:
+        return "mdi-help";
+    }
+  };
+
   return {
     numberArrayToBase64,
     base64ToNumberArray,
     kokoroColorCode,
+    monsterFrequencyDetails,
+    textToIcon,
   };
 };
