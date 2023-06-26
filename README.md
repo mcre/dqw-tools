@@ -2,7 +2,7 @@
 
 DQW(ドラクエウォーク)のプレイに便利な情報を提供できるツール集。
 
-https://dqw-tools.mcre.info
+https://dqw.mcre.info
 
 ## 開発時メモ
 

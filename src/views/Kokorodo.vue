@@ -238,6 +238,7 @@ import prefectures from "@/assets/data/kokorodo/prefectures.json";
 const router = useRouter();
 const route = useRoute();
 const util = useUtil();
+util.setTitle("こころ道 クエスト検索ツール");
 
 interface MonsterDetails {
   color: string;

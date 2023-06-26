@@ -1,6 +1,6 @@
 export const useUtil = () => {
   const consts = {
-    host: "https://dqw-tools.mcre.info",
+    host: "https://dqw.mcre.info",
   };
 
   const numberArrayToBase64 = (selectedNumbers: number[]): string => {
@@ -116,6 +116,23 @@ export const useUtil = () => {
     await navigator.clipboard.writeText(text);
   };
 
+  const setTitle = (title?: string | null) => {
+    const site = "DQW Tools";
+    let newTitle = "";
+    if (title) {
+      newTitle = title + " - " + site;
+    } else {
+      newTitle = site;
+    }
+    document.title = newTitle;
+
+    const elem1 = document.querySelector("meta[id='ogtitle']");
+    if (elem1) elem1.setAttribute("content", newTitle);
+
+    const elem3 = document.querySelector("meta[id='ogurl']");
+    if (elem3) elem3.setAttribute("content", document.documentURI);
+  };
+
   return {
     consts,
     numberArrayToBase64,
@@ -124,5 +141,6 @@ export const useUtil = () => {
     monsterFrequencyDetails,
     textToIcon,
     copyToClipboard,
+    setTitle,
   };
 };
