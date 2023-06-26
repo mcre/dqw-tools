@@ -99,48 +99,10 @@
               :key="monsterName"
               class="mb-2"
             >
-              <svg
-                width="40"
-                height="40"
-                style="position: absolute; top: 10; right: 10"
-              >
-                <defs>
-                  <radialGradient
-                    :id="`gradient-${monsterName}`"
-                    cx="10%"
-                    cy="10%"
-                    r="100%"
-                    fx="10%"
-                    fy="10%"
-                  >
-                    <stop offset="0%" style="stop-color: rgb(255, 255, 255)" />
-                    <stop
-                      offset="100%"
-                      :style="`stop-color: ${util.kokoroColorCode(
-                        monsters[monsterName].color
-                      )}`"
-                    />
-                  </radialGradient>
-                </defs>
-
-                <circle
-                  cx="20"
-                  cy="20"
-                  r="20"
-                  :fill="`url(#gradient-${monsterName})`"
-                />
-                <text
-                  x="50%"
-                  y="50%"
-                  text-anchor="middle"
-                  dominant-baseline="middle"
-                  font-size="15"
-                  font-weight="bold"
-                  fill="white"
-                >
-                  {{ monsters[monsterName].cost }}
-                </text>
-              </svg>
+              <kokoro-svg
+                :color-name="monsters[monsterName].color"
+                :cost="monsters[monsterName].cost"
+              />
               <v-card-title>
                 {{ monsterName }}
               </v-card-title>
@@ -164,6 +126,8 @@
 import { reactive, watch, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useUtil } from "@/composables/util";
+
+import KokoroSvg from "@/components/KokoroSvg.vue";
 
 import frames from "@/assets/data/kokorodo/frames.json";
 import monstersData from "@/assets/data/kokorodo/monsters.json";
