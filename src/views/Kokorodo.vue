@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <h1>こころ道 おすすめクエスト 提案ツール</h1>
+      <h1>こころ道 クエスト検索ツール</h1>
     </v-col>
   </v-row>
   <v-row>
@@ -50,7 +50,7 @@
     </v-col>
   </v-row>
   <v-row>
-    <v-col cols="4" v-for="frame in frames" :key="frame.jobName">
+    <v-col cols="12" md="6" lg="4" v-for="frame in frames" :key="frame.jobName">
       <v-card>
         <v-card-title>{{ frame.jobName }}</v-card-title>
         <v-card-text>
@@ -83,7 +83,7 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col cols="4">
+    <v-col cols="12" md="6" lg="4">
       <v-card>
         <v-card-title>ほかの条件</v-card-title>
         <v-card-text>
@@ -129,7 +129,13 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="3" v-for="(quest, index) in quests.quests" :key="index">
+      <v-col
+        cols="12"
+        md="6"
+        lg="3"
+        v-for="(quest, index) in quests.quests"
+        :key="index"
+      >
         <v-card>
           <v-card-title>
             <v-icon class="mb-1">mdi-compass-outline</v-icon>
