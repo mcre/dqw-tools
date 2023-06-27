@@ -41,6 +41,22 @@
         URLをクリップボードにコピーしました
       </v-snackbar>
     </v-col>
+    <v-col cols="12">
+      <p>
+        <v-btn
+          class="mb-1 mr-2"
+          href="https://mcre.info"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="outlined"
+          density="compact"
+          color="primary"
+        >
+          mcre.info
+        </v-btn>
+        作者の情報、このツールのソースコードなど
+      </p>
+    </v-col>
   </v-row>
   <v-row id="select">
     <v-col cols="12">
