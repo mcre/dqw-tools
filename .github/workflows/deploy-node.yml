@@ -2,7 +2,7 @@ name: deploy-node
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths-ignore:
       - 'backend/**'
 
