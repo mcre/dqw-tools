@@ -38,5 +38,5 @@ jobs:
         uses: chetan/invalidate-cloudfront-action@master
         env:
           AWS_REGION: ap-northeast-1
-          DISTRIBUTION: EDE74EPVAHP4C
+          DISTRIBUTION: E3B7D1Y77Y0OIX
           PATHS: /*
