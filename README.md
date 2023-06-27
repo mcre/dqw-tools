@@ -124,6 +124,32 @@ Prerenderはmcre.infoと共有する。
       - レスポンスコード
         - 200
 
+### S3 設定
+
+バケットポリシーに下記を追加
+
+```
+{
+  "Version": "2008-10-17",
+  "Id": "PolicyForCloudFrontPrivateContent",
+  "Statement": [
+    {
+      "Sid": "AllowCloudFrontServicePrincipal",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "cloudfront.amazonaws.com"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::dqw.mcre.info/*",
+      "Condition": {
+        "StringEquals": {
+          "AWS:SourceArn": "arn:aws:cloudfront::118834186871:distribution/E3B7D1Y77Y0OIX"
+        }
+      }
+    }
+  ]
+}
+```
 
 ### Route 53 設定
 
