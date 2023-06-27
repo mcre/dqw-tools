@@ -1,5 +1,6 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
+import { trackRouter } from "vue-gtag-next";
 
 const routes = [
   {
@@ -25,5 +26,9 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+if (process.env.NODE_ENV === "production") {
+  trackRouter(router);
+}
 
 export default router;
