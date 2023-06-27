@@ -115,7 +115,7 @@
           />
           <v-select
             class="mt-2"
-            label="地域設定 (未選択の場合は地域限定を除く)"
+            label="地域設定(未選択の場合は地域限定を除く)"
             v-model="state.selectedPrefecture"
             :items="prefectures"
             item-title="name"
