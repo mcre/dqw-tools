@@ -15,7 +15,7 @@ const routes = [
         path: "kokorodo",
         name: "kokorodo",
         component: () =>
-          import(/* webpackChunkName: "Kokorodo" */ "@/views/kokorodo.vue"),
+          import(/* webpackChunkName: "Kokorodo" */ "@/views/Kokorodo.vue"),
       },
     ],
   },
