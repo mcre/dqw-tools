@@ -17,13 +17,4 @@ const app = createApp(App);
 
 registerPlugins(app);
 
-import VueGtag from "vue-gtag-next";
-if (process.env.NODE_ENV === "production") {
-  app.use(VueGtag, {
-    property: {
-      id: "G-PQ3NGWW328",
-    },
-  });
-}
-
 app.mount("#app");
