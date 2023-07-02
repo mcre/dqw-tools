@@ -31,7 +31,7 @@ export interface MonsterDetails {
   cost: number;
   frequency: string | null;
   condition: any | null;
-  limited_time_events: string[];
+  limitedTimeEvents: string[];
   quests: string[];
 }
 

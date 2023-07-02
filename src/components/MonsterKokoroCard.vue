@@ -9,7 +9,7 @@
     </v-card-title>
     <v-card-text>
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" v-if="props.showStoryConditions">
           <v-chip
             class="mx-0"
             density="compact"
@@ -38,6 +38,17 @@
             "
           >
             {{ kokorodoStore.monsters[props.monsterName].condition }}
+          </v-chip>
+        </v-col>
+        <v-col cols="12" v-if="props.showLimitedTimeEvents">
+          <v-chip
+            v-for="event in kokorodoStore.monsters[props.monsterName]
+              .limitedTimeEvents"
+            :key="event"
+            class="mr-1"
+            density="compact"
+          >
+            {{ event }}
           </v-chip>
         </v-col>
         <v-col cols="12">
@@ -71,5 +82,7 @@ import KokoroSvg from "@/components/KokoroSvg.vue";
 
 const props = defineProps<{
   monsterName: string;
+  showStoryConditions?: boolean;
+  showLimitedTimeEvents?: boolean;
 }>();
 </script>

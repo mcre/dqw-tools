@@ -190,6 +190,7 @@
                   v-for="monsterName in quest.monsterNames"
                   :key="monsterName"
                   :monster-name="monsterName"
+                  show-story-conditions
                   class="mb-2"
                 />
               </v-card-text>
@@ -199,6 +200,32 @@
       </v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>
+  <v-row class="mt-12" id="quests">
+    <v-col cols="12">
+      <h2>
+        <v-icon start class="mb-1">mdi-book-open-page-variant</v-icon>
+        その他のモンスター
+      </h2>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col
+      cols="12"
+      md="6"
+      lg="4"
+      v-for="monster in state.requiredMonsters
+        .filter(
+          (monster) => monster.details && monster.details.quests.length == 0
+        )
+        .sort((a, b) => a.name.localeCompare(b.name))"
+      :key="monster.name"
+    >
+      <monster-kokoro-card
+        :monster-name="monster.name"
+        show-limited-time-events
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts" setup>
