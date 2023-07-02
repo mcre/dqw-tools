@@ -186,68 +186,12 @@
                 </v-tooltip>
               </v-card-title>
               <v-card-text>
-                <v-card
+                <monster-kokoro-card
                   v-for="monsterName in quest.monsterNames"
                   :key="monsterName"
+                  :monster-name="monsterName"
                   class="mb-2"
-                >
-                  <kokoro-svg
-                    :color-name="kokorodoStore.monsters[monsterName].color"
-                    :cost="kokorodoStore.monsters[monsterName].cost"
-                  />
-                  <v-card-title>
-                    {{ monsterName }}
-                  </v-card-title>
-                  <v-card-text>
-                    <v-row>
-                      <v-col cols="12">
-                        <v-chip
-                          class="mx-0"
-                          density="compact"
-                          variant="text"
-                          size="small"
-                          :prepend-icon="util.monsterFrequencyDetails(
-                      kokorodoStore.monsters[monsterName].frequency!
-                    ).icon"
-                        >
-                          {{
-                            util.monsterFrequencyDetails(
-                              kokorodoStore.monsters[monsterName].frequency!
-                            ).text
-                          }}
-                        </v-chip>
-                        <v-chip
-                          class="mx-0"
-                          density="compact"
-                          variant="text"
-                          size="small"
-                          v-if="kokorodoStore.monsters[monsterName].condition"
-                          :prepend-icon="
-                            util.textToIcon(
-                              kokorodoStore.monsters[monsterName].condition
-                            )
-                          "
-                        >
-                          {{ kokorodoStore.monsters[monsterName].condition }}
-                        </v-chip>
-                      </v-col>
-                      <v-col cols="12">
-                        <v-chip
-                          v-for="frameCode in kokorodoStore
-                            .frameCodesFromMonsterName[monsterName]"
-                          :key="frameCode"
-                          class="mr-1"
-                          density="compact"
-                          size="small"
-                          color="primary"
-                          label
-                        >
-                          {{ kokorodoStore.frameNameFromCode[frameCode] }}
-                        </v-chip>
-                      </v-col>
-                    </v-row>
-                  </v-card-text>
-                </v-card>
+                />
               </v-card-text>
             </v-card>
           </v-col>
@@ -263,7 +207,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useKokorodoStore, MonsterDetails } from "@/store/kokorodo";
 import { useUtil } from "@/composables/util";
 
-import KokoroSvg from "@/components/KokoroSvg.vue";
+import MonsterKokoroCard from "@/components/MonsterKokoroCard.vue";
 
 const router = useRouter();
 const route = useRoute();
