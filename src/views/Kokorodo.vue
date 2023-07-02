@@ -66,7 +66,13 @@
     </v-col>
   </v-row>
   <v-row>
-    <v-col cols="12" md="6" lg="4" v-for="frame in frames" :key="frame.jobName">
+    <v-col
+      cols="12"
+      md="6"
+      lg="4"
+      v-for="frame in kokorodoStore.frames"
+      :key="frame.jobName"
+    >
       <v-card>
         <v-card-title>{{ frame.jobName }}</v-card-title>
         <v-card-text>
@@ -117,7 +123,7 @@
             class="mt-2"
             label="地域設定(未選択の場合は地域限定を除く)"
             v-model="state.selectedPrefecture"
-            :items="prefectures"
+            :items="kokorodoStore.prefectures"
             item-title="name"
             item-value="code"
             hide-details
@@ -186,8 +192,8 @@
                   class="mb-2"
                 >
                   <kokoro-svg
-                    :color-name="monsters[monsterName].color"
-                    :cost="monsters[monsterName].cost"
+                    :color-name="kokorodoStore.monsters[monsterName].color"
+                    :cost="kokorodoStore.monsters[monsterName].cost"
                   />
                   <v-card-title>
                     {{ monsterName }}
@@ -201,12 +207,12 @@
                           variant="text"
                           size="small"
                           :prepend-icon="util.monsterFrequencyDetails(
-                      monsters[monsterName].frequency!
+                      kokorodoStore.monsters[monsterName].frequency!
                     ).icon"
                         >
                           {{
                             util.monsterFrequencyDetails(
-                              monsters[monsterName].frequency!
+                              kokorodoStore.monsters[monsterName].frequency!
                             ).text
                           }}
                         </v-chip>
@@ -215,19 +221,20 @@
                           density="compact"
                           variant="text"
                           size="small"
-                          v-if="monsters[monsterName].condition"
+                          v-if="kokorodoStore.monsters[monsterName].condition"
                           :prepend-icon="
-                            util.textToIcon(monsters[monsterName].condition)
+                            util.textToIcon(
+                              kokorodoStore.monsters[monsterName].condition
+                            )
                           "
                         >
-                          {{ monsters[monsterName].condition }}
+                          {{ kokorodoStore.monsters[monsterName].condition }}
                         </v-chip>
                       </v-col>
                       <v-col cols="12">
                         <v-chip
-                          v-for="frameCode in frameCodesFromMonsterName[
-                            monsterName
-                          ]"
+                          v-for="frameCode in kokorodoStore
+                            .frameCodesFromMonsterName[monsterName]"
                           :key="frameCode"
                           class="mr-1"
                           density="compact"
@@ -235,7 +242,7 @@
                           color="primary"
                           label
                         >
-                          {{ frameNameFromCode[frameCode] }}
+                          {{ kokorodoStore.frameNameFromCode[frameCode] }}
                         </v-chip>
                       </v-col>
                     </v-row>
@@ -253,75 +260,16 @@
 <script lang="ts" setup>
 import { reactive, watch, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useKokorodoStore, MonsterDetails } from "@/store/kokorodo";
 import { useUtil } from "@/composables/util";
 
 import KokoroSvg from "@/components/KokoroSvg.vue";
 
-import frames from "@/assets/data/kokorodo/frames.json";
-import monstersData from "@/assets/data/kokorodo/monsters.json";
-import prefectures from "@/assets/data/kokorodo/prefectures.json";
-
 const router = useRouter();
 const route = useRoute();
+const kokorodoStore = useKokorodoStore();
 const util = useUtil();
 util.setTitle("こころ道 クエスト検索ツール");
-
-interface MonsterDetails {
-  color: string;
-  cost: number;
-  frequency: string | null;
-  condition: any | null;
-  limited_time_events: string[];
-  quests: string[];
-}
-
-const monsters: Record<string, MonsterDetails> = monstersData;
-
-const monsterNamesFromFrameCode = Object.fromEntries(
-  frames
-    .flatMap((job) => job.routes)
-    .flatMap((route) => route.levels)
-    .map((level) => [level.code, level.monsters])
-);
-
-const monsterAndFrameCodePairs = frames.flatMap((frame) =>
-  frame.routes.flatMap((route) =>
-    route.levels.flatMap((level) =>
-      level.monsters.map((monster) => ({ monster, code: level.code }))
-    )
-  )
-);
-
-const frameCodesFromMonsterName = monsterAndFrameCodePairs.reduce(
-  (acc, { monster, code }) => {
-    if (!acc[monster]) {
-      acc[monster] = [];
-    }
-    acc[monster].push(code);
-    return acc;
-  },
-  {} as Record<string, number[]>
-);
-
-const frameNameFromCode = frames
-  .flatMap(({ jobName, routes }) =>
-    routes.flatMap(({ name, levels }) =>
-      levels.map(({ code, level }) => ({
-        [code]: `${jobName} ${name}${level}`,
-      }))
-    )
-  )
-  .reduce((acc, current) => ({ ...acc, ...current }), {});
-
-const monsterNamesFromQuest: Record<string, string[]> = {};
-for (let monsterName in monsters) {
-  for (let quest of monsters[monsterName].quests) {
-    if (!monsterNamesFromQuest[quest]) {
-      monsterNamesFromQuest[quest] = [];
-    }
-    monsterNamesFromQuest[quest].push(monsterName);
-  }
-}
 
 const state: {
   fullPath: string;
@@ -348,12 +296,12 @@ const state: {
   removeNightMonsters: false,
   requiredMonsters: computed(() => {
     const monsterNames = state.selectedFrames
-      .map((code) => monsterNamesFromFrameCode[code])
+      .map((code) => kokorodoStore.monsterNamesFromFrameCode[code])
       .flat();
     const uniqueMonsterNames = [...new Set(monsterNames)];
     let requiredMonsters = uniqueMonsterNames.map((name) => ({
       name,
-      details: monsters[name],
+      details: kokorodoStore.monsters[name],
     }));
     if (state.removeNightMonsters) {
       requiredMonsters = requiredMonsters.filter(
@@ -366,7 +314,7 @@ const state: {
       );
     }
     if (state.selectedPrefecture) {
-      const prefectureMonsters = prefectures.filter(
+      const prefectureMonsters = kokorodoStore.prefectures.filter(
         (pref) => pref.code == state.selectedPrefecture
       )[0].monsters;
       requiredMonsters = requiredMonsters.filter(
@@ -451,10 +399,10 @@ const state: {
 const sortByFrequency = (monsterNames: string[]): string[] => {
   return [...monsterNames].sort((a, b) => {
     const freqLevelA = util.monsterFrequencyDetails(
-      monsters[a].frequency!
+      kokorodoStore.monsters[a].frequency!
     ).level;
     const freqLevelB = util.monsterFrequencyDetails(
-      monsters[b].frequency!
+      kokorodoStore.monsters[b].frequency!
     ).level;
     return freqLevelB - freqLevelA || a.localeCompare(b);
   });
