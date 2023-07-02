@@ -135,109 +135,119 @@
       </h2>
     </v-col>
   </v-row>
-  <div v-for="quests in state.requiredQuests" :key="quests.count">
-    <v-row class="mt-6">
-      <v-col>
+  <v-expansion-panels
+    class="mt-6"
+    multiple
+    :model-value="state.requiredQuests.slice(0, 2).map((item) => item.count)"
+  >
+    <v-expansion-panel
+      v-for="quests in state.requiredQuests"
+      :key="quests.count"
+      :value="quests.count"
+    >
+      <v-expansion-panel-title>
         <h3>
-          <v-icon class="mb-1">mdi-bullseye-arrow</v-icon>
+          <v-icon start>mdi-bullseye-arrow</v-icon>
           入手可能こころ: {{ quests.count }}
         </h3>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col
-        cols="12"
-        md="6"
-        lg="3"
-        v-for="(quest, index) in quests.quests"
-        :key="index"
-      >
-        <v-card>
-          <v-card-title>
-            <v-icon class="mb-1">mdi-compass-outline</v-icon>
-            {{ quest.questNames[0] }}
-            <v-tooltip location="end">
-              <template v-slot:activator="{ props }">
-                <v-chip
-                  v-bind="props"
-                  v-if="quest.questNames.length > 2"
-                  class="mb-1"
-                  color="primary"
-                  density="comfortable"
-                >
-                  他
-                </v-chip>
-              </template>
-              <span v-html="quest.questNames.join('<br />')" />
-            </v-tooltip>
-          </v-card-title>
-          <v-card-text>
-            <v-card
-              v-for="monsterName in quest.monsterNames"
-              :key="monsterName"
-              class="mb-2"
-            >
-              <kokoro-svg
-                :color-name="monsters[monsterName].color"
-                :cost="monsters[monsterName].cost"
-              />
+      </v-expansion-panel-title>
+      <v-expansion-panel-text>
+        <v-row class="my-2">
+          <v-col
+            cols="12"
+            md="6"
+            lg="4"
+            v-for="(quest, index) in quests.quests"
+            :key="index"
+          >
+            <v-card>
               <v-card-title>
-                {{ monsterName }}
+                <v-icon class="mb-1">mdi-compass-outline</v-icon>
+                {{ quest.questNames[0] }}
+                <v-tooltip location="end">
+                  <template v-slot:activator="{ props }">
+                    <v-chip
+                      v-bind="props"
+                      v-if="quest.questNames.length > 2"
+                      class="mb-1"
+                      color="primary"
+                      density="comfortable"
+                    >
+                      他
+                    </v-chip>
+                  </template>
+                  <span v-html="quest.questNames.join('<br />')" />
+                </v-tooltip>
               </v-card-title>
               <v-card-text>
-                <v-row>
-                  <v-col cols="12">
-                    <v-chip
-                      class="mx-0"
-                      density="compact"
-                      variant="text"
-                      size="small"
-                      :prepend-icon="util.monsterFrequencyDetails(
+                <v-card
+                  v-for="monsterName in quest.monsterNames"
+                  :key="monsterName"
+                  class="mb-2"
+                >
+                  <kokoro-svg
+                    :color-name="monsters[monsterName].color"
+                    :cost="monsters[monsterName].cost"
+                  />
+                  <v-card-title>
+                    {{ monsterName }}
+                  </v-card-title>
+                  <v-card-text>
+                    <v-row>
+                      <v-col cols="12">
+                        <v-chip
+                          class="mx-0"
+                          density="compact"
+                          variant="text"
+                          size="small"
+                          :prepend-icon="util.monsterFrequencyDetails(
                       monsters[monsterName].frequency!
                     ).icon"
-                    >
-                      {{
-                        util.monsterFrequencyDetails(
-                          monsters[monsterName].frequency!
-                        ).text
-                      }}
-                    </v-chip>
-                    <v-chip
-                      class="mx-0"
-                      density="compact"
-                      variant="text"
-                      size="small"
-                      v-if="monsters[monsterName].condition"
-                      :prepend-icon="
-                        util.textToIcon(monsters[monsterName].condition)
-                      "
-                    >
-                      {{ monsters[monsterName].condition }}
-                    </v-chip>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-chip
-                      v-for="frameCode in frameCodesFromMonsterName[
-                        monsterName
-                      ]"
-                      :key="frameCode"
-                      class="mr-1"
-                      density="compact"
-                      size="small"
-                      color="primary"
-                      label
-                    >
-                      {{ frameNameFromCode[frameCode] }}
-                    </v-chip>
-                  </v-col>
-                </v-row>
+                        >
+                          {{
+                            util.monsterFrequencyDetails(
+                              monsters[monsterName].frequency!
+                            ).text
+                          }}
+                        </v-chip>
+                        <v-chip
+                          class="mx-0"
+                          density="compact"
+                          variant="text"
+                          size="small"
+                          v-if="monsters[monsterName].condition"
+                          :prepend-icon="
+                            util.textToIcon(monsters[monsterName].condition)
+                          "
+                        >
+                          {{ monsters[monsterName].condition }}
+                        </v-chip>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-chip
+                          v-for="frameCode in frameCodesFromMonsterName[
+                            monsterName
+                          ]"
+                          :key="frameCode"
+                          class="mr-1"
+                          density="compact"
+                          size="small"
+                          color="primary"
+                          label
+                        >
+                          {{ frameNameFromCode[frameCode] }}
+                        </v-chip>
+                      </v-col>
+                    </v-row>
+                  </v-card-text>
+                </v-card>
               </v-card-text>
             </v-card>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-  </div>
+          </v-col>
+        </v-row>
+      </v-expansion-panel-text>
+    </v-expansion-panel>
+  </v-expansion-panels>
 </template>
 
 <script lang="ts" setup>
