@@ -133,7 +133,7 @@
       </v-card>
     </v-col>
   </v-row>
-  <v-row class="mt-12" id="quests">
+  <v-row class="mt-12" id="quests" v-if="state.requiredQuests.length > 0">
     <v-col cols="12">
       <h2>
         <v-icon start class="mb-1">mdi-book-open-page-variant</v-icon>
@@ -142,6 +142,7 @@
     </v-col>
   </v-row>
   <v-expansion-panels
+    v-if="state.requiredQuests.length > 0"
     class="mt-6"
     multiple
     :model-value="state.requiredQuests.slice(0, 2).map((item) => item.count)"
@@ -200,11 +201,15 @@
       </v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>
-  <v-row class="mt-12" id="quests">
+  <v-row
+    class="mt-12"
+    id="quests"
+    v-if="state.requiredNonQuestMonsters.length > 0"
+  >
     <v-col cols="12">
       <h2>
-        <v-icon start class="mb-1">mdi-book-open-page-variant</v-icon>
-        その他のモンスター
+        <v-icon start class="mb-1">mdi-ghost</v-icon>
+        期間限定モンスター等
       </h2>
     </v-col>
   </v-row>
@@ -213,11 +218,7 @@
       cols="12"
       md="6"
       lg="4"
-      v-for="monster in state.requiredMonsters
-        .filter(
-          (monster) => monster.details && monster.details.quests.length == 0
-        )
-        .sort((a, b) => a.name.localeCompare(b.name))"
+      v-for="monster in state.requiredNonQuestMonsters"
       :key="monster.name"
     >
       <monster-kokoro-card
@@ -258,6 +259,10 @@ const state: {
     }[];
   }[];
   requiredMonsterNamesFromQuest: Record<string, string[]>;
+  requiredNonQuestMonsters: {
+    name: string;
+    details: MonsterDetails | undefined;
+  }[];
 } = reactive({
   fullPath: `${util.consts.host}${route.fullPath}`,
   snackbar: false,
@@ -364,6 +369,13 @@ const state: {
       }
     }
     return requiredMonsterNamesFromQuest;
+  }),
+  requiredNonQuestMonsters: computed(() => {
+    return state.requiredMonsters
+      .filter(
+        (monster) => monster.details && monster.details.quests.length == 0
+      )
+      .sort((a, b) => a.name.localeCompare(b.name));
   }),
 });
 
