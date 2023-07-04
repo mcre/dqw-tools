@@ -21,7 +21,7 @@
         に入手可能なこころの数が多い順でクエストが表示されます。
       </p>
       <p>
-        チェックの状態はURLに保存されるので、そのままブックマークすることで次回も同じ画面を表示することができます。
+        チェックの状態はURLに保存されるので、そのままブックマークすることで次回も同じ内容を表示することができます。
       </p>
       <v-col cols="12">
         <v-text-field
@@ -41,21 +41,27 @@
         URLをクリップボードにコピーしました
       </v-snackbar>
     </v-col>
-    <v-col cols="12">
-      <p>
-        <v-btn
-          class="mb-1 mr-2"
-          href="https://mcre.info"
-          target="_blank"
-          rel="noopener noreferrer"
-          variant="outlined"
-          density="compact"
-          color="primary"
-        >
-          mcre.info
-        </v-btn>
-        作者の情報、このツールのソースコードなど
-      </p>
+    <v-col cols="12" sm="6">
+      <v-btn
+        class="mb-1 mr-2"
+        href="https://mcre.info"
+        target="_blank"
+        rel="noopener noreferrer"
+        icon="mdi-account-circle"
+        size="small"
+      />
+      作者について
+    </v-col>
+    <v-col cols="12" sm="6">
+      <v-btn
+        class="mb-1 mr-2"
+        href="https://github.com/mcre/dqw-tools"
+        target="_blank"
+        rel="noopener noreferrer"
+        icon="mdi-github"
+        size="small"
+      />
+      このWebアプリのソースコード・要望
     </v-col>
   </v-row>
   <v-row id="select">
