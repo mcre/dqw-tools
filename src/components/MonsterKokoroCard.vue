@@ -51,7 +51,7 @@
             {{ event }}
           </v-chip>
         </v-col>
-        <v-col cols="12">
+        <v-col cols="12" class="pt-0">
           <v-chip
             v-for="frameCode in kokorodoStore.frameCodesFromMonsterName[
               props.monsterName
@@ -65,6 +65,16 @@
           >
             {{ kokorodoStore.frameNameFromCode[frameCode] }}
           </v-chip>
+        </v-col>
+        <v-col
+          cols="12"
+          class="pt-0"
+          v-if="kokorodoStore.monsters[props.monsterName].memo"
+        >
+          <v-alert
+            density="compact"
+            :text="kokorodoStore.monsters[props.monsterName].memo"
+          />
         </v-col>
       </v-row>
     </v-card-text>

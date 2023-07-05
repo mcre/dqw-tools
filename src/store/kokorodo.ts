@@ -33,6 +33,7 @@ export interface MonsterDetails {
   condition: any | null;
   limitedTimeEvents: string[];
   quests: string[];
+  memo?: string;
 }
 
 export const useKokorodoStore = defineStore("kokorodo", {
