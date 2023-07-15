@@ -16,7 +16,7 @@
         </v-btn>
         から、欲しいこころ道の枠をチェックすることで、
         <v-btn class="mb-1" href="#quests" variant="outlined" density="compact">
-          おすすめクエスト
+          周回おすすめクエスト
         </v-btn>
         に入手可能なこころの数が多い順でクエストが表示されます。
       </p>
@@ -143,7 +143,7 @@
     <v-col cols="12">
       <h2>
         <v-icon start class="mb-1">mdi-book-open-page-variant</v-icon>
-        おすすめクエスト
+        周回おすすめクエスト
       </h2>
     </v-col>
   </v-row>
