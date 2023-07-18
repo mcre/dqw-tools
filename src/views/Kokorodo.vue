@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <h1>こころ道 クエスト検索ツール</h1>
+      <h1>こころ道 周回クエスト検索ツール</h1>
     </v-col>
   </v-row>
   <v-row>
@@ -41,6 +41,8 @@
         URLをクリップボードにコピーしました
       </v-snackbar>
     </v-col>
+  </v-row>
+  <v-row>
     <v-col cols="12" sm="6">
       <v-btn
         class="mb-1 mr-2"
@@ -139,7 +141,8 @@
       </v-card>
     </v-col>
   </v-row>
-  <v-row class="mt-12" id="quests" v-if="state.requiredQuests.length > 0">
+
+  <v-row class="mt-12" id="quests">
     <v-col cols="12">
       <h2>
         <v-icon start class="mb-1">mdi-book-open-page-variant</v-icon>
@@ -207,6 +210,19 @@
       </v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>
+  <v-row v-else>
+    <v-col cols="12" sm="6" md="4" lg="4">
+      <v-alert border="start" elevation="6" outlined>
+        <p>結果サンプル</p>
+        <v-img
+          class="mt-2"
+          src="/img/kokorodo-sample.png"
+          alt="結果サンプル"
+          eager
+        />
+      </v-alert>
+    </v-col>
+  </v-row>
   <v-row
     class="mt-12"
     id="quests"
@@ -247,7 +263,7 @@ const router = useRouter();
 const route = useRoute();
 const kokorodoStore = useKokorodoStore();
 const util = useUtil();
-util.setTitle("こころ道 クエスト検索ツール");
+util.setTitle("こころ道 周回クエスト検索ツール");
 
 const state: {
   fullPath: string;
