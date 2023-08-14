@@ -179,5 +179,6 @@
   "亡者のひとだま": {"color": "紫", "cost": 114, "frequency": "よく", "condition": "夜", "limitedTimeEvents": [], "quests": ["10章9話", "10章10話", "11章1話", "11章2話", "11章3話", "11章4話", "11章5話", "11章6話", "11章7話", "11章8話"]},
   "冥王ネルゲル": {"color": "青", "cost": 131, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "欲望の魔人": {"color": "黄", "cost": 122, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": []},
-  "幻魔王デスタムーア": {"color": "青", "cost": 134, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": []}
+  "幻魔王デスタムーア": {"color": "青", "cost": 134, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": []},
+  "竜王(覚醒)": {"color": "青紫", "cost": 159, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []}
 }
