@@ -4,12 +4,12 @@ import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
-    component: () => import("@/layouts/default/Default.vue"),
     children: [
       {
         path: "",
-        name: "Home",
-        redirect: { name: "kokorodo" },
+        name: "home",
+        component: () =>
+          import(/* webpackChunkName: "Home" */ "@/views/Home.vue"),
       },
       {
         path: "kokorodo",
