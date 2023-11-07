@@ -17,6 +17,14 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "Kokorodo" */ "@/views/Kokorodo.vue"),
       },
+      {
+        path: "average-level",
+        name: "average-level",
+        component: () =>
+          import(
+            /* webpackChunkName: "AverageLevel" */ "@/views/AverageLevel.vue"
+          ),
+      },
     ],
   },
 ];

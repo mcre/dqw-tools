@@ -17,10 +17,19 @@
 
     <v-navigation-drawer v-model="drawer">
       <v-list>
-        <v-list-item two-line :to="{ name: 'kokorodo' }">
+        <v-list-item two-line :to="{ name: 'kokorodo', query: route.query }">
           <v-list-item-content>
             <v-list-item-title>こころ道</v-list-item-title>
             <v-list-item-subtitle>周回クエスト検索ツール</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          two-line
+          :to="{ name: 'average-level', query: route.query }"
+        >
+          <v-list-item-content>
+            <v-list-item-title>メタルキャンペーン</v-list-item-title>
+            <v-list-item-subtitle>平均レベル計算ツール</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -36,5 +45,8 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
+
 const drawer = ref(false);
 </script>

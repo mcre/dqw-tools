@@ -53,30 +53,6 @@
         </v-snackbar>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="12" sm="6">
-        <v-btn
-          class="mb-1 mr-2"
-          href="https://mcre.info"
-          target="_blank"
-          rel="noopener noreferrer"
-          icon="mdi-account-circle"
-          size="small"
-        />
-        作者について
-      </v-col>
-      <v-col cols="12" sm="6">
-        <v-btn
-          class="mb-1 mr-2"
-          href="https://github.com/mcre/dqw-tools"
-          target="_blank"
-          rel="noopener noreferrer"
-          icon="mdi-github"
-          size="small"
-        />
-        このWebアプリのソースコード・要望
-      </v-col>
-    </v-row>
   </v-container>
   <v-container>
     <v-row id="select">

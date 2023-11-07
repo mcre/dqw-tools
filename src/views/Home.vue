@@ -52,6 +52,14 @@
           :to="{ name: 'kokorodo' }"
         />
       </v-col>
+      <v-col cols="12">
+        <v-card
+          title="メタルキャンペーン"
+          subtitle="平均レベル計算ツール"
+          text="メンバー4人分のレベルを選択することにより、平均レベルが計算されます。メタルキャーンペーン（メタルの群れ）の場合にどのメタルが出現するかも併せて表示されます。"
+          :to="{ name: 'average-level' }"
+        />
+      </v-col>
     </v-row>
   </v-container>
 </template>
