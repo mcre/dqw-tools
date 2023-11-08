@@ -2,7 +2,10 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1>メタルキャンペーン 平均レベル計算ツール</h1>
+        <h1>
+          メタルキャンペーン<br />
+          <span class="text-h6">平均レベル計算ツール</span>
+        </h1>
       </v-col>
     </v-row>
     <v-row>
@@ -83,6 +86,10 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
+import { useUtil } from "@/composables/util";
+
+const util = useUtil();
+util.setTitle("メタルキャンペーン 平均レベル計算ツール");
 
 type LevelType = "basic" | "advanced" | "special";
 

@@ -2,7 +2,10 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1>こころ道 周回クエスト検索ツール</h1>
+        <h1>
+          こころ道<br />
+          <span class="text-h6">周回クエスト検索ツール</span>
+        </h1>
       </v-col>
     </v-row>
     <v-row>

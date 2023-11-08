@@ -63,3 +63,10 @@
     </v-row>
   </v-container>
 </template>
+
+<script lang="ts" setup>
+import { useUtil } from "@/composables/util";
+
+const util = useUtil();
+util.setTitle("");
+</script>
