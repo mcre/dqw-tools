@@ -215,5 +215,7 @@
   "竜王": {"color": "青", "cost": 107, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "竜王(覚醒)": {"color": "青紫", "cost": 159, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "イデアラゴン": {"color": "緑", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
-  "邪眼皇帝アウルート": {"color": "紫", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []}
+  "邪眼皇帝アウルート": {"color": "紫", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
+  "レッドパンサー": {"color": "赤", "cost": 86, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "カフェまじん": {"color": "黄", "cost": 86, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []}
 }
