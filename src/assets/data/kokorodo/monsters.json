@@ -217,5 +217,6 @@
   "イデアラゴン": {"color": "緑", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
   "邪眼皇帝アウルート": {"color": "紫", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
   "レッドパンサー": {"color": "赤", "cost": 86, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
-  "カフェまじん": {"color": "黄", "cost": 86, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []}
+  "カフェまじん": {"color": "黄", "cost": 86, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "レティス": {"color": "赤", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []}
 }
