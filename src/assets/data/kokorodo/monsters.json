@@ -219,5 +219,8 @@
   "レッドパンサー": {"color": "赤", "cost": 86, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "カフェまじん": {"color": "黄", "cost": 86, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "レティス": {"color": "赤", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
-  "スカイドル": {"color": "紫", "cost": 87, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []}
+  "スカイドル": {"color": "紫", "cost": 87, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "ガメゴンロード": {"color": "黄", "cost": 144, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
+  "魔王オムドレクス": {"color": "黄", "cost": 150, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
+  "はれおとこ": {"color": "赤", "cost": 120, "frequency": null, "condition": null, "limitedTimeEvents": ["天気"], "quests": []}
 }
