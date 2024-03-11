@@ -15,7 +15,8 @@
           { "code": 4, "level": 4, "monsters": ["キングスライム", "ベスキング", "スカラベキング", "キングリザード", "ワイトキング"] },
           { "code": 5, "level": 5, "monsters": ["ブラックドラゴン", "アイスフライ", "スカイドル"] },
           { "code": 6, "level": 6, "monsters": ["欲望の魔人", "あくまのツボ", "たんすミミック"] },
-          { "code": 7, "level": 7, "monsters": ["メタルブラザーズ"] }
+          { "code": 7, "level": 7, "monsters": ["メタルブラザーズ"] },
+          { "code": 8, "level": 8, "monsters": [] }
         ]
       },
       {
@@ -27,7 +28,8 @@
           { "code": 24, "level": 4, "monsters": ["メタルドラゴン", "ドラゴメタル", "メタルつむり"] },
           { "code": 25, "level": 5, "monsters": ["まどうし", "だいまどう"] },
           { "code": 26, "level": 6, "monsters": ["冥王ネルゲル", "幻魔王デスタムーア", "竜王(覚醒)"] },
-          { "code": 27, "level": 7, "monsters": ["よろいのきし"] }
+          { "code": 27, "level": 7, "monsters": ["よろいのきし"] },
+          { "code": 28, "level": 8, "monsters": ["ドルイド"] }
         ]
       }
     ]
@@ -48,7 +50,8 @@
           { "code": 44, "level": 4, "monsters": ["ダークキング", "ヒョウモンダーク", "ダークシルフ"] },
           { "code": 45, "level": 5, "monsters": ["もみじこぞう", "ズッキーニャ"] },
           { "code": 46, "level": 6, "monsters": ["グリザード", "竜王(覚醒)"] },
-          { "code": 47, "level": 7, "monsters": ["あばれこまいぬ"] }
+          { "code": 47, "level": 7, "monsters": ["あばれこまいぬ"] },
+          { "code": 48, "level": 8, "monsters": ["魔剣神レパルド"] }
         ]
       },
       {
@@ -60,7 +63,8 @@
           { "code": 64, "level": 4, "monsters": ["キマイラロード", "メーダロード", "ガメゴンロード"] },
           { "code": 65, "level": 5, "monsters": ["トロルキング", "ゴールデンタイタス", "てっきゅうまじん", "ウィングデビル"] },
           { "code": 66, "level": 6, "monsters": ["メタルスライム"] },
-          { "code": 67, "level": 7, "monsters": ["ヒイラギどうじ", "おばけキノコ"] }
+          { "code": 67, "level": 7, "monsters": ["ヒイラギどうじ", "おばけキノコ"] },
+          { "code": 68, "level": 8, "monsters": ["こうていタップ"] }
         ]
       }
     ]
@@ -81,7 +85,8 @@
           { "code": 84, "level": 4, "monsters": ["セキバーン", "じごくのハサミ"] },
           { "code": 85, "level": 5, "monsters": ["ベビル", "スノードラゴン", "お茶コッコ"] },
           { "code": 86, "level": 6, "monsters": ["グレイツェル", "マジックアーマー"] },
-          { "code": 87, "level": 7, "monsters": ["キラーアーマー", "パンドラボックス"] }
+          { "code": 87, "level": 7, "monsters": ["キラーアーマー", "パンドラボックス"] },
+          { "code": 88, "level": 8, "monsters": ["メーダプリンス"] }
         ]
       },
       {
@@ -93,7 +98,8 @@
           { "code": 104, "level": 4, "monsters": ["ベンガルクーン", "スナノサウルス"] },
           { "code": 105, "level": 5, "monsters": ["ごろつき", "ＭＣカンダタ"] },
           { "code": 106, "level": 6, "monsters": ["ドラゴン"] },
-          { "code": 107, "level": 7, "monsters": ["デザートゴースト"] }
+          { "code": 107, "level": 7, "monsters": ["デザートゴースト"] },
+          { "code": 108, "level": 8, "monsters": ["チョコヌーバ"] }
         ]
       }
     ]
@@ -114,7 +120,8 @@
           { "code": 124, "level": 4, "monsters": ["あやしいかげ", "はしりとかげ"] },
           { "code": 125, "level": 5, "monsters": ["キャタピラー"] },
           { "code": 126, "level": 6, "monsters": ["ゴーレム"] },
-          { "code": 127, "level": 7, "monsters": ["じごくのつかい"] }
+          { "code": 127, "level": 7, "monsters": ["じごくのつかい"] },
+          { "code": 128, "level": 8, "monsters": ["怪力軍曹イボイノス"] }
         ]
       },
       {
@@ -126,7 +133,8 @@
           { "code": 144, "level": 4, "monsters": ["シャドー", "シャドーサタン"] },
           { "code": 145, "level": 5, "monsters": ["マドハンド", "フランケンゴーレム"] },
           { "code": 146, "level": 6, "monsters": ["ベビーマジシャン"] },
-          { "code": 147, "level": 7, "monsters": ["メタルつむり"] }
+          { "code": 147, "level": 7, "monsters": ["メタルつむり"] },
+          { "code": 148, "level": 8, "monsters": ["アッシュリザード"] }
         ]
       }
     ]
@@ -147,7 +155,8 @@
           { "code": 164, "level": 4, "monsters": ["ヘルボックル", "ヘルジュラシック"] },
           { "code": 165, "level": 5, "monsters": ["ともしびこぞう", "フレイザード"] },
           { "code": 166, "level": 6, "monsters": ["うごくせきぞう", "エビルホーク", "ネクロバルサ"] },
-          { "code": 167, "level": 7, "monsters": ["スノーエルダー", "イデアラゴン"] }
+          { "code": 167, "level": 7, "monsters": ["スノーエルダー", "イデアラゴン"] },
+          { "code": 168, "level": 8, "monsters": ["キラーピッケル"] }
         ]
       },
       {
@@ -159,7 +168,8 @@
           { "code": 184, "level": 4, "monsters": ["シルバーデビル", "ブルデビル", "イーグルデビル", "ウィングデビル"] },
           { "code": 185, "level": 5, "monsters": ["メタルハンター", "メカバーン"] },
           { "code": 186, "level": 6, "monsters": ["ボーンファイター"] },
-          { "code": 187, "level": 7, "monsters": ["エビルホーク", "レティス"] }
+          { "code": 187, "level": 7, "monsters": ["エビルホーク", "レティス"] },
+          { "code": 188, "level": 8, "monsters": ["邪眼皇帝アウルート"] }
         ]
       }
     ]
@@ -180,7 +190,8 @@
           { "code": 204, "level": 4, "monsters": ["スライムナイト", "ナイトキャット"] },
           { "code": 205, "level": 5, "monsters": ["ミイラ男"] },
           { "code": 206, "level": 6, "monsters": ["ムドー", "水竜ギルギッシュ", "邪眼皇帝アウルート"] },
-          { "code": 207, "level": 7, "monsters": ["メタルエンゼル"] }
+          { "code": 207, "level": 7, "monsters": ["メタルエンゼル"] },
+          { "code": 208, "level": 8, "monsters": ["ガニメデス"] }
         ]
       },
       {
@@ -192,7 +203,8 @@
           { "code": 224, "level": 4, "monsters": ["竜王", "くもの大王", "幻魔王デスタムーア", "わかめ王子", "魔王オムドレクス"] },
           { "code": 225, "level": 5, "monsters": ["ようがんまじん", "はれおとこ"] },
           { "code": 226, "level": 6, "monsters": ["スノーモン"] },
-          { "code": 227, "level": 7, "monsters": ["堕天使エルギオス"] }
+          { "code": 227, "level": 7, "monsters": ["堕天使エルギオス"] },
+          { "code": 228, "level": 8, "monsters": ["ブラッドナイト", "マッスルガード(覚醒)"] }
         ]
       }
     ]
@@ -213,7 +225,8 @@
           { "code": 244, "level": 4, "monsters": ["スカイドラゴン"] },
           { "code": 245, "level": 5, "monsters": ["呪われしゼシカ", "おどるほうせき", "ミストバーン", "堕天使エルギオス", "にじくじゃく(覚醒)"] },
           { "code": 246, "level": 6, "monsters": ["メタルホイミン"] },
-          { "code": 247, "level": 7, "monsters": ["マスタードラゴン邪"] }
+          { "code": 247, "level": 7, "monsters": ["マスタードラゴン邪"] },
+          { "code": 248, "level": 8, "monsters": ["ファイアボール"] }
         ]
       },
       {
@@ -225,7 +238,8 @@
           { "code": 264, "level": 4, "monsters": ["とらおとこ"] },
           { "code": 265, "level": 5, "monsters": ["暴嵐天バリゲーン", "ドルマゲス", "竜騎将バラン", "魔王オムドレクス"] },
           { "code": 266, "level": 6, "monsters": ["ボーンナイト"] },
-          { "code": 267, "level": 7, "monsters": ["トマホーガー"] }
+          { "code": 267, "level": 7, "monsters": ["トマホーガー"] },
+          { "code": 268, "level": 8, "monsters": ["イデアラゴン"] }
         ]
       }
     ]
