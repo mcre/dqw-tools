@@ -50,6 +50,13 @@
           >
             {{ event }}
           </v-chip>
+          <v-chip
+            v-if="kokorodoStore.monsters[props.monsterName].condition == '地域'"
+            class="mr-1"
+            density="compact"
+          >
+            地域
+          </v-chip>
         </v-col>
         <v-col cols="12" class="pt-0">
           <v-chip

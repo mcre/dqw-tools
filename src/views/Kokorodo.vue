@@ -267,6 +267,10 @@ const state: {
   selectedPrefecture: number | null;
   removeRainMonsters: boolean;
   removeNightMonsters: boolean;
+  requiredMonstersBeforeConsideringPrefectures: {
+    name: string;
+    details: MonsterDetails | undefined;
+  }[];
   requiredMonsters: { name: string; details: MonsterDetails | undefined }[];
   requiredQuests: {
     count: number;
@@ -287,7 +291,7 @@ const state: {
   selectedPrefecture: null,
   removeRainMonsters: false,
   removeNightMonsters: false,
-  requiredMonsters: computed(() => {
+  requiredMonstersBeforeConsideringPrefectures: computed(() => {
     const monsterNames = state.selectedFrames
       .map((code) => kokorodoStore.monsterNamesFromFrameCode[code])
       .flat();
@@ -306,18 +310,22 @@ const state: {
         (monster) => monster.details.condition != "水"
       );
     }
+    return requiredMonsters;
+  }),
+  requiredMonsters: computed(() => {
+    let requiredMonsters = state.requiredMonstersBeforeConsideringPrefectures;
     if (state.selectedPrefecture) {
       const prefectureMonsters = kokorodoStore.prefectures.filter(
         (pref) => pref.code == state.selectedPrefecture
       )[0].monsters;
       requiredMonsters = requiredMonsters.filter(
         (monster) =>
-          monster.details.condition != "地域" ||
+          monster.details?.condition != "地域" ||
           prefectureMonsters.includes(monster.name)
       );
     } else {
       requiredMonsters = requiredMonsters.filter(
-        (monster) => monster.details.condition != "地域"
+        (monster) => monster.details?.condition != "地域"
       );
     }
     return requiredMonsters;
@@ -388,9 +396,11 @@ const state: {
     return requiredMonsterNamesFromQuest;
   }),
   requiredNonQuestMonsters: computed(() => {
-    return state.requiredMonsters
+    return state.requiredMonstersBeforeConsideringPrefectures
       .filter(
-        (monster) => monster.details && monster.details.quests.length == 0
+        (monster) =>
+          (monster.details && monster.details.quests.length == 0) ||
+          (monster.details && monster.details.condition == "地域")
       )
       .sort((a, b) => a.name.localeCompare(b.name));
   }),
