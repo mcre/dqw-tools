@@ -16,7 +16,7 @@
           { "code": 5, "level": 5, "monsters": ["ブラックドラゴン", "アイスフライ", "スカイドル"] },
           { "code": 6, "level": 6, "monsters": ["欲望の魔人", "あくまのツボ", "たんすミミック"] },
           { "code": 7, "level": 7, "monsters": ["メタルブラザーズ"] },
-          { "code": 8, "level": 8, "monsters": [] }
+          { "code": 8, "level": 8, "monsters": ["ギガパレス"] }
         ]
       },
       {
@@ -51,7 +51,7 @@
           { "code": 45, "level": 5, "monsters": ["もみじこぞう", "ズッキーニャ"] },
           { "code": 46, "level": 6, "monsters": ["グリザード", "竜王(覚醒)"] },
           { "code": 47, "level": 7, "monsters": ["あばれこまいぬ"] },
-          { "code": 48, "level": 8, "monsters": ["魔剣神レパルド"] }
+          { "code": 48, "level": 8, "monsters": ["魔剣神レパルド", "ギガパレス"] }
         ]
       },
       {
