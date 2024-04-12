@@ -268,5 +268,6 @@
   "竜王(覚醒)": {"color": "青紫", "cost": 107, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "竜騎将バラン": {"color": "黄", "cost": 132, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []},
   "乗馬ブラザーズ": {"color": "青", "cost": 41, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "大怪像ガドンゴ": {"color": "黄", "cost": 150, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
   "怪力軍曹イボイノス": {"color": "黄", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []}
 }
