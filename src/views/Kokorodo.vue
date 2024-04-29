@@ -178,15 +178,15 @@
                     <template v-slot:activator="{ props }">
                       <v-chip
                         v-bind="props"
-                        v-if="quest.questNames.length > 2"
+                        v-if="quest.questNames.length > 1"
                         class="mb-1"
                         color="primary"
                         density="comfortable"
                       >
-                        他
+                        他<small>{{ quest.questNames.length - 1 }}</small>
                       </v-chip>
                     </template>
-                    <span v-html="quest.questNames.join('<br />')" />
+                    <span v-html="quest.questNames.slice(1).join('<br />')" />
                   </v-tooltip>
                 </v-card-title>
                 <v-card-text>
