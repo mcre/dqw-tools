@@ -36,6 +36,7 @@
   "ガメゴンロード": {"color": "黄", "cost": 144, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "キースドラゴン": {"color": "紫", "cost": 38, "frequency": "とても", "condition": null, "limitedTimeEvents": ["イベント", "ほこら"], "quests": []},
   "ギガパレス": {"color": "赤", "cost": 140, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": [], "memo": "ゴドハン武道8は覚醒すると外れる"},
+  "きとうし": {"color": "紫", "cost": 152, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "キマイラロード": {"color": "紫", "cost": 92, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []},
   "キメラ": {"color": "紫", "cost": 32, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["2章9話", "2章10話", "3章1話", "3章2話", "3章3話", "3章4話"]},
   "きめんどうし": {"color": "紫", "cost": 71, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["5章6話", "5章7話", "5章8話", "5章9話"]},
