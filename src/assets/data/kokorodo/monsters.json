@@ -206,6 +206,7 @@
   "ホロゴースト": {"color": "紫", "cost": 99, "frequency": "よく", "condition": "夜", "limitedTimeEvents": [], "quests": ["8章9話", "8章10話", "9章1話", "9章2話", "9章3話", "9章4話", "9章5話", "9章6話", "9章7話", "9章8話"]},
   "ポンコツ兵": {"color": "青", "cost": 137, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["13章9話", "13章10話", "14章1話", "14章2話", "14章3話", "14章4話", "14章5話", "14章6話", "14章7話", "14章8話"]},
   "マーブルン": {"color": "緑", "cost": 32, "frequency": "ときどき", "condition": "地域", "limitedTimeEvents": [], "quests": ["2章9話", "2章10話", "3章1話", "3章2話", "3章3話", "3章4話", "3章5話", "3章6話", "3章7話"]},
+  "マーマン": {"color": "緑", "cost": 144, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "マジカルハット": {"color": "紫", "cost": 57, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["4章7話", "4章8話", "4章9話"]},
   "マジックアーマー": {"color": "紫", "cost": 140, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["14章3話", "14章4話", "14章5話", "14章6話", "14章7話", "14章8話", "14章9話", "14章10話", "15章1話", "15章2話"]},
   "マスタードラゴン邪": {"color": "紫", "cost": 128, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": []},
