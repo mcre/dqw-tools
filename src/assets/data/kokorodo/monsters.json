@@ -20,6 +20,7 @@
   "うみぼうず": {"color": "青", "cost": 81, "frequency": "よく", "condition": "水", "limitedTimeEvents": [], "quests": ["6章5話", "6章6話", "6章7話", "6章8話", "6章9話", "6章10話", "7章1話", "7章2話", "7章3話", "7章4話"]},
   "エビルソーサラー": {"color": "紫", "cost": 126, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["12章5話", "12章6話", "12章7話", "12章8話", "12章9話", "12章10話", "13章1話", "13章2話", "13章3話", "13章4話"]},
   "エビルホーク": {"color": "赤", "cost": 81, "frequency": "あまり", "condition": null, "limitedTimeEvents": [], "quests": ["6章5話", "6章6話", "6章7話", "6章8話", "6章9話", "6章10話", "7章1話", "7章2話", "7章3話", "7章4話"], "memo": "魔剣士魔道6は覚醒後のみ"},
+  "エビルマージ": {"color": "緑", "cost": 152, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "オーク": {"color": "赤", "cost": 42, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["3章7話", "3章8話", "3章9話"]},
   "おおくちばし": {"color": "赤", "cost": 30, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["2章9話", "2章10話", "3章1話", "3章2話", "3章3話"]},
   "おおさそり": {"color": "赤", "cost": 11, "frequency": "とても", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
