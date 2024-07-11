@@ -274,5 +274,6 @@
   "乗馬ブラザーズ": {"color": "青", "cost": 41, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "大怪像ガドンゴ": {"color": "黄", "cost": 150, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
   "怪力軍曹イボイノス": {"color": "黄", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
+  "闇の大魔王ゾーマ": {"color": "紫", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": []},
   "邪神官ハーゴン": {"color": "紫", "cost": 174, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []}
 }
