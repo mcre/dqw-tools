@@ -230,6 +230,7 @@
   "メーダプリンス": {"color": "緑", "cost": 32, "frequency": "ときどき", "condition": "地域", "limitedTimeEvents": [], "quests": ["2章9話", "2章10話", "3章1話", "3章2話", "3章3話", "3章4話", "3章5話", "3章6話", "3章7話"]},
   "メーダロード": {"color": "緑", "cost": 107, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["9章9話", "9章10話", "10章1話", "10章2話", "10章3話", "10章4話", "10章5話", "10章6話", "10章7話", "10章8話"]},
   "メガザルロック": {"color": "緑", "cost": 96, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["8章5話", "8章6話", "8章7話", "8章8話", "8章9話", "8章10話", "9章1話", "9章2話", "9章3話", "9章4話"]},
+  "メガトンケイル": {"color": "赤", "cost": 167, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "メカバーン": {"color": "赤", "cost": 107, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "メタッピー": {"color": "黄", "cost": 17, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["1章10話", "2章1話", "2章2話", "2章3話", "2章4話", "2章5話"]},
   "メタルエンゼル": {"color": "黄", "cost": 131, "frequency": "あまり", "condition": null, "limitedTimeEvents": [], "quests": ["13章1話", "13章2話", "13章3話", "13章4話", "13章5話", "13章6話", "13章7話", "13章8話", "13章9話", "13章10話", "14章1話", "14章2話", "14章3話", "14章4話", "14章5話", "14章6話", "14章7話", "14章8話", "14章9話", "14章10話", "15章1話", "15章2話", "15章3話", "15章4話", "15章5話", "15章6話", "15章7話", "15章8話", "15章9話", "15章10話"]},
