@@ -68,7 +68,7 @@
             track-color="default"
             color="primary"
             min="1"
-            max="115"
+            max="120"
             v-model="averageLevel"
             readonly
             thumb-label="always"
@@ -114,7 +114,7 @@ const maxLevel = (type: LevelType): number => {
     case "advanced":
       return 90;
     case "special":
-      return 70;
+      return 75;
     default:
       return 55;
   }
