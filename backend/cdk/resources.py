@@ -114,18 +114,13 @@ def create_lambda_edge_function_version(
 
 
 def create_s3_bucket(scope: Stack, name: str) -> s3.Bucket:
-    props = config["s3"][name]
+    dp = config["s3"][name]["deletion_protection"]
     resource = s3.Bucket(
         scope,
         f"s3-bucket-{name}",
         bucket_name=f"{config['prefix']}-{name}",
-        removal_policy=(
-            RemovalPolicy.RETAIN
-            if props["deletion_protection"]
-            else RemovalPolicy.DESTROY
-        )
+        removal_policy=RemovalPolicy.RETAIN if dp else RemovalPolicy.DESTROY,
     )
-
     add_tags(resource)
     return resource
 
@@ -158,7 +153,7 @@ def create_cloudfront(
         certificate=acm_result["certificate"],
         domain_names=[acm_result["domain_name"]],
         default_behavior=cloudfront.BehaviorOptions(
-            origin=cloudfront_origins.S3BucketOrigin(bucket),
+            origin=cloudfront_origins.S3BucketOrigin.with_origin_access_control(bucket),
             viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
             cache_policy=cache_policy,
             edge_lambdas=[

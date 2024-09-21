@@ -30,7 +30,6 @@ stack_us = Stack(
     app,
     f"{config['prefix']}-stack-us-east-1",
     env=Environment(region="us-east-1"),
-    cross_region_references=True,
 )
 
 # S3
