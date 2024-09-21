@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar flat>
+    <v-app-bar flat density="comfortable">
       <template v-slot:prepend>
         <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer" />
       </template>
