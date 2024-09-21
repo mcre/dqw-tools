@@ -85,7 +85,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from "vue";
 import { useUtil } from "@/composables/util";
 import tools from "@/consts/tools";
 const tool = tools["average-level"];

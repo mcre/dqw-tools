@@ -39,19 +39,19 @@
         </p>
         <v-col cols="12">
           <v-text-field
-            v-model="state.fullPath"
+            v-model="fullPath"
             label="URL"
             variant="solo"
             hide-details
             readonly
             append-inner-icon="mdi-content-copy"
             @click:append-inner="
-              util.copyToClipboard(state.fullPath);
-              state.snackbar = true;
+              util.copyToClipboard(fullPath);
+              snackbar = true;
             "
           />
         </v-col>
-        <v-snackbar v-model="state.snackbar">
+        <v-snackbar v-model="snackbar">
           URLをクリップボードにコピーしました
         </v-snackbar>
       </v-col>
@@ -82,7 +82,7 @@
               hide-details
               density="compact"
               :key="level.code"
-              v-model="state.selectedFrames"
+              v-model="selectedFrames"
               :value="level.code"
             />
             <v-row>
@@ -95,7 +95,7 @@
                       hide-details
                       density="compact"
                       :key="level.code"
-                      v-model="state.selectedFrames"
+                      v-model="selectedFrames"
                       :value="level.code"
                     />
                   </v-card-text>
@@ -110,19 +110,19 @@
           <v-card-title>ほかの条件</v-card-title>
           <v-card-text>
             <v-checkbox
-              v-model="state.removeRainMonsters"
+              v-model="removeRainMonsters"
               label="雨/水辺 限定モンスターを除く"
               hide-details
             />
             <v-checkbox
-              v-model="state.removeNightMonsters"
+              v-model="removeNightMonsters"
               label="夜 限定モンスターを除く"
               hide-details
             />
             <v-select
               class="mt-2"
               label="地域設定(未選択の場合は地域限定を除く)"
-              v-model="state.selectedPrefecture"
+              v-model="selectedPrefecture"
               :items="kokorodoStore.prefectures"
               item-title="name"
               item-value="code"
@@ -145,13 +145,13 @@
       </v-col>
     </v-row>
     <v-expansion-panels
-      v-if="state.requiredQuests.length > 0"
+      v-if="requiredQuests.length > 0"
       class="mt-6"
       multiple
-      :model-value="state.requiredQuests.slice(0, 2).map((item) => item.count)"
+      :model-value="requiredQuests.slice(0, 2).map((item) => item.count)"
     >
       <v-expansion-panel
-        v-for="quests in state.requiredQuests"
+        v-for="quests in requiredQuests"
         :key="quests.count"
         :value="quests.count"
       >
@@ -217,11 +217,7 @@
         </v-alert>
       </v-col>
     </v-row>
-    <v-row
-      class="mt-12"
-      id="quests"
-      v-if="state.requiredNonQuestMonsters.length > 0"
-    >
+    <v-row class="mt-12" id="quests" v-if="requiredNonQuestMonsters.length > 0">
       <v-col cols="12">
         <h2>
           <v-icon start class="mb-1">mdi-ghost</v-icon>
@@ -234,7 +230,7 @@
         cols="12"
         md="6"
         lg="4"
-        v-for="monster in state.requiredNonQuestMonsters"
+        v-for="monster in requiredNonQuestMonsters"
         :key="monster.name"
       >
         <monster-kokoro-card
@@ -247,9 +243,8 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, watch, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useKokorodoStore, MonsterDetails } from "@/store/kokorodo";
+import { useKokorodoStore } from "@/store/kokorodo";
 import { useUtil } from "@/composables/util";
 
 import MonsterKokoroCard from "@/components/MonsterKokoroCard.vue";
@@ -263,152 +258,111 @@ const kokorodoStore = useKokorodoStore();
 const util = useUtil();
 util.setTitle(`${tool.title} ${tool.subtitle}`, tool.description);
 
-const state: {
-  fullPath: string;
-  snackbar: boolean;
-  selectedFrames: number[];
-  selectedPrefecture: number | null;
-  removeRainMonsters: boolean;
-  removeNightMonsters: boolean;
-  requiredMonstersBeforeConsideringPrefectures: {
-    name: string;
-    details: MonsterDetails | undefined;
-  }[];
-  requiredMonsters: { name: string; details: MonsterDetails | undefined }[];
-  requiredQuests: {
-    count: number;
-    quests: {
-      questNames: string[];
-      monsterNames: string[];
-    }[];
-  }[];
-  requiredMonsterNamesFromQuest: Record<string, string[]>;
-  requiredNonQuestMonsters: {
-    name: string;
-    details: MonsterDetails | undefined;
-  }[];
-} = reactive({
-  fullPath: `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${
-    route.fullPath
-  }`,
-  snackbar: false,
-  selectedFrames: [] as number[],
-  selectedPrefecture: null,
-  removeRainMonsters: false,
-  removeNightMonsters: false,
-  requiredMonstersBeforeConsideringPrefectures: computed(() => {
-    const monsterNames = state.selectedFrames
-      .map((code) => kokorodoStore.monsterNamesFromFrameCode[code])
-      .flat();
-    const uniqueMonsterNames = [...new Set(monsterNames)];
-    let requiredMonsters = uniqueMonsterNames.map((name) => ({
-      name,
-      details: kokorodoStore.monsters[name],
-    }));
-    if (state.removeNightMonsters) {
-      requiredMonsters = requiredMonsters.filter(
-        (monster) => monster.details.condition != "夜"
-      );
-    }
-    if (state.removeRainMonsters) {
-      requiredMonsters = requiredMonsters.filter(
-        (monster) => monster.details.condition != "水"
-      );
-    }
-    return requiredMonsters;
-  }),
-  requiredMonsters: computed(() => {
-    let requiredMonsters = state.requiredMonstersBeforeConsideringPrefectures;
-    if (state.selectedPrefecture) {
-      const prefectureMonsters = kokorodoStore.prefectures.filter(
-        (pref) => pref.code == state.selectedPrefecture
-      )[0].monsters;
-      requiredMonsters = requiredMonsters.filter(
-        (monster) =>
-          monster.details?.condition != "地域" ||
-          prefectureMonsters.includes(monster.name)
-      );
-    } else {
-      requiredMonsters = requiredMonsters.filter(
-        (monster) => monster.details?.condition != "地域"
-      );
-    }
-    return requiredMonsters;
-  }),
-  requiredQuests: computed(() => {
-    const questsToMonsters: Record<string, string[]> = state.requiredMonsters
-      .filter((m) => m.details)
-      .reduce((acc, m) => {
-        m.details!.quests.forEach((q) => {
-          acc[q] = (acc[q] || []).concat(m.name);
+const fullPath = ref(
+  `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${route.fullPath}`
+);
+const snackbar = ref(false);
+const selectedFrames = ref<number[]>([]);
+const selectedPrefecture = ref<number | null>(null);
+const removeRainMonsters = ref(false);
+const removeNightMonsters = ref(false);
+
+const requiredMonstersBeforeConsideringPrefectures = computed(() => {
+  const monsterNames = selectedFrames.value
+    .map((code) => kokorodoStore.monsterNamesFromFrameCode[code])
+    .flat();
+  const uniqueMonsterNames = [...new Set(monsterNames)];
+  let requiredMonsters = uniqueMonsterNames.map((name) => ({
+    name,
+    details: kokorodoStore.monsters[name],
+  }));
+  if (removeNightMonsters.value) {
+    requiredMonsters = requiredMonsters.filter(
+      (monster) => monster.details?.condition != "夜"
+    );
+  }
+  if (removeRainMonsters.value) {
+    requiredMonsters = requiredMonsters.filter(
+      (monster) => monster.details?.condition != "水"
+    );
+  }
+  return requiredMonsters;
+});
+
+const requiredMonsters = computed(() => {
+  let requiredMonsters = requiredMonstersBeforeConsideringPrefectures.value;
+  if (selectedPrefecture.value) {
+    const prefectureMonsters = kokorodoStore.prefectures.filter(
+      (pref) => pref.code == selectedPrefecture.value
+    )[0].monsters;
+    requiredMonsters = requiredMonsters.filter(
+      (monster) =>
+        monster.details?.condition != "地域" ||
+        prefectureMonsters.includes(monster.name)
+    );
+  } else {
+    requiredMonsters = requiredMonsters.filter(
+      (monster) => monster.details?.condition != "地域"
+    );
+  }
+  return requiredMonsters;
+});
+
+const requiredQuests = computed(() => {
+  const questsToMonsters: Record<string, string[]> = requiredMonsters.value
+    .filter((m) => m.details)
+    .reduce((acc, m) => {
+      m.details!.quests.forEach((q) => {
+        acc[q] = (acc[q] || []).concat(m.name);
+      });
+      return acc;
+    }, {} as Record<string, string[]>);
+
+  const questGroups = Object.entries(questsToMonsters)
+    .map(([questName, monsterNames]) => {
+      const monsterNamesKey = monsterNames.sort().join("|");
+      return { questName, monsterNames, monsterNamesKey };
+    })
+    .reduce((acc, { questName, monsterNames, monsterNamesKey }) => {
+      let questGroup = acc.find((qg) => qg.monsterNamesKey === monsterNamesKey);
+      if (questGroup) {
+        questGroup.questNames.push(questName);
+      } else {
+        acc.push({
+          questNames: [questName],
+          count: monsterNames.length,
+          monsterNames,
+          monsterNamesKey,
         });
-        return acc;
-      }, {} as Record<string, string[]>);
-
-    const questGroups = Object.entries(questsToMonsters)
-      .map(([questName, monsterNames]) => {
-        const monsterNamesKey = monsterNames.sort().join("|");
-        return { questName, monsterNames, monsterNamesKey };
-      })
-      .reduce((acc, { questName, monsterNames, monsterNamesKey }) => {
-        let questGroup = acc.find(
-          (qg) => qg.monsterNamesKey === monsterNamesKey
-        );
-        if (questGroup) {
-          questGroup.questNames.push(questName);
-        } else {
-          acc.push({
-            questNames: [questName],
-            count: monsterNames.length,
-            monsterNames,
-            monsterNamesKey,
-          });
-        }
-        return acc;
-      }, [] as { questNames: string[]; count: number; monsterNames: string[]; monsterNamesKey: string }[]);
-
-    const questGroupsByCount: Record<number, typeof questGroups> =
-      questGroups.reduce((acc, questGroup) => {
-        (acc[questGroup.count] || (acc[questGroup.count] = [])).push(
-          questGroup
-        );
-        return acc;
-      }, {} as Record<number, typeof questGroups>);
-
-    return Object.entries(questGroupsByCount)
-      .map(([count, questGroups]) => ({
-        count: Number(count),
-        quests: questGroups.map(({ questNames, monsterNames }) => ({
-          questNames,
-          monsterNames: sortByFrequency(monsterNames),
-        })),
-      }))
-      .sort((a, b) => b.count - a.count);
-  }),
-  requiredMonsterNamesFromQuest: computed(() => {
-    const requiredMonsterNamesFromQuest: Record<string, string[]> = {};
-    for (const monster of state.requiredMonsters) {
-      if (monster.details) {
-        for (const quest of monster.details.quests) {
-          if (requiredMonsterNamesFromQuest[quest]) {
-            requiredMonsterNamesFromQuest[quest].push(monster.name);
-          } else {
-            requiredMonsterNamesFromQuest[quest] = [monster.name];
-          }
-        }
       }
-    }
-    return requiredMonsterNamesFromQuest;
-  }),
-  requiredNonQuestMonsters: computed(() => {
-    return state.requiredMonstersBeforeConsideringPrefectures
-      .filter(
-        (monster) =>
-          (monster.details && monster.details.quests.length == 0) ||
-          (monster.details && monster.details.condition == "地域")
-      )
-      .sort((a, b) => a.name.localeCompare(b.name));
-  }),
+      return acc;
+    }, [] as { questNames: string[]; count: number; monsterNames: string[]; monsterNamesKey: string }[]);
+
+  const questGroupsByCount: Record<number, typeof questGroups> =
+    questGroups.reduce((acc, questGroup) => {
+      (acc[questGroup.count] || (acc[questGroup.count] = [])).push(questGroup);
+      return acc;
+    }, {} as Record<number, typeof questGroups>);
+
+  return Object.entries(questGroupsByCount)
+    .map(([count, questGroups]) => ({
+      count: Number(count),
+      quests: questGroups.map(({ questNames, monsterNames }) => ({
+        questNames,
+        monsterNames: sortByFrequency(monsterNames),
+      })),
+    }))
+    .sort((a, b) => b.count - a.count);
+});
+
+const requiredNonQuestMonsters = computed(() => {
+  return requiredMonstersBeforeConsideringPrefectures.value
+    .filter(
+      (monster) =>
+        (monster.details && monster.details.quests.length == 0) ||
+        (monster.details && monster.details.condition == "地域")
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
 });
 
 const sortByFrequency = (monsterNames: string[]): string[] => {
@@ -425,24 +379,24 @@ const sortByFrequency = (monsterNames: string[]): string[] => {
 
 watch(
   () => [
-    state.selectedFrames,
-    state.removeNightMonsters,
-    state.removeRainMonsters,
-    state.selectedPrefecture,
+    selectedFrames.value,
+    removeNightMonsters.value,
+    removeRainMonsters.value,
+    selectedPrefecture.value,
   ],
   () => {
     const query: { [key: string]: string } = {
-      f: util.numberArrayToBase64(state.selectedFrames),
+      f: util.numberArrayToBase64(selectedFrames.value),
     };
-    if (state.removeNightMonsters) query["n"] = "1";
-    if (state.removeRainMonsters) query["r"] = "1";
-    if (state.selectedPrefecture)
-      query["p"] = state.selectedPrefecture.toString();
+    if (removeNightMonsters.value) query["n"] = "1";
+    if (removeRainMonsters.value) query["r"] = "1";
+    if (selectedPrefecture.value)
+      query["p"] = selectedPrefecture.value.toString();
     router.push({
       name: route.name!,
       query: query,
     });
-    state.fullPath = `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${
+    fullPath.value = `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${
       route.path
     }?${new URLSearchParams(query).toString()}`;
     util.updateOgp();
@@ -451,16 +405,16 @@ watch(
 
 const load = async () => {
   if (typeof route.query.f === "string" && route.query.f.length > 0) {
-    state.selectedFrames = util.base64ToNumberArray(route.query.f);
+    selectedFrames.value = util.base64ToNumberArray(route.query.f);
   }
   if (typeof route.query.n === "string" && route.query.n.length > 0) {
-    state.removeNightMonsters = true;
+    removeNightMonsters.value = true;
   }
   if (typeof route.query.r === "string" && route.query.r.length > 0) {
-    state.removeRainMonsters = true;
+    removeRainMonsters.value = true;
   }
   if (typeof route.query.p === "string" && route.query.p.length > 0) {
-    state.selectedPrefecture = parseInt(route.query.p);
+    selectedPrefecture.value = parseInt(route.query.p);
   }
 };
 
