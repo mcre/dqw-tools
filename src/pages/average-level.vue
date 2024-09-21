@@ -91,7 +91,7 @@ import tools from "@/consts/tools";
 const tool = tools["average-level"];
 
 const util = useUtil();
-util.setTitle(`${tool.title} ${tool.subtitle}`);
+util.setTitle(`${tool.title} ${tool.subtitle}`, tool.description);
 
 type LevelType = "basic" | "advanced" | "special";
 

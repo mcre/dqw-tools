@@ -112,8 +112,12 @@ export const useUtil = () => {
     await navigator.clipboard.writeText(text);
   };
 
-  const setTitle = (title?: string | null) => {
-    const site = "DQW Tools";
+  const setTitle = (
+    title?: string | null,
+    description: string = "DQW(ドラゴンクエストウォーク)のプレイに役立つツール集。こころ道周回クエスト検索ツールなど。",
+    robots: boolean = true
+  ) => {
+    const site = import.meta.env.VITE_APP_TITLE;
     let newTitle = "";
     if (title) {
       newTitle = title + " - " + site;
@@ -122,11 +126,43 @@ export const useUtil = () => {
     }
     document.title = newTitle;
 
-    const elem1 = document.querySelector("meta[id='ogtitle']");
-    if (elem1) elem1.setAttribute("content", newTitle);
+    const robotsMeta = document.querySelector("meta[id='robots']");
+    if (robotsMeta) {
+      if (robots) {
+        robotsMeta.setAttribute("content", "all");
+      } else {
+        robotsMeta.setAttribute("content", "noindex, nofollow, noarchive");
+      }
+    }
 
-    const elem3 = document.querySelector("meta[id='ogurl']");
-    if (elem3) elem3.setAttribute("content", document.documentURI);
+    const metaDescription = document.querySelector("meta[id='description']");
+    if (metaDescription) metaDescription.setAttribute("content", description);
+
+    const ogURl = document.querySelector("meta[id='og-url']");
+    if (ogURl) ogURl.setAttribute("content", document.documentURI);
+
+    const ogTitle = document.querySelector("meta[id='og-title']");
+    if (ogTitle)
+      if (title) ogTitle.setAttribute("content", title);
+      else ogTitle.setAttribute("content", site);
+
+    const ogDescription = document.querySelector("meta[id='og-description']");
+    if (ogDescription) ogDescription.setAttribute("content", description);
+
+    const imageFullPath = `https://${
+      import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME
+    }/img/kokorodo-sample.png`;
+
+    const ogImage = document.querySelector("meta[id='og-image']");
+    if (ogImage) ogImage.setAttribute("content", imageFullPath);
+
+    const twImage = document.querySelector("meta[id='tw-image']");
+    if (twImage) twImage.setAttribute("content", imageFullPath);
+  };
+
+  const updateOgp = () => {
+    const ogURl = document.querySelector("meta[id='og-url']");
+    if (ogURl) ogURl.setAttribute("content", document.documentURI);
   };
 
   return {
@@ -137,5 +173,6 @@ export const useUtil = () => {
     textToIcon,
     copyToClipboard,
     setTitle,
+    updateOgp,
   };
 };

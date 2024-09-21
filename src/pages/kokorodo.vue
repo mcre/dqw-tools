@@ -261,7 +261,7 @@ const router = useRouter();
 const route = useRoute();
 const kokorodoStore = useKokorodoStore();
 const util = useUtil();
-util.setTitle(`${tool.title} ${tool.subtitle}`);
+util.setTitle(`${tool.title} ${tool.subtitle}`, tool.description);
 
 const state: {
   fullPath: string;
@@ -445,6 +445,7 @@ watch(
     state.fullPath = `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${
       route.path
     }?${new URLSearchParams(query).toString()}`;
+    util.updateOgp();
   }
 );
 
