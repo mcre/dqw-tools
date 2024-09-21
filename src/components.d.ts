@@ -11,5 +11,6 @@ declare module 'vue' {
     MonsterKokoroCard: typeof import('./components/MonsterKokoroCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    XShareButton: typeof import('./components/XShareButton.vue')['default']
   }
 }

@@ -7,6 +7,9 @@
       <v-app-bar-title>
         <v-btn to="/" variant="text" :active="false">DQW TOOLS</v-btn>
       </v-app-bar-title>
+      <template v-slot:append>
+        <x-share-button class="mr-1" />
+      </template>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer">
@@ -32,8 +35,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import tools from "@/consts/tools";
+import XShareButton from "./components/XShareButton.vue";
 
 const drawer = ref(false);
 </script>
