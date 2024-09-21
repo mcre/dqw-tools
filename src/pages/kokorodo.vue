@@ -3,8 +3,8 @@
     <v-row>
       <v-col cols="12">
         <h1>
-          こころ道<br />
-          <span class="text-h6">周回クエスト検索ツール</span>
+          {{ tool.title }}<br />
+          <span class="text-h6">{{ tool.subtitle }}</span>
         </h1>
       </v-col>
     </v-row>
@@ -254,11 +254,14 @@ import { useUtil } from "@/composables/util";
 
 import MonsterKokoroCard from "@/components/MonsterKokoroCard.vue";
 
+import tools from "@/consts/tools";
+const tool = tools.kokorodo;
+
 const router = useRouter();
 const route = useRoute();
 const kokorodoStore = useKokorodoStore();
 const util = useUtil();
-util.setTitle("こころ道 周回クエスト検索ツール");
+util.setTitle(`${tool.title} ${tool.subtitle}`);
 
 const state: {
   fullPath: string;
@@ -285,7 +288,9 @@ const state: {
     details: MonsterDetails | undefined;
   }[];
 } = reactive({
-  fullPath: `${util.consts.host}${route.fullPath}`,
+  fullPath: `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${
+    route.fullPath
+  }`,
   snackbar: false,
   selectedFrames: [] as number[],
   selectedPrefecture: null,
@@ -437,9 +442,9 @@ watch(
       name: route.name!,
       query: query,
     });
-    state.fullPath = `${util.consts.host}${route.path}?${new URLSearchParams(
-      query
-    ).toString()}`;
+    state.fullPath = `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${
+      route.path
+    }?${new URLSearchParams(query).toString()}`;
   }
 );
 

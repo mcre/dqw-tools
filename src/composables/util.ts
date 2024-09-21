@@ -1,8 +1,4 @@
 export const useUtil = () => {
-  const consts = {
-    host: "https://dqw.mcre.info",
-  };
-
   const numberArrayToBase64 = (selectedNumbers: number[]): string => {
     const max = Math.max(...selectedNumbers);
     if (max < 0) return "";
@@ -134,7 +130,6 @@ export const useUtil = () => {
   };
 
   return {
-    consts,
     numberArrayToBase64,
     base64ToNumberArray,
     kokoroColorCode,

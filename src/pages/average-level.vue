@@ -3,8 +3,8 @@
     <v-row>
       <v-col cols="12">
         <h1>
-          メタルキャンペーン<br />
-          <span class="text-h6">平均レベル計算ツール</span>
+          {{ tool.title }}<br />
+          <span class="text-h6">{{ tool.subtitle }}</span>
         </h1>
       </v-col>
     </v-row>
@@ -14,7 +14,7 @@
       </v-col>
       <v-col cols="12">
         <p>
-          メンバー4人分のレベルを選択することにより、下に平均レベルが表示されます。メタルキャーンペーン（メタルの群れ）の場合にどのメタルが出現するかも併せて表示されます。
+          {{ tool.description }}
         </p>
       </v-col>
     </v-row>
@@ -87,9 +87,11 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import { useUtil } from "@/composables/util";
+import tools from "@/consts/tools";
+const tool = tools["average-level"];
 
 const util = useUtil();
-util.setTitle("メタルキャンペーン 平均レベル計算ツール");
+util.setTitle(`${tool.title} ${tool.subtitle}`);
 
 type LevelType = "basic" | "advanced" | "special";
 

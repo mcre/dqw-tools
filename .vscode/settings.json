@@ -1,0 +1,6 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "cSpell.words": ["CBZA", "certificatemanager", "edgelambda", "esbenp", "godhand", "kokoro", "kokorodo", "NGWW", "nocheck", "oidc", "Pinia", "unplugin", "venv", "wght"]
+}
