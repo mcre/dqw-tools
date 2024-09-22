@@ -68,6 +68,10 @@
     "onWatcherCleanup": true,
     "useId": true,
     "useModel": true,
-    "useTemplateRef": true
+    "useTemplateRef": true,
+    "useUtil": true,
+    "store": true,
+    "useKokorodoStore": true,
+    "tools": true
   }
 }

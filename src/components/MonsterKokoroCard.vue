@@ -1,27 +1,27 @@
 <template>
   <v-card>
     <kokoro-svg
-      :color-name="kokorodoStore.monsters[props.monsterName].color"
-      :cost="kokorodoStore.monsters[props.monsterName].cost"
+      :color-name="kokorodoStore.monsters[monsterName].color"
+      :cost="kokorodoStore.monsters[monsterName].cost"
     />
     <v-card-title>
-      {{ props.monsterName }}
+      {{ monsterName }}
     </v-card-title>
     <v-card-text>
       <v-row>
-        <v-col cols="12" v-if="props.showStoryConditions">
+        <v-col cols="12" v-if="showStoryConditions">
           <v-chip
             class="mx-0"
             density="compact"
             variant="text"
             size="small"
             :prepend-icon="util.monsterFrequencyDetails(
-                      kokorodoStore.monsters[props.monsterName].frequency!
-                    ).icon"
+              kokorodoStore.monsters[monsterName].frequency!
+            ).icon"
           >
             {{
               util.monsterFrequencyDetails(
-                kokorodoStore.monsters[props.monsterName].frequency!
+                kokorodoStore.monsters[monsterName].frequency!
               ).text
             }}
           </v-chip>
@@ -30,19 +30,17 @@
             density="compact"
             variant="text"
             size="small"
-            v-if="kokorodoStore.monsters[props.monsterName].condition"
+            v-if="kokorodoStore.monsters[monsterName].condition"
             :prepend-icon="
-              util.textToIcon(
-                kokorodoStore.monsters[props.monsterName].condition
-              )
+              util.textToIcon(kokorodoStore.monsters[monsterName].condition)
             "
           >
-            {{ kokorodoStore.monsters[props.monsterName].condition }}
+            {{ kokorodoStore.monsters[monsterName].condition }}
           </v-chip>
         </v-col>
-        <v-col cols="12" v-if="props.showLimitedTimeEvents">
+        <v-col cols="12" v-if="showLimitedTimeEvents">
           <v-chip
-            v-for="event in kokorodoStore.monsters[props.monsterName]
+            v-for="event in kokorodoStore.monsters[monsterName]
               .limitedTimeEvents"
             :key="event"
             class="mr-1"
@@ -51,7 +49,7 @@
             {{ event }}
           </v-chip>
           <v-chip
-            v-if="kokorodoStore.monsters[props.monsterName].condition == '地域'"
+            v-if="kokorodoStore.monsters[monsterName].condition == '地域'"
             class="mr-1"
             density="compact"
           >
@@ -61,7 +59,7 @@
         <v-col cols="12" class="pt-0">
           <v-chip
             v-for="frameCode in kokorodoStore.frameCodesFromMonsterName[
-              props.monsterName
+              monsterName
             ]"
             :key="frameCode"
             class="mr-1"
@@ -76,11 +74,11 @@
         <v-col
           cols="12"
           class="pt-0"
-          v-if="kokorodoStore.monsters[props.monsterName].memo"
+          v-if="kokorodoStore.monsters[monsterName].memo"
         >
           <v-alert
             density="compact"
-            :text="kokorodoStore.monsters[props.monsterName].memo"
+            :text="kokorodoStore.monsters[monsterName].memo"
           />
         </v-col>
       </v-row>
@@ -89,17 +87,21 @@
 </template>
 
 <script setup lang="ts">
-import { useKokorodoStore } from "@/store/kokorodo";
-import { useUtil } from "@/composables/util";
-
 const kokorodoStore = useKokorodoStore();
 const util = useUtil();
 
-import KokoroSvg from "@/components/KokoroSvg.vue";
-
-const props = defineProps<{
-  monsterName: string;
-  showStoryConditions?: boolean;
-  showLimitedTimeEvents?: boolean;
-}>();
+defineProps({
+  monsterName: {
+    type: String,
+    required: true,
+  },
+  showStoryConditions: {
+    type: Boolean,
+    default: false,
+  },
+  showLimitedTimeEvents: {
+    type: Boolean,
+    default: false,
+  },
+});
 </script>

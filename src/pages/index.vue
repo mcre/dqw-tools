@@ -84,9 +84,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useUtil } from "@/composables/util";
-import tools from "@/consts/tools";
-
 const util = useUtil();
 util.setTitle("");
 </script>

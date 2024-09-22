@@ -85,8 +85,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useUtil } from "@/composables/util";
-import tools from "@/consts/tools";
 const tool = tools["average-level"];
 
 const util = useUtil();

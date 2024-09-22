@@ -243,13 +243,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useRoute, useRouter } from "vue-router";
-import { useKokorodoStore } from "@/store/kokorodo";
-import { useUtil } from "@/composables/util";
-
-import MonsterKokoroCard from "@/components/MonsterKokoroCard.vue";
-
-import tools from "@/consts/tools";
 const tool = tools.kokorodo;
 
 const router = useRouter();

@@ -12,7 +12,7 @@
         <stop offset="0%" style="stop-color: rgb(255, 255, 255)" />
         <stop
           offset="100%"
-          :style="`stop-color: ${util.kokoroColorCode(props.colorName)}`"
+          :style="`stop-color: ${util.kokoroColorCode(colorName)}`"
         />
       </radialGradient>
       <filter id="textShadow">
@@ -36,18 +36,21 @@
       fill="white"
       filter="url(#textShadow)"
     >
-      {{ props.cost }}
+      {{ cost }}
     </text>
   </svg>
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance } from "vue";
-import { useUtil } from "@/composables/util";
 const util = useUtil();
-
-const props = defineProps<{
-  colorName: string;
-  cost: number;
-}>();
+defineProps({
+  colorName: {
+    type: String,
+    required: true,
+  },
+  cost: {
+    type: Number,
+    required: true,
+  },
+});
 </script>
