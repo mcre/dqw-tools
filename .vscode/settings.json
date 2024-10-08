@@ -2,5 +2,5 @@
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
-  "cSpell.words": ["CBZA", "certificatemanager", "edgelambda", "esbenp", "godhand", "kokoro", "kokorodo", "materialdesignicons", "NGWW", "noarchive", "nocheck", "nofollow", "oidc", "Pinia", "unplugin", "urlset", "venv", "wght"]
+  "cSpell.words": ["CBZA", "certificatemanager", "edgelambda", "esbenp", "fontsource", "godhand", "iconsets", "kokoro", "kokorodo", "materialdesignicons", "NGWW", "noarchive", "nocheck", "nofollow", "oidc", "Pinia", "postbuild", "purgecss", "unhead", "unplugin", "urlset", "venv", "VITE", "wght"]
 }

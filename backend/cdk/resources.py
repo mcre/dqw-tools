@@ -130,22 +130,23 @@ def create_cloudfront(
     name: str,
     bucket: s3.Bucket,
     acm_result: Dict[str, Union[acm.Certificate, route53.HostedZone, str]],
-    lambda_edge_version_redirect_to_prerender: lambda_.Version,
-    lambda_edge_version_set_prerender_header: lambda_.Version,
+    lambda_edge_version_viewer_request: lambda_.Version,
 ) -> cloudfront.Distribution:
     cache_policy = cloudfront.CachePolicy(
         scope,
-        f"cloudfront-cache-policy-{name}",
-        cache_policy_name=f"{config['prefix']}-{name}-prerender-cache-policy",
+        f"{name}-CustomCachePolicy",
+        cache_policy_name=f"{config['prefix']}-{name}",
+        comment="Custom cache policy for efficient caching in browsers",
+        default_ttl=Duration.days(30),
+        max_ttl=Duration.days(365),
+        min_ttl=Duration.seconds(0),
         header_behavior=cloudfront.CacheHeaderBehavior.allow_list(
-            "X-Prerender-Cachebuster",
-            "X-Prerender-Token",
-            "X-Prerender-Host",
-            "X-Query-String",
+            "Cache-Control", "Expires"
         ),
-        min_ttl=Duration.seconds(31536000),
-        max_ttl=Duration.seconds(31536000),
-        default_ttl=Duration.seconds(31536000),
+        cookie_behavior=cloudfront.CacheCookieBehavior.none(),
+        query_string_behavior=cloudfront.CacheQueryStringBehavior.all(),
+        enable_accept_encoding_gzip=True,
+        enable_accept_encoding_brotli=True,
     )
     resource = cloudfront.Distribution(
         scope,
@@ -158,12 +159,8 @@ def create_cloudfront(
             cache_policy=cache_policy,
             edge_lambdas=[
                 cloudfront.EdgeLambda(
-                    function_version=lambda_edge_version_set_prerender_header,
+                    function_version=lambda_edge_version_viewer_request,
                     event_type=cloudfront.LambdaEdgeEventType.VIEWER_REQUEST,
-                ),
-                cloudfront.EdgeLambda(
-                    function_version=lambda_edge_version_redirect_to_prerender,
-                    event_type=cloudfront.LambdaEdgeEventType.ORIGIN_REQUEST,
                 ),
             ],
         ),

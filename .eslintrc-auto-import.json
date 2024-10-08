@@ -72,6 +72,7 @@
     "useUtil": true,
     "store": true,
     "useKokorodoStore": true,
-    "tools": true
+    "tools": true,
+    "routerOptions": true
   }
 }

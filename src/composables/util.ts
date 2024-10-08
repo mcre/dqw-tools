@@ -1,3 +1,19 @@
+import {
+  mdiHexagonOutline,
+  mdiHexagonSlice1,
+  mdiHexagonSlice2,
+  mdiHexagonSlice3,
+  mdiHexagonSlice4,
+  mdiHexagonSlice5,
+  mdiWater,
+  mdiMap,
+  mdiHelp,
+  mdiWeatherNight,
+} from "@mdi/js";
+
+import { useHead } from "@unhead/vue";
+import { ToolParams } from "@/router/index";
+
 export const useUtil = () => {
   const numberArrayToBase64 = (selectedNumbers: number[]): string => {
     const max = Math.max(...selectedNumbers);
@@ -57,39 +73,39 @@ export const useUtil = () => {
   };
 
   const monsterFrequencyDetails = (
-    frequencyKey: string
+    frequencyKey: string,
   ): { level: number; icon: string; text: string } => {
     switch (frequencyKey) {
       case "とても":
         return {
           level: 5,
-          icon: "mdi-hexagon-slice-5",
+          icon: mdiHexagonSlice5,
           text: "とてもよく見かける",
         };
       case "よく":
-        return { level: 4, icon: "mdi-hexagon-slice-4", text: "よく見かける" };
+        return { level: 4, icon: mdiHexagonSlice4, text: "よく見かける" };
       case "ときどき":
         return {
           level: 3,
-          icon: "mdi-hexagon-slice-3",
+          icon: mdiHexagonSlice3,
           text: "ときどき見かける",
         };
       case "あまり":
         return {
           level: 2,
-          icon: "mdi-hexagon-slice-2",
+          icon: mdiHexagonSlice2,
           text: "あまり見かけない",
         };
       case "めったに":
         return {
           level: 1,
-          icon: "mdi-hexagon-slice-1",
+          icon: mdiHexagonSlice1,
           text: "めったに見かけない",
         };
       default:
         return {
           level: 0,
-          icon: "mdi-hexagon-slice-0",
+          icon: mdiHexagonOutline,
           text: "その他",
         };
     }
@@ -98,13 +114,13 @@ export const useUtil = () => {
   const textToIcon = (text: string): string => {
     switch (text) {
       case "水":
-        return "mdi-water";
+        return mdiWater;
       case "地域":
-        return "mdi-map";
+        return mdiMap;
       case "夜":
-        return "mdi-weather-night";
+        return mdiWeatherNight;
       default:
-        return "mdi-help";
+        return mdiHelp;
     }
   };
 
@@ -112,57 +128,78 @@ export const useUtil = () => {
     await navigator.clipboard.writeText(text);
   };
 
-  const setTitle = (
-    title?: string | null,
-    description: string = "DQW(ドラゴンクエストウォーク)のプレイに役立つツール集。こころ道周回クエスト検索ツールなど。",
-    robots: boolean = true
-  ) => {
+  const setToolTitle = (toolParams?: ToolParams) => {
     const site = import.meta.env.VITE_APP_TITLE;
-    let newTitle = "";
-    if (title) {
-      newTitle = title + " - " + site;
+
+    let path: string;
+    let title: string;
+    let description: string;
+
+    if (toolParams) {
+      path = toolParams.path;
+      title = toolParams.title + " - " + site;
+      description = toolParams.description;
     } else {
-      newTitle = site;
+      path = "/";
+      title = site;
+      description =
+        "ドラゴンクエストウォーク)のプレイに役立つツール集。こころ道周回クエスト検索ツールなど。";
     }
-    document.title = newTitle;
-
-    const robotsMeta = document.querySelector("meta[id='robots']");
-    if (robotsMeta) {
-      if (robots) {
-        robotsMeta.setAttribute("content", "all");
-      } else {
-        robotsMeta.setAttribute("content", "noindex, nofollow, noarchive");
-      }
-    }
-
-    const metaDescription = document.querySelector("meta[id='description']");
-    if (metaDescription) metaDescription.setAttribute("content", description);
-
-    const ogURl = document.querySelector("meta[id='og-url']");
-    if (ogURl) ogURl.setAttribute("content", document.documentURI);
-
-    const ogTitle = document.querySelector("meta[id='og-title']");
-    if (ogTitle)
-      if (title) ogTitle.setAttribute("content", title);
-      else ogTitle.setAttribute("content", site);
-
-    const ogDescription = document.querySelector("meta[id='og-description']");
-    if (ogDescription) ogDescription.setAttribute("content", description);
 
     const imageFullPath = `https://${
       import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME
     }/img/kokorodo-sample.png`;
 
-    const ogImage = document.querySelector("meta[id='og-image']");
-    if (ogImage) ogImage.setAttribute("content", imageFullPath);
-
-    const twImage = document.querySelector("meta[id='tw-image']");
-    if (twImage) twImage.setAttribute("content", imageFullPath);
+    const distUrl = `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}`;
+    useHead({
+      title: title,
+      meta: [
+        {
+          id: "robots",
+          content: "all",
+        },
+        {
+          id: "description",
+          content: description,
+        },
+        {
+          id: "og-title",
+          content: title,
+        },
+        {
+          id: "og-url",
+          content: `${distUrl}${path}`,
+        },
+        {
+          id: "og-image",
+          content: imageFullPath,
+        },
+        {
+          id: "og-description",
+          content: description,
+        },
+        {
+          id: "tw-image",
+          content: imageFullPath,
+        },
+      ],
+    });
   };
 
-  const updateOgp = () => {
-    const ogURl = document.querySelector("meta[id='og-url']");
-    if (ogURl) ogURl.setAttribute("content", document.documentURI);
+  const updateOgp = (toolParams: ToolParams) => {
+    const distUrl = `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}`;
+
+    let currentUrl = `${distUrl}${toolParams.path}`;
+    if (!import.meta.env.SSR) currentUrl = document.documentURI;
+
+    useHead({
+      meta: [
+        {
+          id: "og-url",
+          content: currentUrl,
+        },
+      ],
+    });
   };
 
   return {
@@ -172,7 +209,7 @@ export const useUtil = () => {
     monsterFrequencyDetails,
     textToIcon,
     copyToClipboard,
-    setTitle,
+    setToolTitle,
     updateOgp,
   };
 };

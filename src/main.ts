@@ -1,20 +1,11 @@
-/**
- * main.ts
- *
- * Bootstraps Vuetify and other plugins then mounts the App`
- */
-
-// Plugins
 import { registerPlugins } from "@/plugins";
+import { routerOptions } from "./router";
 
-// Components
 import App from "./App.vue";
+import { ViteSSG } from "vite-ssg";
 
-// Composables
-import { createApp } from "vue";
+import "@fontsource-variable/roboto-flex";
 
-const app = createApp(App);
-
-registerPlugins(app);
-
-app.mount("#app");
+export const createApp = ViteSSG(App, routerOptions, ({ app }) => {
+  registerPlugins(app);
+});

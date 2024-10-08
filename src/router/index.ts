@@ -1,17 +1,57 @@
-import { createRouter, createWebHistory } from "vue-router/auto";
-import { routes } from "vue-router/auto-routes";
-
-import NotFound from "@/pages/not-found.vue";
+import { RouterOptions } from "vite-ssg";
 import Index from "@/pages/index.vue";
+import NotFound from "@/pages/not-found.vue";
 
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    ...routes,
-    {
-      path: "/index.html",
-      component: Index,
+export type ToolParams = {
+  title: string;
+  subtitle: string;
+  path: string;
+  description: string;
+};
+
+export type Tool = {
+  component: Component;
+  params: ToolParams;
+};
+
+type Tools = {
+  [key: string]: Tool;
+};
+
+import Kokorodo from "@/pages/kokorodo.vue";
+import AverageLevel from "@/pages/average-level.vue";
+
+export const tools: Tools = {
+  kokorodo: {
+    component: Kokorodo,
+    params: {
+      title: "こころ道",
+      subtitle: "周回クエスト検索ツール",
+      path: "/kokorodo",
+      description:
+        "ほしいこころ道の枠を選択することで、入手可能なこころの数が多い順でクエストが表示されます。",
     },
+  },
+  "average-level": {
+    component: AverageLevel,
+    params: {
+      title: "メタルキャンペーン",
+      subtitle: "平均レベル計算ツール",
+      path: "/average-level",
+      description:
+        "メンバー4人分のレベルを選択することにより、平均レベルが計算されます。メタルキャンペーン（メタルの群れ）の場合にどのメタルが出現するかも併せて表示されます。",
+    },
+  },
+};
+
+export const routerOptions: RouterOptions = {
+  routes: [
+    { path: "/", name: "index", component: Index },
+    ...Object.keys(tools).map((key) => ({
+      path: tools[key].params.path,
+      name: key,
+      component: tools[key].component,
+    })),
     {
       path: "/:pathMatch(.*)*",
       component: NotFound,
@@ -28,25 +68,4 @@ const router = createRouter({
       });
     });
   },
-});
-
-// Workaround for https://github.com/vitejs/vite/issues/11804
-router.onError((err, to) => {
-  if (err?.message?.includes?.("Failed to fetch dynamically imported module")) {
-    if (!localStorage.getItem("vuetify:dynamic-reload")) {
-      console.log("Reloading page to fix dynamic import error");
-      localStorage.setItem("vuetify:dynamic-reload", "true");
-      location.assign(to.fullPath);
-    } else {
-      console.error("Dynamic import error, reloading page did not fix it", err);
-    }
-  } else {
-    console.error(err);
-  }
-});
-
-router.isReady().then(() => {
-  localStorage.removeItem("vuetify:dynamic-reload");
-});
-
-export default router;
+};

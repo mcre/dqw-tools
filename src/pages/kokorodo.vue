@@ -3,14 +3,17 @@
     <v-row>
       <v-col cols="12">
         <h1>
-          {{ tool.title }}<br />
-          <span class="text-h6">{{ tool.subtitle }}</span>
+          {{ tool.params.title }}<br />
+          <span class="text-h6">{{ tool.params.subtitle }}</span>
         </h1>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
-        <h2><v-icon start class="mb-1">mdi-foot-print</v-icon>説明</h2>
+        <h2>
+          <v-icon start class="mb-1">{{ mdiFootPrint }}</v-icon>
+          説明
+        </h2>
       </v-col>
       <v-col cols="12">
         <p>
@@ -44,7 +47,7 @@
             variant="solo"
             hide-details
             readonly
-            append-inner-icon="mdi-content-copy"
+            :append-inner-icon="mdiContentCopy"
             @click:append-inner="
               util.copyToClipboard(fullPath);
               snackbar = true;
@@ -61,7 +64,8 @@
     <v-row id="select">
       <v-col cols="12">
         <h2>
-          <v-icon start class="mb-1">mdi-heart-circle</v-icon>欲しいこころの選択
+          <v-icon start class="mb-1">{{ mdiHeartCircle }}</v-icon>
+          欲しいこころの選択
         </h2>
       </v-col>
     </v-row>
@@ -139,7 +143,7 @@
     <v-row class="mt-12" id="quests">
       <v-col cols="12">
         <h2>
-          <v-icon start class="mb-1">mdi-book-open-page-variant</v-icon>
+          <v-icon start class="mb-1">{{ mdiBookOpenPageVariant }}</v-icon>
           周回おすすめクエスト
         </h2>
       </v-col>
@@ -157,7 +161,7 @@
       >
         <v-expansion-panel-title>
           <h3>
-            <v-icon start>mdi-bullseye-arrow</v-icon>
+            <v-icon start>{{ mdiBullseyeArrow }}</v-icon>
             入手可能こころ: {{ quests.count }}
           </h3>
         </v-expansion-panel-title>
@@ -172,7 +176,7 @@
             >
               <v-card>
                 <v-card-title>
-                  <v-icon class="mb-1">mdi-compass-outline</v-icon>
+                  <v-icon class="mb-1">{{ mdiCompassOutline }}</v-icon>
                   {{ quest.questNames[0] }}
                   <v-tooltip location="end">
                     <template v-slot:activator="{ props }">
@@ -220,7 +224,7 @@
     <v-row class="mt-12" id="quests" v-if="requiredNonQuestMonsters.length > 0">
       <v-col cols="12">
         <h2>
-          <v-icon start class="mb-1">mdi-ghost</v-icon>
+          <v-icon start class="mb-1">{{ mdiGhost }}</v-icon>
           期間限定モンスター等
         </h2>
       </v-col>
@@ -249,10 +253,20 @@ const router = useRouter();
 const route = useRoute();
 const kokorodoStore = useKokorodoStore();
 const util = useUtil();
-util.setTitle(`${tool.title} ${tool.subtitle}`, tool.description);
+util.setToolTitle(tool.params);
+
+import {
+  mdiFootPrint,
+  mdiContentCopy,
+  mdiHeartCircle,
+  mdiBookOpenPageVariant,
+  mdiBullseyeArrow,
+  mdiCompassOutline,
+  mdiGhost,
+} from "@mdi/js";
 
 const fullPath = ref(
-  `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${route.fullPath}`
+  `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${route.fullPath}`,
 );
 const snackbar = ref(false);
 const selectedFrames = ref<number[]>([]);
@@ -271,12 +285,12 @@ const requiredMonstersBeforeConsideringPrefectures = computed(() => {
   }));
   if (removeNightMonsters.value) {
     requiredMonsters = requiredMonsters.filter(
-      (monster) => monster.details?.condition != "夜"
+      (monster) => monster.details?.condition != "夜",
     );
   }
   if (removeRainMonsters.value) {
     requiredMonsters = requiredMonsters.filter(
-      (monster) => monster.details?.condition != "水"
+      (monster) => monster.details?.condition != "水",
     );
   }
   return requiredMonsters;
@@ -286,16 +300,16 @@ const requiredMonsters = computed(() => {
   let requiredMonsters = requiredMonstersBeforeConsideringPrefectures.value;
   if (selectedPrefecture.value) {
     const prefectureMonsters = kokorodoStore.prefectures.filter(
-      (pref) => pref.code == selectedPrefecture.value
+      (pref) => pref.code == selectedPrefecture.value,
     )[0].monsters;
     requiredMonsters = requiredMonsters.filter(
       (monster) =>
         monster.details?.condition != "地域" ||
-        prefectureMonsters.includes(monster.name)
+        prefectureMonsters.includes(monster.name),
     );
   } else {
     requiredMonsters = requiredMonsters.filter(
-      (monster) => monster.details?.condition != "地域"
+      (monster) => monster.details?.condition != "地域",
     );
   }
   return requiredMonsters;
@@ -304,38 +318,56 @@ const requiredMonsters = computed(() => {
 const requiredQuests = computed(() => {
   const questsToMonsters: Record<string, string[]> = requiredMonsters.value
     .filter((m) => m.details)
-    .reduce((acc, m) => {
-      m.details!.quests.forEach((q) => {
-        acc[q] = (acc[q] || []).concat(m.name);
-      });
-      return acc;
-    }, {} as Record<string, string[]>);
+    .reduce(
+      (acc, m) => {
+        m.details!.quests.forEach((q) => {
+          acc[q] = (acc[q] || []).concat(m.name);
+        });
+        return acc;
+      },
+      {} as Record<string, string[]>,
+    );
 
   const questGroups = Object.entries(questsToMonsters)
     .map(([questName, monsterNames]) => {
       const monsterNamesKey = monsterNames.sort().join("|");
       return { questName, monsterNames, monsterNamesKey };
     })
-    .reduce((acc, { questName, monsterNames, monsterNamesKey }) => {
-      let questGroup = acc.find((qg) => qg.monsterNamesKey === monsterNamesKey);
-      if (questGroup) {
-        questGroup.questNames.push(questName);
-      } else {
-        acc.push({
-          questNames: [questName],
-          count: monsterNames.length,
-          monsterNames,
-          monsterNamesKey,
-        });
-      }
-      return acc;
-    }, [] as { questNames: string[]; count: number; monsterNames: string[]; monsterNamesKey: string }[]);
+    .reduce(
+      (acc, { questName, monsterNames, monsterNamesKey }) => {
+        let questGroup = acc.find(
+          (qg) => qg.monsterNamesKey === monsterNamesKey,
+        );
+        if (questGroup) {
+          questGroup.questNames.push(questName);
+        } else {
+          acc.push({
+            questNames: [questName],
+            count: monsterNames.length,
+            monsterNames,
+            monsterNamesKey,
+          });
+        }
+        return acc;
+      },
+      [] as {
+        questNames: string[];
+        count: number;
+        monsterNames: string[];
+        monsterNamesKey: string;
+      }[],
+    );
 
   const questGroupsByCount: Record<number, typeof questGroups> =
-    questGroups.reduce((acc, questGroup) => {
-      (acc[questGroup.count] || (acc[questGroup.count] = [])).push(questGroup);
-      return acc;
-    }, {} as Record<number, typeof questGroups>);
+    questGroups.reduce(
+      (acc, questGroup) => {
+        (acc[questGroup.count] || (acc[questGroup.count] = [])).push(
+          questGroup,
+        );
+        return acc;
+      },
+      {} as Record<number, typeof questGroups>,
+    );
 
   return Object.entries(questGroupsByCount)
     .map(([count, questGroups]) => ({
@@ -353,7 +385,7 @@ const requiredNonQuestMonsters = computed(() => {
     .filter(
       (monster) =>
         (monster.details && monster.details.quests.length == 0) ||
-        (monster.details && monster.details.condition == "地域")
+        (monster.details && monster.details.condition == "地域"),
     )
     .sort((a, b) => a.name.localeCompare(b.name));
 });
@@ -361,10 +393,10 @@ const requiredNonQuestMonsters = computed(() => {
 const sortByFrequency = (monsterNames: string[]): string[] => {
   return [...monsterNames].sort((a, b) => {
     const freqLevelA = util.monsterFrequencyDetails(
-      kokorodoStore.monsters[a].frequency!
+      kokorodoStore.monsters[a].frequency!,
     ).level;
     const freqLevelB = util.monsterFrequencyDetails(
-      kokorodoStore.monsters[b].frequency!
+      kokorodoStore.monsters[b].frequency!,
     ).level;
     return freqLevelB - freqLevelA || a.localeCompare(b);
   });
@@ -392,8 +424,8 @@ watch(
     fullPath.value = `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${
       route.path
     }?${new URLSearchParams(query).toString()}`;
-    util.updateOgp();
-  }
+    util.updateOgp(tool.params);
+  },
 );
 
 const load = async () => {

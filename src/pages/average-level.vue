@@ -3,18 +3,21 @@
     <v-row>
       <v-col cols="12">
         <h1>
-          {{ tool.title }}<br />
-          <span class="text-h6">{{ tool.subtitle }}</span>
+          {{ tool.params.title }}<br />
+          <span class="text-h6">{{ tool.params.subtitle }}</span>
         </h1>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
-        <h2><v-icon start class="mb-1">mdi-foot-print</v-icon>説明</h2>
+        <h2>
+          <v-icon start class="mb-1">{{ mdiFootPrint }}</v-icon
+          >説明
+        </h2>
       </v-col>
       <v-col cols="12">
         <p>
-          {{ tool.description }}
+          {{ tool.params.description }}
         </p>
       </v-col>
     </v-row>
@@ -23,19 +26,13 @@
     <v-row>
       <v-col cols="12">
         <h2>
-          <v-icon start class="mb-1">mdi-shield-sword-outline</v-icon>
+          <v-icon start class="mb-1">{{ mdiShieldSwordOutline }}</v-icon>
           パーティの設定
         </h2>
       </v-col>
     </v-row>
     <v-row>
-      <v-col
-        cols="12"
-        md="6"
-        lg="3"
-        v-for="(member, index) in members"
-        :key="index"
-      >
+      <v-col cols="12" md="6" v-for="(member, index) in members" :key="index">
         <v-card>
           <v-card-title>{{ index + 1 }}人目のメンバー</v-card-title>
           <v-card-text>
@@ -88,7 +85,9 @@
 const tool = tools["average-level"];
 
 const util = useUtil();
-util.setTitle(`${tool.title} ${tool.subtitle}`, tool.description);
+util.setToolTitle(tool.params);
+
+import { mdiFootPrint, mdiShieldSwordOutline } from "@mdi/js";
 
 type LevelType = "basic" | "advanced" | "special";
 
@@ -103,7 +102,7 @@ const members = ref<Member[]>(
   Array.from({ length: memberCount }, () => ({
     levelType: "basic",
     level: 1,
-  }))
+  })),
 );
 
 const maxLevel = (type: LevelType): number => {

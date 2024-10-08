@@ -17,16 +17,19 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h2><v-icon start>mdi-toolbox</v-icon>ツール一覧</h2>
+        <h2>
+          <v-icon start>{{ mdiToolbox }}</v-icon>
+          ツール一覧
+        </h2>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" v-for="(tool, key) in tools" :key="key">
         <v-card
-          :title="tool.title"
-          :subtitle="tool.subtitle"
-          :to="tool.to"
-          :text="tool.description"
+          :title="tool.params.title"
+          :subtitle="tool.params.subtitle"
+          :to="tool.params.path"
+          :text="tool.params.description"
         />
       </v-col>
     </v-row>
@@ -34,7 +37,10 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h2><v-icon start class="mb-1">mdi-scale-balance</v-icon>利用規約</h2>
+        <h2>
+          <v-icon start class="mb-1">{{ mdiScaleBalance }}</v-icon>
+          利用規約
+        </h2>
       </v-col>
     </v-row>
     <v-row>
@@ -52,7 +58,8 @@
     <v-row>
       <v-col cols="12">
         <h2>
-          <v-icon start class="mb-1">mdi-information-outline</v-icon>参考情報
+          <v-icon start class="mb-1">{{ mdiInformationOutline }}</v-icon>
+          参考情報
         </h2>
       </v-col>
     </v-row>
@@ -63,7 +70,7 @@
           href="https://mcre.info"
           target="_blank"
           rel="noopener noreferrer"
-          icon="mdi-account-circle"
+          :icon="mdiAccountCircle"
           size="small"
         />
         作者について
@@ -74,7 +81,7 @@
           href="https://github.com/mcre/dqw-tools"
           target="_blank"
           rel="noopener noreferrer"
-          icon="mdi-github"
+          :icon="mdiGithub"
           size="small"
         />
         このWebアプリのソースコード・要望
@@ -85,5 +92,13 @@
 
 <script lang="ts" setup>
 const util = useUtil();
-util.setTitle("");
+util.setToolTitle();
+
+import {
+  mdiToolbox,
+  mdiScaleBalance,
+  mdiInformationOutline,
+  mdiAccountCircle,
+  mdiGithub,
+} from "@mdi/js";
 </script>

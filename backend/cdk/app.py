@@ -40,7 +40,7 @@ acm_result_dist = create_acm_certificate(
     stack_us, "dist", config["cloudfront"]["domain"]["dist"]
 )
 
-# Lambda
+# Lambda - 消す
 lambda_edge_version_redirect_to_prerender = create_lambda_edge_function_version(
     stack_us, "redirect-to-prerender"
 )
@@ -50,14 +50,19 @@ lambda_edge_version_set_prerender_header = create_lambda_edge_function_version(
     {"PRERENDER_TOKEN": os.environ["PRERENDER_TOKEN"]},
 )
 
+# Lambda
+lambda_edge_version_directory_index = create_lambda_edge_function_version(
+    stack_us,
+    "directory-index",
+)
+
 # CloudFront
 cloudfront_distribution = create_cloudfront(
     stack_us,
     "dist",
     bucket_distribution,
     acm_result_dist,
-    lambda_edge_version_redirect_to_prerender,
-    lambda_edge_version_set_prerender_header,
+    lambda_edge_version_directory_index,
 )
 
 # ===== 終了処理 =====

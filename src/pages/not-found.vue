@@ -14,6 +14,18 @@
 </template>
 
 <script lang="ts" setup>
+import { useHead } from "@unhead/vue";
 const util = useUtil();
-util.setTitle("このページは存在しません", undefined, false);
+util.setToolTitle();
+
+const site = import.meta.env.VITE_APP_TITLE;
+useHead({
+  title: `このページは存在しません - ${site}`,
+  meta: [
+    {
+      id: "robots",
+      content: "noindex, nofollow, noarchive",
+    },
+  ],
+});
 </script>

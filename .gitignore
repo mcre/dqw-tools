@@ -3,6 +3,7 @@ node_modules
 /dist
 /public/sitemap.xml
 /public/robots.txt
+.vite-ssg-temp
 
 # local env files
 .env.local

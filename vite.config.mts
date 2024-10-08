@@ -1,10 +1,9 @@
 // Plugins
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import Fonts from "unplugin-fonts/vite";
 import Vue from "@vitejs/plugin-vue";
-import VueRouter from "unplugin-vue-router/vite";
 import Vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import "vite-ssg";
 
 // Utilities
 import { defineConfig } from "vite";
@@ -13,9 +12,6 @@ import { fileURLToPath, URL } from "node:url";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    VueRouter({
-      dts: "src/typed-router.d.ts",
-    }),
     AutoImport({
       imports: [
         "vue",
@@ -28,7 +24,7 @@ export default defineConfig({
         enabled: true,
       },
       vueTemplate: true,
-      dirs: ["src/composables", "src/store", "src/consts"],
+      dirs: ["src/composables", "src/store", "src/router"],
     }),
     Components({
       dts: "src/components.d.ts",
@@ -36,21 +32,10 @@ export default defineConfig({
     Vue({
       template: { transformAssetUrls },
     }),
-    // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
     Vuetify({
       autoImport: true,
       styles: {
         configFile: "src/styles/settings.scss",
-      },
-    }),
-    Fonts({
-      google: {
-        families: [
-          {
-            name: "Roboto",
-            styles: "wght@100;300;400;500;700;900",
-          },
-        ],
       },
     }),
   ],
@@ -61,7 +46,31 @@ export default defineConfig({
     },
     extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler",
+      },
+    },
+  },
   server: {
     port: 3000,
+  },
+  build: {
+    rollupOptions: {
+      external: ["./bin", "./backend"],
+    },
+  },
+  ssr: {
+    noExternal: ["vuetify"],
+  },
+  ssgOptions: {
+    script: "async defer",
+    formatting: "minify",
+    dirStyle: "nested",
+    crittersOptions: {
+      preload: "media",
+      pruneSource: true,
+    },
   },
 });
