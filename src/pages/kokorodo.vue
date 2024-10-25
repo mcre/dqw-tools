@@ -178,11 +178,10 @@
                 <v-card-title>
                   <v-icon class="mb-1">{{ mdiCompassOutline }}</v-icon>
                   {{ quest.questNames[0] }}
-                  <v-tooltip location="end">
+                  <v-tooltip location="end" v-if="quest.questNames.length > 1">
                     <template v-slot:activator="{ props }">
                       <v-chip
                         v-bind="props"
-                        v-if="quest.questNames.length > 1"
                         class="mb-1"
                         color="primary"
                         density="comfortable"

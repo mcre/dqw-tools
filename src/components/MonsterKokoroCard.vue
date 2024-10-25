@@ -6,6 +6,14 @@
     />
     <v-card-title>
       {{ monsterName }}
+      <v-tooltip v-if="kokorodoStore.monsters[monsterName].memo">
+        <template v-slot:activator="{ props }">
+          <v-chip v-bind="props" class="mb-1" color="primary" density="compact">
+            覚醒メモ
+          </v-chip>
+        </template>
+        <span>{{ kokorodoStore.monsters[monsterName].memo }}</span>
+      </v-tooltip>
     </v-card-title>
     <v-card-text>
       <v-row>
@@ -15,13 +23,15 @@
             density="compact"
             variant="text"
             size="small"
-            :prepend-icon="util.monsterFrequencyDetails(
-              kokorodoStore.monsters[monsterName].frequency!
-            ).icon"
+            :prepend-icon="
+              util.monsterFrequencyDetails(
+                kokorodoStore.monsters[monsterName].frequency!,
+              ).icon
+            "
           >
             {{
               util.monsterFrequencyDetails(
-                kokorodoStore.monsters[monsterName].frequency!
+                kokorodoStore.monsters[monsterName].frequency!,
               ).text
             }}
           </v-chip>
@@ -70,16 +80,6 @@
           >
             {{ kokorodoStore.frameNameFromCode[frameCode] }}
           </v-chip>
-        </v-col>
-        <v-col
-          cols="12"
-          class="pt-0"
-          v-if="kokorodoStore.monsters[monsterName].memo"
-        >
-          <v-alert
-            density="compact"
-            :text="kokorodoStore.monsters[monsterName].memo"
-          />
         </v-col>
       </v-row>
     </v-card-text>
