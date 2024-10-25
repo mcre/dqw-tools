@@ -12,7 +12,7 @@
         <stop offset="0%" style="stop-color: rgb(255, 255, 255)" />
         <stop
           offset="100%"
-          :style="`stop-color: ${util.kokoroColorCode(colorName)}`"
+          :style="`stop-color: ${kokorodoUtil.kokoroColorCode(colorName)}`"
         />
       </radialGradient>
       <filter id="textShadow">
@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-const util = useUtil();
+const kokorodoUtil = useKokorodoUtil();
 defineProps({
   colorName: {
     type: String,

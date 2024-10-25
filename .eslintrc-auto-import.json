@@ -73,6 +73,9 @@
     "store": true,
     "useKokorodoStore": true,
     "tools": true,
-    "routerOptions": true
+    "routerOptions": true,
+    "useHeaderUtil": true,
+    "useUrlUtil": true,
+    "useKokorodoUtil": true
   }
 }

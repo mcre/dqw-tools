@@ -56,14 +56,17 @@ declare global {
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useHeaderUtil: typeof import('./utils/headerUtil')['useHeaderUtil']
   const useId: typeof import('vue')['useId']
   const useKokorodoStore: typeof import('./store/kokorodo')['useKokorodoStore']
+  const useKokorodoUtil: typeof import('./utils/kokorodoUtil')['useKokorodoUtil']
   const useModel: typeof import('vue')['useModel']
   const useRoute: typeof import('vue-router/auto')['useRoute']
   const useRouter: typeof import('vue-router/auto')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
   const useTemplateRef: typeof import('vue')['useTemplateRef']
-  const useUtil: typeof import('./composables/util')['useUtil']
+  const useUrlUtil: typeof import('./utils/urlUtil')['useUrlUtil']
+  const useUtil: typeof import('./utils/kokorodoUtil')['useUtil']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
@@ -131,14 +134,16 @@ declare module 'vue' {
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useHeaderUtil: UnwrapRef<typeof import('./utils/headerUtil')['useHeaderUtil']>
     readonly useId: UnwrapRef<typeof import('vue')['useId']>
     readonly useKokorodoStore: UnwrapRef<typeof import('./store/kokorodo')['useKokorodoStore']>
+    readonly useKokorodoUtil: UnwrapRef<typeof import('./utils/kokorodoUtil')['useKokorodoUtil']>
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
-    readonly useUtil: UnwrapRef<typeof import('./composables/util')['useUtil']>
+    readonly useUrlUtil: UnwrapRef<typeof import('./utils/urlUtil')['useUrlUtil']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>

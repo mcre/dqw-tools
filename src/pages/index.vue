@@ -91,8 +91,9 @@
 </template>
 
 <script lang="ts" setup>
-const util = useUtil();
-util.setToolTitle();
+import { useHead } from "@unhead/vue";
+const headerUtil = useHeaderUtil();
+useHead(headerUtil.getHead());
 
 import {
   mdiToolbox,

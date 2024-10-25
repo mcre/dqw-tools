@@ -84,8 +84,9 @@
 <script lang="ts" setup>
 const tool = tools["average-level"];
 
-const util = useUtil();
-util.setToolTitle(tool.params);
+import { useHead } from "@unhead/vue";
+const headerUtil = useHeaderUtil();
+useHead(headerUtil.getHead(tool.params));
 
 import { mdiFootPrint, mdiShieldSwordOutline } from "@mdi/js";
 

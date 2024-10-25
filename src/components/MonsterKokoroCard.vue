@@ -24,13 +24,13 @@
             variant="text"
             size="small"
             :prepend-icon="
-              util.monsterFrequencyDetails(
+              kokorodoUtil.monsterFrequencyDetails(
                 kokorodoStore.monsters[monsterName].frequency!,
               ).icon
             "
           >
             {{
-              util.monsterFrequencyDetails(
+              kokorodoUtil.monsterFrequencyDetails(
                 kokorodoStore.monsters[monsterName].frequency!,
               ).text
             }}
@@ -42,7 +42,9 @@
             size="small"
             v-if="kokorodoStore.monsters[monsterName].condition"
             :prepend-icon="
-              util.textToIcon(kokorodoStore.monsters[monsterName].condition)
+              kokorodoUtil.textToIcon(
+                kokorodoStore.monsters[monsterName].condition,
+              )
             "
           >
             {{ kokorodoStore.monsters[monsterName].condition }}
@@ -88,7 +90,7 @@
 
 <script setup lang="ts">
 const kokorodoStore = useKokorodoStore();
-const util = useUtil();
+const kokorodoUtil = useKokorodoUtil();
 
 defineProps({
   monsterName: {

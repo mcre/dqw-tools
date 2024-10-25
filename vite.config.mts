@@ -24,7 +24,7 @@ export default defineConfig({
         enabled: true,
       },
       vueTemplate: true,
-      dirs: ["src/composables", "src/store", "src/router"],
+      dirs: ["src/utils", "src/store", "src/router"],
     }),
     Components({
       dts: "src/components.d.ts",

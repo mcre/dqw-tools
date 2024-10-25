@@ -15,8 +15,8 @@
 
 <script lang="ts" setup>
 import { useHead } from "@unhead/vue";
-const util = useUtil();
-util.setToolTitle();
+const headerUtil = useHeaderUtil();
+useHead(headerUtil.getHead());
 
 const site = import.meta.env.VITE_APP_TITLE;
 useHead({

@@ -49,7 +49,7 @@
             readonly
             :append-inner-icon="mdiContentCopy"
             @click:append-inner="
-              util.copyToClipboard(fullPath);
+              urlUtil.copyToClipboard(fullPath);
               snackbar = true;
             "
           />
@@ -251,8 +251,13 @@ const tool = tools.kokorodo;
 const router = useRouter();
 const route = useRoute();
 const kokorodoStore = useKokorodoStore();
-const util = useUtil();
-util.setToolTitle(tool.params);
+
+const urlUtil = useUrlUtil();
+const kokorodoUtil = useKokorodoUtil();
+
+import { useHead } from "@unhead/vue";
+const headerUtil = useHeaderUtil();
+useHead(headerUtil.getHead(tool.params));
 
 import {
   mdiFootPrint,
@@ -391,10 +396,10 @@ const requiredNonQuestMonsters = computed(() => {
 
 const sortByFrequency = (monsterNames: string[]): string[] => {
   return [...monsterNames].sort((a, b) => {
-    const freqLevelA = util.monsterFrequencyDetails(
+    const freqLevelA = kokorodoUtil.monsterFrequencyDetails(
       kokorodoStore.monsters[a].frequency!,
     ).level;
-    const freqLevelB = util.monsterFrequencyDetails(
+    const freqLevelB = kokorodoUtil.monsterFrequencyDetails(
       kokorodoStore.monsters[b].frequency!,
     ).level;
     return freqLevelB - freqLevelA || a.localeCompare(b);
@@ -410,7 +415,7 @@ watch(
   ],
   () => {
     const query: { [key: string]: string } = {
-      f: util.numberArrayToBase64(selectedFrames.value),
+      f: urlUtil.numberArrayToBase64(selectedFrames.value),
     };
     if (removeNightMonsters.value) query["n"] = "1";
     if (removeRainMonsters.value) query["r"] = "1";
@@ -423,13 +428,12 @@ watch(
     fullPath.value = `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}${
       route.path
     }?${new URLSearchParams(query).toString()}`;
-    util.updateOgp(tool.params);
   },
 );
 
 const load = async () => {
   if (typeof route.query.f === "string" && route.query.f.length > 0) {
-    selectedFrames.value = util.base64ToNumberArray(route.query.f);
+    selectedFrames.value = urlUtil.base64ToNumberArray(route.query.f);
   }
   if (typeof route.query.n === "string" && route.query.n.length > 0) {
     removeNightMonsters.value = true;
