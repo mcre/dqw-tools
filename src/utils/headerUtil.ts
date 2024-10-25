@@ -6,7 +6,6 @@ export const useHeaderUtil = () => {
     const distUrl = `https://${import.meta.env.VITE_DISTRIBUTION_DOMAIN_NAME}`;
 
     const route = useRoute();
-    let path: string;
     let title: string;
     let description: string;
 
@@ -16,7 +15,6 @@ export const useHeaderUtil = () => {
       title = toolParams.title + " - " + site;
       description = toolParams.description;
     } else {
-      path = "/";
       title = site;
       description =
         "ドラゴンクエストウォーク)のプレイに役立つツール集。こころ道周回クエスト検索ツールなど。";
