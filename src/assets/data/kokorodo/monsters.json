@@ -18,6 +18,7 @@
   "イデアラゴン": {"color": "緑", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
   "いどまじん": {"color": "紫", "cost": 146, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "ウィングデビル": {"color": "赤", "cost": 152, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵", "ほこら"], "quests": []},
+  "ウォーキング・九州": {"color": "黄", "cost": 24, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "うごくせきぞう": {"color": "赤", "cost": 119, "frequency": "あまり", "condition": null, "limitedTimeEvents": [], "quests": ["11章5話", "11章6話", "11章7話", "11章8話", "11章9話", "11章10話", "12章1話", "12章2話", "12章3話", "12章4話"], "memo": "魔剣士魔道6は覚醒すると外れる"},
   "うみぼうず": {"color": "青", "cost": 81, "frequency": "よく", "condition": "水", "limitedTimeEvents": [], "quests": ["6章5話", "6章6話", "6章7話", "6章8話", "6章9話", "6章10話", "7章1話", "7章2話", "7章3話", "7章4話"]},
   "エビルソーサラー": {"color": "紫", "cost": 126, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["12章5話", "12章6話", "12章7話", "12章8話", "12章9話", "12章10話", "13章1話", "13章2話", "13章3話", "13章4話"]},
