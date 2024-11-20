@@ -30,6 +30,7 @@ stack_us = Stack(
     app,
     f"{config['prefix']}-stack-us-east-1",
     env=Environment(region="us-east-1"),
+    tags={tag["key"]: tag["value"] for tag in config["tags"]},
 )
 
 # S3

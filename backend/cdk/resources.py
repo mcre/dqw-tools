@@ -4,7 +4,6 @@ from typing import Dict, Union
 
 from aws_cdk import (
     Stack,
-    Tags,
     Duration,
     RemovalPolicy,
     aws_lambda as lambda_,
@@ -19,11 +18,6 @@ from aws_cdk import (
 from config import get_env_config
 
 config = get_env_config()
-
-
-def add_tags(resource) -> None:
-    for tag in config["tags"]:
-        Tags.of(resource).add(tag["key"], tag["value"])
 
 
 def create_acm_certificate(
@@ -42,7 +36,6 @@ def create_acm_certificate(
         domain_name=domain_name,
         validation=acm.CertificateValidation.from_dns(existing_hosted_zone),
     )
-    add_tags(resource)
 
     return {
         "certificate": resource,
@@ -81,7 +74,6 @@ def create_lambda_edge_function_version(
             )
         },
     )
-    add_tags(iam_role)
 
     class AtTemplate(string.Template):
         delimiter = "@"
@@ -109,7 +101,6 @@ def create_lambda_edge_function_version(
         ),
     )
     version = resource.current_version
-    add_tags(resource)
     return version
 
 
@@ -121,7 +112,6 @@ def create_s3_bucket(scope: Stack, name: str) -> s3.Bucket:
         bucket_name=f"{config['prefix']}-{name}",
         removal_policy=RemovalPolicy.RETAIN if dp else RemovalPolicy.DESTROY,
     )
-    add_tags(resource)
     return resource
 
 
@@ -190,8 +180,6 @@ def create_cloudfront(
             route53_targets.CloudFrontTarget(resource)
         ),
     )
-
-    add_tags(resource)
     return resource
 
 
@@ -255,6 +243,4 @@ def create_iam_role_github_actions(scope: Stack, policies: list = []) -> iam.Rol
             )
         },
     )
-
-    add_tags(resource)
     return resource
