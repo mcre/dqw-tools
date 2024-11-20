@@ -1,4 +1,3 @@
-import os
 from aws_cdk import (
     App,
     Environment,
@@ -38,7 +37,7 @@ bucket_distribution = create_s3_bucket(stack_us, "dist")
 
 # ACM
 acm_result_dist = create_acm_certificate(
-    stack_us, "dist", config["cloudfront"]["domain"]["dist"]
+    stack_us, "dist", config["cloudfront"]["dist"]["domain"]
 )
 
 # Lambda
