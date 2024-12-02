@@ -114,6 +114,7 @@
   "スライムナイト": {"color": "黄", "cost": 39, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["3章5話", "3章6話", "3章7話", "3章8話"]},
   "スライムベス": {"color": "赤", "cost": 5, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["1章2話", "1章3話", "1章4話", "1章5話", "1章6話", "1章7話"]},
   "セキバーン": {"color": "緑", "cost": 69, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント", "ほこら"], "quests": []},
+  "せつげんりゅう": {"color": "青", "cost": 152, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "ダークキャンドル": {"color": "紫", "cost": 122, "frequency": "よく", "condition": "夜", "limitedTimeEvents": [], "quests": ["11章9話", "11章10話", "12章1話", "12章2話", "12章3話", "12章4話", "12章5話", "12章6話", "12章7話", "12章8話"]},
   "ダークキング": {"color": "黄", "cost": 84, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "ダークシルフ": {"color": "緑", "cost": 117, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["11章3話", "11章4話", "11章5話", "11章6話", "11章7話", "11章8話", "11章9話", "11章10話", "12章1話", "12章2話"]},
