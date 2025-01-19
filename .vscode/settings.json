@@ -27,6 +27,7 @@
     "urlset",
     "venv",
     "VITE",
+    "vuetify",
     "wght"
   ]
 }
