@@ -120,6 +120,7 @@
   "スマイルロック": {"color": "黄", "cost": 33, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["2章10話", "3章1話", "3章2話", "3章3話", "3章4話", "3章5話"]},
   "スライム": {"color": "黄", "cost": 3, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["1章1話", "1章2話", "1章3話", "1章4話", "1章5話", "1章6話"]},
   "スライムかがみもち": {"color": "紫", "cost": 17, "frequency": "とても", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "スライムスノー": {"color": "黄", "cost": 138, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "スライムナイト": {"color": "黄", "cost": 39, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["3章5話", "3章6話", "3章7話", "3章8話"]},
   "スライムベス": {"color": "赤", "cost": 5, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["1章2話", "1章3話", "1章4話", "1章5話", "1章6話", "1章7話"]},
   "セキバーン": {"color": "緑", "cost": 69, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント", "ほこら"], "quests": []},
