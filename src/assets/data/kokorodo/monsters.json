@@ -137,6 +137,7 @@
   "タホドラキー": {"color": "緑", "cost": 36, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["3章2話", "3章3話", "3章4話", "3章5話", "3章6話", "3章7話"]},
   "たまねぎマン": {"color": "緑", "cost": 60, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["4章9話", "4章10話", "5章1話", "5章2話", "5章3話"]},
   "たんすミミック": {"color": "黄", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵", "ほこら"], "quests": []},
+  "チョコのせきぞう": {"color": "黄", "cost": 155, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵", "ほこら"], "quests": []},
   "ちょうろうじゅ": {"color": "緑", "cost": 92, "frequency": "ときどき", "condition": "地域", "limitedTimeEvents": [], "quests": ["6章1話", "6章2話", "6章3話", "6章4話", "6章5話", "6章6話", "6章7話", "6章8話", "6章9話", "6章10話", "7章1話", "7章2話", "7章3話", "7章4話", "7章5話", "7章6話", "7章7話", "7章8話", "7章9話", "7章10話", "8章1話", "8章2話", "8章3話", "8章4話", "8章5話", "8章6話", "8章7話", "8章8話", "8章9話", "8章10話", "9章1話", "9章2話", "9章3話", "9章4話", "9章5話", "9章6話", "9章7話", "9章8話", "9章9話", "9章10話"]},
   "チョコヌーバ": {"color": "黄", "cost": 32, "frequency": "ときどき", "condition": "地域", "limitedTimeEvents": [], "quests": ["2章9話", "2章10話", "3章1話", "3章2話", "3章3話", "3章4話", "3章5話", "3章6話", "3章7話"]},
   "つかいま": {"color": "紫", "cost": 39, "frequency": "とても", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
