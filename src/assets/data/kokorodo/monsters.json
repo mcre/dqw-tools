@@ -297,6 +297,7 @@
   "メタルダーク": {"color": "赤", "cost": 153, "frequency": "あまり", "condition": null, "limitedTimeEvents": [], "quests": ["16章1話", "16章2話", "16章3話", "16章4話", "16章5話", "16章6話", "16章7話", "16章8話", "16章9話", "16章10話"]},
   "メタルつむり": {"color": "青", "cost": 116, "frequency": "あまり", "condition": null, "limitedTimeEvents": [], "quests": ["11章1話", "11章2話", "11章3話", "11章4話", "11章5話", "11章6話", "11章7話", "11章8話", "11章9話", "11章10話", "12章1話", "12章2話", "12章3話", "12章4話", "12章5話", "12章6話", "12章7話", "12章8話", "12章9話", "12章10話"]},
   "メタルドラゴン": {"color": "赤", "cost": 69, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": [], "memo": "ゴドハン守護道4は覚醒前後両方が対象・魔剣士刃道5は覚醒後のみ対象"},
+  "メタルドラゴンRR": {"color": "緑", "cost": 69, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "メタルハンター": {"color": "赤", "cost": 53, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["4章2話", "4章3話", "4章4話", "4章5話", "4章6話", "4章7話", "4章8話"]},
   "メタルブラザーズ": {"color": "緑", "cost": 29, "frequency": "あまり", "condition": null, "limitedTimeEvents": [], "quests": ["2章6話", "2章7話", "2章8話", "2章9話", "2章10話", "3章1話", "3章2話", "3章3話", "3章4話", "3章5話", "3章6話", "3章7話", "3章8話", "3章9話", "3章10話", "4章1話", "4章2話", "4章3話", "4章4話", "4章5話"]},
   "メタルホイミン": {"color": "緑", "cost": 78, "frequency": "あまり", "condition": null, "limitedTimeEvents": ["ほこら"], "quests": ["6章1話", "6章2話", "6章3話", "6章4話", "6章5話", "6章6話", "6章7話", "6章8話", "6章9話", "6章10話", "7章1話", "7章2話", "7章3話", "7章4話", "7章5話", "7章6話", "7章7話", "7章8話", "7章9話", "7章10話", "8章1話", "8章2話", "8章3話", "8章4話", "8章5話", "8章6話", "8章7話", "8章8話", "8章9話", "8章10話"]},
@@ -357,6 +358,7 @@
   "闇を纏う剣士": {"color": "黄", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []},
   "破壊神シドー": {"color": "緑", "cost": 113, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "竜神のふくぶくろ": {"color": "黄", "cost": 120, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "孫悟空": {"color": "黄", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "迅雷天ミカヅチ": {"color": "紫", "cost": 167, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "大猿": {"color": "黄", "cost": 155, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": [], "memo": "ドラゴン人道5は覚醒後のみ対象・ニンジャ風道8は覚醒前後両方が対象"},
   "竜騎将バラン": {"color": "黄", "cost": 132, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []}
