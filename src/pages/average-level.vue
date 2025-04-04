@@ -113,11 +113,25 @@ const maxLevel = (type: LevelType): number => {
     case "advanced":
       return 90;
     case "special":
-      return 75;
+      return 80;
     default:
       return 55;
   }
 };
+
+// levelTypeを変更したときに上限を超えてたら上限に変更する
+watch(
+  members,
+  (newMembers) => {
+    newMembers.forEach((member) => {
+      const max = maxLevel(member.levelType);
+      if (member.level > max) {
+        member.level = max;
+      }
+    });
+  },
+  { deep: true }
+);
 
 const averageLevel = computed(() => {
   const total = members.value.reduce((acc, member) => {
