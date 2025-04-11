@@ -13,13 +13,9 @@
       <template v-if="isCombinedColor">
         <pattern :id="`pattern-${uid}`" patternUnits="userSpaceOnUse" width="40" height="40">
           <g filter="url(#smallBlur)">
-            <!-- 左上: firstColor -->
             <rect x="0" y="0" width="20" height="20" :fill="firstColor" />
-            <!-- 右上: secondColor -->
             <rect x="20" y="0" width="20" height="20" :fill="secondColor" />
-            <!-- 左下: secondColor -->
             <rect x="0" y="20" width="20" height="20" :fill="secondColor" />
-            <!-- 右下: firstColor -->
             <rect x="20" y="20" width="20" height="20" :fill="firstColor" />
           </g>
         </pattern>

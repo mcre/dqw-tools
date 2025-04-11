@@ -212,6 +212,7 @@
   "ビックアイ": {"color": "緑", "cost": 159, "frequency": "めったに", "condition": null, "limitedTimeEvents": [], "quests": ["16章9話", "16章10話"]},
   "ビッグハット": {"color": "緑", "cost": 26, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["2章7話", "2章8話", "2章9話"]},
   "びっくりサタン": {"color": "青", "cost": 9, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["1章6話", "1章7話", "1章8話", "1章9話"]},
+  "ピッコロ大魔王": {"color": "紫", "cost": 167, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "ひとくいサーベル": {"color": "黄", "cost": 30, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["2章9話", "2章10話", "3章1話", "3章2話", "3章3話"]},
   "ひとくいばこ": {"color": "青", "cost": 48, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["3章10話", "4章1話", "4章2話", "4章3話", "4章4話", "4章5話"]},
   "ひとつめピエロ": {"color": "紫", "cost": 57, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["4章7話", "4章8話", "4章9話"]},
