@@ -87,10 +87,10 @@ const isCombinedColor = computed(() => {
 });
 
 const firstColor = computed(() => {
-  return isCombinedColor.value ? kokorodoUtil.kokoroColorCode(props.colorName[0]) : null;
+  return isCombinedColor.value ? kokorodoUtil.kokoroColorCode(props.colorName[0]) : "";
 });
 const secondColor = computed(() => {
-  return isCombinedColor.value ? kokorodoUtil.kokoroColorCode(props.colorName[1]) : null;
+  return isCombinedColor.value ? kokorodoUtil.kokoroColorCode(props.colorName[1]) : "";
 });
 
 </script>
