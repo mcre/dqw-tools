@@ -358,7 +358,7 @@
   "闇を纏う剣士": {"color": "黄", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []},
   "破壊神シドー": {"color": "緑", "cost": 113, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "竜神のふくぶくろ": {"color": "黄", "cost": 120, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
-  "孫悟空": {"color": "黄", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "孫悟空": {"color": "赤黄", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "迅雷天ミカヅチ": {"color": "紫", "cost": 167, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "大猿": {"color": "黄", "cost": 155, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": [], "memo": "ドラゴン人道5は覚醒後のみ対象・ニンジャ風道8は覚醒前後両方が対象"},
   "竜騎将バラン": {"color": "黄", "cost": 132, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []}
