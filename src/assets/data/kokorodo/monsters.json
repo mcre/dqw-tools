@@ -2,6 +2,7 @@
   "ＭＣカンダタ": {"color": "青", "cost": 47, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []},
   "アイアンクック": {"color": "赤", "cost": 95, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["8章3話", "8章4話", "8章5話", "8章6話", "8章7話", "8章8話", "8章9話", "8章10話", "9章1話", "9章2話"]},
   "アイスフライ": {"color": "紫", "cost": 95, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "あかおにまる": {"color": "赤", "cost": 156, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "あくあ神官": {"color": "青", "cost": 77, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント", "ほこら"], "quests": []},
   "あくまのツボ": {"color": "黄", "cost": 137, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["13章9話", "13章10話", "14章1話", "14章2話", "14章3話", "14章4話", "14章5話", "14章6話", "14章7話", "14章8話"]},
   "あくま神官": {"color": "緑", "cost": 62, "frequency": "めったに", "condition": null, "limitedTimeEvents": [], "quests": ["4章9話", "4章10話", "5章1話", "5章2話", "5章3話", "5章4話"]},
