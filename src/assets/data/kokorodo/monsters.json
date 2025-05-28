@@ -233,6 +233,7 @@
   "ブラッドソード": {"color": "赤", "cost": 86, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["7章1話", "7章2話", "7章3話", "7章4話", "7章5話", "7章6話", "7章7話", "7章8話", "7章9話", "7章10話"]},
   "ブラッドナイト": {"color": "青", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
   "ブラッドハンド": {"color": "青", "cost": 77, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["5章9話", "5章10話", "6章1話", "6章2話", "6章3話", "6章4話", "6章5話", "6章6話", "6章7話", "6章8話"]},
+  "フラワーゾンビ": {"color": "緑", "cost": 92, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "フランケンゴーレム": {"color": "青", "cost": 92, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵", "ほこら"], "quests": []},
   "ブランマトック": {"color": "赤", "cost": 114, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["10章9話", "10章10話", "11章1話", "11章2話", "11章3話", "11章4話", "11章5話", "11章6話", "11章7話", "11章8話"]},
   "ブリザード": {"color": "青", "cost": 90, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["7章7話", "7章8話", "7章9話", "7章10話", "8章1話", "8章2話", "8章3話", "8章4話", "8章5話", "8章6話"]},
