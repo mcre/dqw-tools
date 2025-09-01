@@ -53,7 +53,7 @@
           { "code": 45, "level": 5, "monsters": ["もみじこぞう", "ズッキーニャ"] },
           { "code": 46, "level": 6, "monsters": ["グリザード", "竜王", "ヤムチャ"] },
           { "code": 47, "level": 7, "monsters": ["あばれこまいぬ"] },
-          { "code": 48, "level": 8, "monsters": ["魔剣神レパルド", "ギガパレス"] },
+          { "code": 48, "level": 8, "monsters": ["魔剣神レパルド", "ギガパレス", "アルゴングレート"] },
           { "code": 49, "level": 9, "monsters": ["マーマンダイン"] }
         ]
       },
@@ -142,7 +142,7 @@
           { "code": 146, "level": 6, "monsters": ["ベビーマジシャン"] },
           { "code": 147, "level": 7, "monsters": ["メタルつむり"] },
           { "code": 148, "level": 8, "monsters": ["アッシュリザード"] },
-          { "code": 149, "level": 9, "monsters": ["サラマンダー", "竜神王"] }
+          { "code": 149, "level": 9, "monsters": ["サラマンダー", "竜神王", "リザードファッツ"] }
         ]
       }
     ]
