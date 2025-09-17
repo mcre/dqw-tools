@@ -347,6 +347,7 @@
   "怪蟲アラグネ": {"color": "赤", "cost": 135, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": [], "memo": "天地雷鳴士地道7は覚醒前後両方が対象"},
   "岩とびあくま": {"color": "紫", "cost": 131, "frequency": "よく", "condition": "水", "limitedTimeEvents": [], "quests": ["13章1話", "13章2話", "13章3話", "13章4話", "13章5話", "13章6話", "13章7話", "13章8話", "13章9話", "13章10話"]},
   "記念大王スライム5.0": {"color": "青", "cost": 50, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "記念大王スライム6.0": {"color": "青", "cost": 60, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "魔王デスタムーア": {"color": "青", "cost": 134, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": [], "memo": "ゴドハン守護道6と守り人ささえ道4は覚醒後の「幻魔王デスタムーア」のみ対象"},
   "邪眼皇帝アウルート": {"color": "紫", "cost": 144, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
   "ハーゴン": {"color": "紫", "cost": 111, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": [], "memo": "魔剣士刃道8と守り人まもり道6は覚醒後の「邪神官ハーゴン」のみ対象"},
