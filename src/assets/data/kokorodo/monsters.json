@@ -338,7 +338,7 @@
   "レッドアーチャー": {"color": "青", "cost": 92, "frequency": "ときどき", "condition": "地域", "limitedTimeEvents": [], "quests": ["6章1話", "6章2話", "6章3話", "6章4話", "6章5話", "6章6話", "6章7話", "6章8話", "6章9話", "6章10話", "7章1話", "7章2話", "7章3話", "7章4話", "7章5話", "7章6話", "7章7話", "7章8話", "7章9話", "7章10話", "8章1話", "8章2話", "8章3話", "8章4話", "8章5話", "8章6話", "8章7話", "8章8話", "8章9話", "8章10話", "9章1話", "9章2話", "9章3話", "9章4話", "9章5話", "9章6話", "9章7話", "9章8話", "9章9話", "9章10話"]},
   "レッドパンサー": {"color": "赤", "cost": 86, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "レティス": {"color": "赤", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
-  "ワイトキング": {"color": "紫", "cost": 122, "frequency": "めったに", "condition": null, "limitedTimeEvents": [], "quests": ["11章9話", "11章10話", "12章1話", "12章2話", "12章3話", "12章4話", "12章5話", "12章6話", "12章7話", "12章8話"]},
+  "ワイトキング": {"color": "紫", "cost": 122, "frequency": "めったに", "condition": null, "limitedTimeEvents": [], "quests": ["11章9話", "11章10話", "12章1話", "12章2話", "12章3話", "12章4話", "12章5話", "12章6話", "12章7話", "12章8話"], "memo": "ゴッドハンド武道4は覚醒前後両方が対象。魔剣士刃道8・守り人まもり道6は覚醒後のみ対象"},
   "わかめ王子": {"color": "緑", "cost": 147, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []},
   "わらいぶくろ": {"color": "青", "cost": 21, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["2章4話", "2章5話", "2章6話", "2章7話"]},
   "ゾーマ": {"color": "紫", "cost": 84, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": [], "memo": "守り人ささえ道4,7とドラゴン竜道5は覚醒後の「闇の大魔王ゾーマ」のみ対象"},
