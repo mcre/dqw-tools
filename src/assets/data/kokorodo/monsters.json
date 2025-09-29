@@ -22,6 +22,7 @@
   "いどまじん": {"color": "紫", "cost": 146, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "ウィングデビル": {"color": "赤", "cost": 152, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵", "ほこら"], "quests": []},
   "ウォーキング・九州": {"color": "黄", "cost": 24, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "ウォーキング・北海道": {"color": "黄", "cost": 25, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "うごくせきぞう": {"color": "赤", "cost": 119, "frequency": "あまり", "condition": null, "limitedTimeEvents": [], "quests": ["11章5話", "11章6話", "11章7話", "11章8話", "11章9話", "11章10話", "12章1話", "12章2話", "12章3話", "12章4話"], "memo": "魔剣士魔道6は覚醒すると外れる"},
   "うみぼうず": {"color": "青", "cost": 81, "frequency": "よく", "condition": "水", "limitedTimeEvents": [], "quests": ["6章5話", "6章6話", "6章7話", "6章8話", "6章9話", "6章10話", "7章1話", "7章2話", "7章3話", "7章4話"]},
   "エスターク": {"color": "赤", "cost": 109, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": [], "memo": "魔人超人道道4は覚醒後の「地獄の帝王エスターク」のみ対象"},
@@ -355,6 +356,7 @@
   "乗馬ブラザーズ": {"color": "青", "cost": 41, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "水竜ギルギッシュ": {"color": "紫", "cost": 143, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": [], "memo": "魔剣士刃道8は覚醒後のみ対象・守り人まもり道6は覚醒前後両方が対象"},
   "堕天使エルギオス": {"color": "紫", "cost": 144, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
+  "女神ペルセリア": {"color": "紫", "cost": 126, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
   "大怪像ガドンゴ": {"color": "黄", "cost": 150, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
   "亡者のひとだま": {"color": "紫", "cost": 114, "frequency": "よく", "condition": "夜", "limitedTimeEvents": [], "quests": ["10章9話", "10章10話", "11章1話", "11章2話", "11章3話", "11章4話", "11章5話", "11章6話", "11章7話", "11章8話"]},
   "暴嵐天バリゲーン": {"color": "黄", "cost": 99, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
@@ -376,6 +378,7 @@
   "竜神のふくぶくろ": {"color": "黄", "cost": 120, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "孫悟空": {"color": "赤黄", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "迅雷天ミカヅチ": {"color": "紫", "cost": 167, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
+  "神威兵アネモーズ": {"color": "青", "cost": 156, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "大猿": {"color": "黄", "cost": 155, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": [], "memo": "ドラゴン人道5は覚醒後のみ対象・ニンジャ風道8は覚醒前後両方が対象"},
   "竜騎将バラン": {"color": "黄", "cost": 132, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []}
 }
