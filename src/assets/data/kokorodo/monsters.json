@@ -167,6 +167,7 @@
   "デュランダル": {"color": "赤", "cost": 123, "frequency": "めったに", "condition": null, "limitedTimeEvents": ["覚醒千里行"], "quests": []},
   "デンタザウルス": {"color": "黄", "cost": 104, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["9章5話", "9章6話", "9章7話", "9章8話", "9章9話", "9章10話", "10章1話", "10章2話", "10章3話", "10章4話"]},
   "テンツク": {"color": "赤", "cost": 92, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "てんのもんばん": {"color": "青", "cost": 138, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵", "ほこら"], "quests": []},
   "どくイモムシ": {"color": "緑", "cost": 35, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["2章10話", "3章1話", "3章2話", "3章3話", "3章4話", "3章5話", "3章6話"]},
   "どくどくゾンビ": {"color": "青", "cost": 41, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["3章6話", "3章7話", "3章8話", "3章9話"]},
   "どくろあらい": {"color": "黄", "cost": 15, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["1章10話", "2章1話", "2章2話", "2章3話", "2章4話"]},
@@ -378,7 +379,7 @@
   "竜神のふくぶくろ": {"color": "黄", "cost": 120, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "孫悟空": {"color": "赤黄", "cost": 149, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "迅雷天ミカヅチ": {"color": "紫", "cost": 167, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
-  "神威兵アネモーズ": {"color": "青", "cost": 156, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "神威兵アネモーズ": {"color": "青", "cost": 156, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": [], "memo": "ゴドハン守護道6は覚醒後の「獣威兵アネモーズ」のみ対象"},
   "大猿": {"color": "黄", "cost": 155, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": [], "memo": "ドラゴン人道5は覚醒後のみ対象・ニンジャ風道8は覚醒前後両方が対象"},
   "竜騎将バラン": {"color": "黄", "cost": 132, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []}
 }
