@@ -113,7 +113,7 @@ const maxLevel = (type: LevelType): number => {
     case "advanced":
       return 90;
     case "special":
-      return 80;
+      return 90;
     default:
       return 55;
   }
@@ -151,6 +151,7 @@ const metal = computed(() => {
   if (averageLevel.value < 51) return "はぐれメタル";
   if (averageLevel.value < 65) return "メタルホイミン";
   if (averageLevel.value < 75) return "ドラゴメタル";
-  return "メタルつむり";
+  if (averageLevel.value < 85) return "メタルつむり";
+  return "メタルエンゼル";
 });
 </script>
