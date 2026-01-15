@@ -354,6 +354,7 @@
   "ヤムチャ": {"color": "青", "cost": 155, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵", "ほこら"], "quests": []},
   "ゆきのじょおう": {"color": "赤", "cost": 114, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []},
   "ようがんげんじん": {"color": "黄", "cost": 114, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
+  "ようがんトーチ": {"color": "青", "cost": 159, "frequency": null, "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
   "ようがんまじん": {"color": "赤", "cost": 132, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["13章3話", "13章4話", "13章5話", "13章6話", "13章7話", "13章8話", "13章9話", "13章10話", "14章1話", "14章2話"]},
   "よろいのきし": {"color": "黄", "cost": 51, "frequency": "あまり", "condition": null, "limitedTimeEvents": [], "quests": ["4章2話", "4章3話", "4章4話", "4章5話", "4章6話", "4章7話"], "memo": "ゴドハン守護道7は覚醒前後両方が対象"},
   "ラーミア": {"color": "黄", "cost": 153, "frequency": null, "condition": null, "limitedTimeEvents": ["メガモン"], "quests": []},
