@@ -54,6 +54,7 @@
   "ガニメデス": {"color": "緑", "cost": 150, "frequency": "ときどき", "condition": null, "limitedTimeEvents": [], "quests": ["15章7話", "15章8話", "15章9話", "15章10話", "16章1話", "16章2話", "16章3話", "16章4話", "16章5話", "16章6話"]},
   "ガニラス": {"color": "赤", "cost": 99, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵"], "quests": []},
   "カフェまじん": {"color": "黄", "cost": 86, "frequency": "ときどき", "condition": null, "limitedTimeEvents": ["イベント"], "quests": []},
+  "ガメゴンレジェンド": {"color": "黄", "cost": 156, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "ガメゴンロード": {"color": "黄", "cost": 144, "frequency": null, "condition": null, "limitedTimeEvents": ["ほこら"], "quests": []},
   "キースドラゴン": {"color": "紫", "cost": 38, "frequency": "とても", "condition": null, "limitedTimeEvents": ["イベント", "ほこら"], "quests": []},
   "ギガパレス": {"color": "赤", "cost": 140, "frequency": null, "condition": null, "limitedTimeEvents": ["ギガモン"], "quests": [], "memo": "ゴドハン武道8は覚醒すると外れる・大魔道士魔力道8は覚醒前後両方が対象"},
