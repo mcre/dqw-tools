@@ -8,7 +8,8 @@
     "postbuild": "purgecss --config ./purgecss.config.js",
     "preview": "vite preview",
     "lint": "eslint . --fix --ignore-path .gitignore",
-    "sitemap:build": "node ./bin/updateSitemap.js"
+    "sitemap:build": "node ./bin/updateSitemap.js",
+    "test": "node --test test/*.test.cjs"
   },
   "dependencies": {
     "@fontsource-variable/roboto-flex": "^5.1.0",
