@@ -75,6 +75,7 @@
   "キャタピラー": {"color": "黄", "cost": 18, "frequency": "よく", "condition": null, "limitedTimeEvents": [], "quests": ["2章2話", "2章3話", "2章4話", "2章5話", "2章6話"]},
   "キャットフライ": {"color": "緑", "cost": 20, "frequency": "とても", "condition": null, "limitedTimeEvents": [], "quests": ["2章3話", "2章4話", "2章5話", "2章6話", "2章7話"]},
   "ギュメイ将軍": {"color": "青", "cost": 144, "frequency": "めったに", "condition": null, "limitedTimeEvents": ["覚醒千里行"], "quests": []},
+  "ギリメカラ": {"color": "赤", "cost": 180, "frequency": null, "condition": null, "limitedTimeEvents": ["宝の地図"], "quests": []},
   "キラーアーマー": {"color": "青", "cost": 111, "frequency": "あまり", "condition": null, "limitedTimeEvents": [], "quests": ["10章5話", "10章6話", "10章7話", "10章8話", "10章9話", "10章10話", "11章1話", "11章2話", "11章3話", "11章4話"]},
   "キラーデーモン": {"color": "赤", "cost": 165, "frequency": null, "condition": null, "limitedTimeEvents": ["強敵", "ほこら"], "quests": []},
   "キラージャック": {"color": "赤", "cost": 123, "frequency": "よく", "condition": "夜", "limitedTimeEvents": [], "quests": ["12章1話", "12章2話", "12章3話", "12章4話", "12章5話", "12章6話", "12章7話", "12章8話", "12章9話", "12章10話"]},
