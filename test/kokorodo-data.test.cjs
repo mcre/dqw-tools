@@ -58,6 +58,7 @@ test('frames.json に最新のこころ道一致モンスターが反映され�
     { jobName: '大神官', routeName: '舞道', level: 2, monsterNames: ['アンデッドマン'] },
     { jobName: '大神官', routeName: '祈道', level: 6, monsterNames: ['精霊のふくぶくろ'] },
     { jobName: '大神官', routeName: '祈道', level: 7, monsterNames: ['アイアンナイト'] },
+    { jobName: '大神官', routeName: '祈道', level: 9, monsterNames: ['デスコピオン'] },
     { jobName: 'ニンジャ', routeName: '風道', level: 2, monsterNames: ['アイアンナイト'] },
     { jobName: 'ニンジャ', routeName: '風道', level: 8, monsterNames: ['ヘルガイオン'] },
     { jobName: 'ニンジャ', routeName: '波道', level: 4, monsterNames: ['シャドーノーブル'] },
@@ -69,6 +70,7 @@ test('frames.json に最新のこころ道一致モンスターが反映され�
     { jobName: '守り人', routeName: 'ささえ道', level: 4, monsterNames: ['魔王ラスヴェーザ'] },
     { jobName: 'ドラゴン', routeName: '人道', level: 9, monsterNames: ['ギリメカラ'] },
     { jobName: '天地雷鳴士', routeName: '地道', level: 3, monsterNames: ['かじゅうナイト'] },
+    { jobName: '魔人', routeName: '超人道', level: 5, monsterNames: ['デスコピオン'] },
     { jobName: '魔人', routeName: '超魔道', level: 6, monsterNames: ['キラーデーモン'] }
   ]
 
@@ -213,6 +215,14 @@ test('monsters.json に最新こころ道モンスターの検索用メタデー
       frequency: 'ときどき',
       quests: [],
       limitedTimeEvents: ['イベント'],
+      condition: null
+    },
+    デスコピオン: {
+      color: '赤',
+      cost: 138,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['メガモン'],
       condition: null
     }
   }
