@@ -53,6 +53,7 @@ test('frames.json に最新のこころ道一致モンスターが反映され�
     { jobName: 'ゴッドハンド', routeName: '守護道', level: 2, monsterNames: ['エルダーフレイム'] },
     { jobName: 'ゴッドハンド', routeName: '守護道', level: 4, monsterNames: ['メタルハンド'] },
     { jobName: 'ゴッドハンド', routeName: '武道', level: 10, monsterNames: ['ヘルミラージュ'] },
+    { jobName: '大魔道士', routeName: '魔力道', level: 10, monsterNames: ['アラクラトロ'] },
     { jobName: '大魔道士', routeName: '理力道', level: 3, monsterNames: ['かじゅうナイト'] },
     { jobName: '大魔道士', routeName: '理力道', level: 4, monsterNames: ['サウルスロード'] },
     { jobName: '大神官', routeName: '舞道', level: 2, monsterNames: ['アンデッドマン'] },
@@ -223,6 +224,14 @@ test('monsters.json に最新こころ道モンスターの検索用メタデー
       frequency: null,
       quests: [],
       limitedTimeEvents: ['メガモン'],
+      condition: null
+    },
+    アラクラトロ: {
+      color: '青',
+      cost: 168,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['ほこら'],
       condition: null
     }
   }
