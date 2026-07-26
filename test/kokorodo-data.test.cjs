@@ -63,12 +63,14 @@ test('frames.json に最新のこころ道一致モンスターが反映され�
     { jobName: 'ニンジャ', routeName: '風道', level: 2, monsterNames: ['アイアンナイト'] },
     { jobName: 'ニンジャ', routeName: '風道', level: 8, monsterNames: ['ヘルガイオン'] },
     { jobName: 'ニンジャ', routeName: '波道', level: 4, monsterNames: ['シャドーノーブル'] },
+    { jobName: 'ニンジャ', routeName: '波道', level: 10, monsterNames: ['リーズレット'] },
     { jobName: '魔剣士', routeName: '魔道', level: 9, monsterNames: ['アイアンナイト', '巨匠もじゃらきラクーン'] },
     { jobName: '魔剣士', routeName: '刃道', level: 5, monsterNames: ['メタルドラゴン'] },
     { jobName: '魔剣士', routeName: '刃道', level: 8, monsterNames: ['かぐわシイタケ', 'ブラックルーン'] },
     { jobName: '守り人', routeName: 'まもり道', level: 6, monsterNames: ['かぐわシイタケ', 'ブラックルーン'] },
     { jobName: '守り人', routeName: 'まもり道', level: 8, monsterNames: ['マージマタンゴ'] },
     { jobName: '守り人', routeName: 'ささえ道', level: 4, monsterNames: ['魔王ラスヴェーザ'] },
+    { jobName: 'ドラゴン', routeName: '人道', level: 2, monsterNames: ['つゆだくスライム'] },
     { jobName: 'ドラゴン', routeName: '人道', level: 9, monsterNames: ['ギリメカラ'] },
     { jobName: '天地雷鳴士', routeName: '地道', level: 3, monsterNames: ['かじゅうナイト'] },
     { jobName: '魔人', routeName: '超人道', level: 5, monsterNames: ['デスコピオン'] },
@@ -232,6 +234,22 @@ test('monsters.json に最新こころ道モンスターの検索用メタデー
       frequency: null,
       quests: [],
       limitedTimeEvents: ['ほこら'],
+      condition: null
+    },
+    リーズレット: {
+      color: '紫',
+      cost: 126,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['メガモン'],
+      condition: null
+    },
+    つゆだくスライム: {
+      color: '緑',
+      cost: 90,
+      frequency: 'よく',
+      quests: [],
+      limitedTimeEvents: ['イベント'],
       condition: null
     }
   }
