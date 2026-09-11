@@ -50,31 +50,39 @@ test('frames.json が参照するモンスターは monsters.json に存在す�
 test('frames.json に最新のこころ道一致モンスターが反映されている', () => {
   const frames = readJson('frames.json')
   const expectedLatestRouteMatches = [
-    { jobName: 'ゴッドハンド', routeName: '守護道', level: 2, monsterNames: ['エルダーフレイム'] },
+    { jobName: 'ゴッドハンド', routeName: '守護道', level: 2, monsterNames: ['エルダーフレイム', 'ひとくい紅生姜ばこ'] },
     { jobName: 'ゴッドハンド', routeName: '守護道', level: 4, monsterNames: ['メタルハンド'] },
+    { jobName: 'ゴッドハンド', routeName: '武道', level: 4, monsterNames: ['どんぶりキング'] },
     { jobName: 'ゴッドハンド', routeName: '武道', level: 10, monsterNames: ['ヘルミラージュ'] },
-    { jobName: '大魔道士', routeName: '魔力道', level: 10, monsterNames: ['アラクラトロ'] },
+    { jobName: '大魔道士', routeName: '魔力道', level: 2, monsterNames: ['ひとくい紅生姜ばこ'] },
+    { jobName: '大魔道士', routeName: '魔力道', level: 10, monsterNames: ['アラクラトロ', 'シャイニング'] },
     { jobName: '大魔道士', routeName: '理力道', level: 3, monsterNames: ['かじゅうナイト'] },
     { jobName: '大魔道士', routeName: '理力道', level: 4, monsterNames: ['サウルスロード'] },
     { jobName: '大神官', routeName: '舞道', level: 2, monsterNames: ['アンデッドマン'] },
     { jobName: '大神官', routeName: '祈道', level: 6, monsterNames: ['精霊のふくぶくろ'] },
     { jobName: '大神官', routeName: '祈道', level: 7, monsterNames: ['アイアンナイト'] },
-    { jobName: '大神官', routeName: '祈道', level: 9, monsterNames: ['デスコピオン'] },
+    { jobName: '大神官', routeName: '祈道', level: 9, monsterNames: ['デスコピオン', 'ヘルプラネット'] },
     { jobName: 'ニンジャ', routeName: '風道', level: 2, monsterNames: ['アイアンナイト'] },
-    { jobName: 'ニンジャ', routeName: '風道', level: 8, monsterNames: ['ヘルガイオン'] },
+    { jobName: 'ニンジャ', routeName: '風道', level: 8, monsterNames: ['ヘルガイオン', 'イレブンとカミュ', '黒き偽竜グレイナル'] },
     { jobName: 'ニンジャ', routeName: '波道', level: 4, monsterNames: ['シャドーノーブル'] },
+    { jobName: 'ニンジャ', routeName: '波道', level: 9, monsterNames: ['黒き偽竜グレイナル'] },
     { jobName: 'ニンジャ', routeName: '波道', level: 10, monsterNames: ['リーズレット'] },
+    { jobName: '魔剣士', routeName: '魔道', level: 5, monsterNames: ['ひとくい紅生姜ばこ'] },
     { jobName: '魔剣士', routeName: '魔道', level: 9, monsterNames: ['アイアンナイト', '巨匠もじゃらきラクーン'] },
     { jobName: '魔剣士', routeName: '刃道', level: 5, monsterNames: ['メタルドラゴン'] },
     { jobName: '魔剣士', routeName: '刃道', level: 8, monsterNames: ['かぐわシイタケ', 'ブラックルーン'] },
-    { jobName: '守り人', routeName: 'まもり道', level: 6, monsterNames: ['かぐわシイタケ', 'ブラックルーン'] },
+    { jobName: '守り人', routeName: 'まもり道', level: 6, monsterNames: ['かぐわシイタケ', 'ブラックルーン', 'うみうしひめ'] },
     { jobName: '守り人', routeName: 'まもり道', level: 8, monsterNames: ['マージマタンゴ'] },
-    { jobName: '守り人', routeName: 'ささえ道', level: 4, monsterNames: ['魔王ラスヴェーザ'] },
+    { jobName: '守り人', routeName: 'ささえ道', level: 4, monsterNames: ['魔王ラスヴェーザ', '魔王ウルノーガ'] },
+    { jobName: '守り人', routeName: 'ささえ道', level: 5, monsterNames: ['ヘルプラネット'] },
+    { jobName: '守り人', routeName: 'ささえ道', level: 8, monsterNames: ['シャイニング'] },
     { jobName: 'ドラゴン', routeName: '人道', level: 2, monsterNames: ['つゆだくスライム'] },
     { jobName: 'ドラゴン', routeName: '人道', level: 9, monsterNames: ['ギリメカラ'] },
     { jobName: '天地雷鳴士', routeName: '地道', level: 3, monsterNames: ['かじゅうナイト'] },
     { jobName: '魔人', routeName: '超人道', level: 5, monsterNames: ['デスコピオン'] },
-    { jobName: '魔人', routeName: '超魔道', level: 6, monsterNames: ['キラーデーモン'] }
+    { jobName: '魔人', routeName: '超魔道', level: 6, monsterNames: ['キラーデーモン'] },
+    { jobName: '魔人', routeName: '超魔道', level: 7, monsterNames: ['ヘルクラッシャー'] },
+    { jobName: '時渡りの剣士', routeName: '遡行道', level: 6, monsterNames: ['シャイニング'] }
   ]
 
   for (const { jobName, routeName, level, monsterNames } of expectedLatestRouteMatches) {
@@ -250,6 +258,79 @@ test('monsters.json に最新こころ道モンスターの検索用メタデー
       frequency: 'よく',
       quests: [],
       limitedTimeEvents: ['イベント'],
+      condition: null
+    },
+    ひとくい紅生姜ばこ: {
+      color: '紫',
+      cost: 90,
+      frequency: 'よく',
+      quests: [],
+      limitedTimeEvents: ['イベント'],
+      condition: null
+    },
+    どんぶりキング: {
+      color: '青',
+      cost: 90,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['イベント'],
+      condition: null,
+      memo: 'どんぶりスライム覚醒後のみ対象'
+    },
+    イレブンとカミュ: {
+      color: '黄',
+      cost: 167,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['イベント'],
+      condition: null
+    },
+    魔王ウルノーガ: {
+      color: '黒',
+      cost: 181,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['メガモン'],
+      condition: null
+    },
+    ヘルクラッシャー: {
+      color: '黄',
+      cost: 164,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['強敵'],
+      condition: null
+    },
+    うみうしひめ: {
+      color: '紫',
+      cost: 182,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['魔界の香水'],
+      condition: null
+    },
+    黒き偽竜グレイナル: {
+      color: '黄',
+      cost: 176,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['時空の歪み'],
+      condition: null
+    },
+    シャイニング: {
+      color: '青',
+      cost: 177,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['ほこら'],
+      condition: null
+    },
+    ヘルプラネット: {
+      color: '赤',
+      cost: 177,
+      frequency: null,
+      quests: [],
+      limitedTimeEvents: ['ほこら'],
       condition: null
     }
   }
