@@ -339,3 +339,162 @@ test('monsters.json に最新こころ道モンスターの検索用メタデー
     assert.deepEqual(monsters[monsterName], expectedMonster, monsterName)
   }
 })
+
+// 2026-10-07 確認: https://9db.jp/dqwalk/data/20201
+// 既存職業の追加対象: https://gamewith.jp/dq-walk/article/show/365843
+// アルス: https://9db.jp/dqwalk/data/8282
+test('魔弾の剣士の共通・突撃道・援撃道に確認済みの一致モンスターがある', () => {
+  const frames = readJson('frames.json')
+  const expectedRoutes = [
+    { name: '共通', levels: [{ code: 400, level: 0, monsters: ['キラースコップ'] }] },
+    {
+      name: '突撃道',
+      levels: [
+        { code: 401, level: 1, monsters: ['ヘルゴースト'] },
+        { code: 402, level: 2, monsters: ['どんぶりキング', 'ジャミ'] },
+        { code: 403, level: 3, monsters: ['ひょうがまじん'] },
+        { code: 404, level: 4, monsters: ['デスプリースト'] },
+        { code: 405, level: 5, monsters: ['だいおうクジラ'] },
+        { code: 406, level: 6, monsters: ['ユニコーン', '破壊神シドー'] },
+        { code: 407, level: 7, monsters: ['アックスドラゴン'] },
+        { code: 408, level: 8, monsters: ['おどるほうせき'] },
+        { code: 409, level: 9, monsters: ['闇の覇者蒼き竜王', 'ヴァルハラー'] },
+        { code: 410, level: 10, monsters: [] }
+      ]
+    },
+    {
+      name: '援撃道',
+      levels: [
+        { code: 421, level: 1, monsters: ['メイジドラキー'] },
+        { code: 422, level: 2, monsters: ['グレイトマーマン'] },
+        { code: 423, level: 3, monsters: ['メーダクイン'] },
+        { code: 424, level: 4, monsters: ['キラーマシン2'] },
+        { code: 425, level: 5, monsters: ['まじんブドゥ'] },
+        { code: 426, level: 6, monsters: ['ゴールデンゴーレム'] },
+        { code: 427, level: 7, monsters: ['ゴンズ'] },
+        { code: 428, level: 8, monsters: ['グレムリン'] },
+        { code: 429, level: 9, monsters: [] },
+        { code: 430, level: 10, monsters: [] }
+      ]
+    }
+  ]
+
+  assert.deepEqual(frames.find(({ jobName }) => jobName === '魔弾の剣士')?.routes, expectedRoutes)
+})
+
+test('既存職業の未反映の一致モンスターが追加されている', () => {
+  const frames = readJson('frames.json')
+
+  assert.deepEqual(findFrame(frames, '魔剣士', '魔道', 9)?.monsters, [
+    '黒竜丸', 'タイガークロー', 'アイアンナイト', '巨匠もじゃらきラクーン', 'パンドラボックス', 'シャドウパンサー', 'ゲノミー'
+  ])
+  assert.ok(findFrame(frames, 'ニンジャ', '風道', 8)?.monsters.includes('アルス'))
+})
+
+test('新しいこころ道モンスターの色・コスト・出現場所で検索できる', () => {
+  const monsters = readJson('monsters.json')
+  const expectedMonsters = {
+    キラースコップ: {
+      color: '赤', cost: 23, frequency: 'とても', condition: null,
+      limitedTimeEvents: [], quests: createQuestRange(2, 5, 8)
+    },
+    ヘルゴースト: {
+      color: '緑', cost: 93, frequency: 'とても', condition: null,
+      limitedTimeEvents: [], quests: createQuestRange(8, 1, 10)
+    },
+    メイジドラキー: {
+      color: '紫', cost: 78, frequency: 'とても', condition: null,
+      limitedTimeEvents: [], quests: createQuestRange(6, 1, 10)
+    },
+    ジャミ: {
+      color: '青', cost: 101, frequency: null, condition: null,
+      limitedTimeEvents: ['強敵'], quests: []
+    },
+    グレイトマーマン: {
+      color: '黄', cost: 102, frequency: null, condition: null,
+      limitedTimeEvents: ['強敵'], quests: []
+    },
+    ひょうがまじん: {
+      color: '赤', cost: 96, frequency: null, condition: null,
+      limitedTimeEvents: ['強敵'], quests: []
+    },
+    メーダクイン: {
+      color: '緑', cost: 128, frequency: 'とても', condition: null,
+      limitedTimeEvents: [], quests: concatQuestRanges([12, 7, 10], [13, 1, 6])
+    },
+    デスプリースト: {
+      color: '紫', cost: 168, frequency: null, condition: null,
+      limitedTimeEvents: ['イベント'], quests: [], memo: 'まほうのお香使用時に出現'
+    },
+    キラーマシン2: {
+      color: '黄', cost: 152, frequency: null, condition: null,
+      limitedTimeEvents: ['キラーゾーン'], quests: []
+    },
+    だいおうクジラ: {
+      color: '黄', cost: 152, frequency: null, condition: null,
+      limitedTimeEvents: ['メガモン'], quests: []
+    },
+    まじんブドゥ: {
+      color: '青', cost: 158, frequency: null, condition: null,
+      limitedTimeEvents: ['メガモン'], quests: []
+    },
+    ユニコーン: {
+      color: '緑', cost: 129, frequency: null, condition: null,
+      limitedTimeEvents: ['ほこら'], quests: []
+    },
+    ゴールデンゴーレム: {
+      color: '黄', cost: 122, frequency: null, condition: null,
+      limitedTimeEvents: ['ほこら'], quests: []
+    },
+    アックスドラゴン: {
+      color: '青', cost: 99, frequency: null, condition: null,
+      limitedTimeEvents: ['ほこら'], quests: []
+    },
+    ゴンズ: {
+      color: '赤', cost: 116, frequency: null, condition: null,
+      limitedTimeEvents: ['ほこら'], quests: []
+    },
+    グレムリン: {
+      color: '緑', cost: 32, frequency: 'めったに', condition: null,
+      limitedTimeEvents: [], quests: concatQuestRanges([2, 9, 10], [3, 1, 4])
+    },
+    ゲノミー: {
+      color: '青', cost: 165, frequency: 'とても', condition: '水',
+      limitedTimeEvents: [], quests: concatQuestRanges([17, 7, 10], [18, 1, 6])
+    },
+    アルス: {
+      color: '虹', cost: 174, frequency: null, condition: null,
+      limitedTimeEvents: ['イベント'], quests: [], memo: 'ニンジャ風道8は覚醒前後両方が対象'
+    }
+  }
+
+  for (const [monsterName, expectedMonster] of Object.entries(expectedMonsters)) {
+    assert.deepEqual(monsters[monsterName], expectedMonster, monsterName)
+  }
+})
+
+test('魔弾の剣士に必要な覚醒条件が注記されている', () => {
+  const monsters = readJson('monsters.json')
+
+  assert.match(monsters['破壊神シドー'].memo, /魔弾の剣士突撃道6.*覚醒後/)
+  assert.match(monsters['闇の覇者蒼き竜王'].memo, /魔弾の剣士突撃道9.*覚醒後/)
+  assert.match(monsters['ヴァルハラー'].memo ?? '', /時渡りの剣士遡行道10.*覚醒前後/)
+  assert.match(monsters['ヴァルハラー'].memo ?? '', /魔弾の剣士突撃道9.*覚醒後/)
+})
+
+test('枠コードが重複せず既存の保存URLとの対応を保っている', () => {
+  const frames = readJson('frames.json')
+  const jobs = ['ゴッドハンド', '大魔道士', '大神官', 'ニンジャ', '魔剣士', '守り人', 'ドラゴン', '天地雷鳴士', '魔人', '時渡りの剣士', '魔弾の剣士']
+  const codes = frames.flatMap(({ routes }) => routes.flatMap(({ levels }) => levels.map(({ code }) => code)))
+
+  assert.deepEqual(frames.map(({ jobName }) => jobName), jobs)
+  assert.equal(new Set(codes).size, codes.length)
+  for (const [jobIndex, jobName] of jobs.entries()) {
+    const job = frames.find((frame) => frame.jobName === jobName)
+    assert.deepEqual(job.routes.map(({ levels }) => levels.map(({ code, level }) => [code, level])), [
+      [[jobIndex * 40, 0]],
+      Array.from({ length: 10 }, (_, index) => [jobIndex * 40 + index + 1, index + 1]),
+      Array.from({ length: 10 }, (_, index) => [jobIndex * 40 + index + 21, index + 1])
+    ], jobName)
+  }
+})
