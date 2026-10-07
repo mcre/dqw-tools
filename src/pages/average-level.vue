@@ -65,7 +65,7 @@
             track-color="default"
             color="primary"
             min="1"
-            max="120"
+            max="140"
             v-model="averageLevel"
             readonly
             thumb-label="always"
@@ -113,7 +113,7 @@ const maxLevel = (type: LevelType): number => {
     case "advanced":
       return 90;
     case "special":
-      return 90;
+      return 95;
     default:
       return 55;
   }
@@ -143,7 +143,7 @@ const averageLevel = computed(() => {
   return Math.floor(average * 10) / 10;
 });
 
-const tickLabels = [15, 30, 51, 65, 75];
+const tickLabels = [15, 30, 51, 65, 75, 85];
 
 const metal = computed(() => {
   if (averageLevel.value < 15) return "メタルスライム";
